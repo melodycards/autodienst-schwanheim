@@ -31,7 +31,7 @@ const benefits = [
 ];
 
 const services = [
-  "TÜV + AU-Vorfahrten",
+  "TÜV & AU-Service",
   "Inspektion",
   "Ölwechsel",
   "Reifenservice",
