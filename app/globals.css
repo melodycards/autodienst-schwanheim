@@ -400,6 +400,16 @@ a {
   white-space: nowrap;
 }
 
+.signal-strip p .keep-together,
+.contact-grid p .keep-together {
+  color: inherit;
+  display: inline;
+  font-size: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+  text-transform: none;
+}
+
 .intro-section,
 .services-section,
 .hours-section,
