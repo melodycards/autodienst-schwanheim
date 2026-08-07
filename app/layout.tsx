@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 const siteTitle = "Autodienst Schwanheim | Autowerkstatt in Frankfurt am Main";
 const siteDescription =
-  "Moderne Startseite für Autodienst Schwanheim in der Rheinlandstraße 3, 60529 Frankfurt am Main.";
+  "Autowerkstatt in Frankfurt-Schwanheim: TÜV + AU-Vorfahrten, Inspektion, Ölwechsel, Reifenservice, Diagnose, Aufbereitung, Lackierungen und Beschriftungen.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -37,7 +37,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${origin}/og.png`,
           width: 1200,
           height: 630,
-          alt: "Autodienst Schwanheim in Frankfurt-Schwanheim",
+          alt: "Außenansicht von Autodienst Schwanheim in Frankfurt-Schwanheim",
         },
       ],
     },
@@ -48,8 +48,8 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [`${origin}/og.png`],
     },
     icons: {
-      icon: "/favicon.svg",
-      shortcut: "/favicon.svg",
+      icon: "/autodienst-logo.png",
+      shortcut: "/autodienst-logo.png",
     },
   };
 }

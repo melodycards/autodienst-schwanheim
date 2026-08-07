@@ -1,33 +1,46 @@
 const contact = {
-  phone: "069 15392723",
-  phoneHref: "tel:+496915392723",
+  landline: "069 15 39 27 23",
+  landlineHref: "tel:+496915392723",
+  email: "autodienstschwanheim@gmail.com",
+  emailHref: "mailto:autodienstschwanheim@gmail.com",
   addressLines: ["Rheinlandstraße 3", "60529 Frankfurt am Main"],
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=Rheinlandstra%C3%9Fe%203%2C%2060529%20Frankfurt%20am%20Main",
 };
 
-const placeholderCards = [
+const people = [
   {
-    kicker: "Leistungen",
-    title: "Details werden ergänzt",
-    text: "Eine verbindliche Leistungsübersicht liegt noch nicht vor. Bis dahin bleibt dieser Bereich bewusst neutral.",
+    name: "Ömür Ete",
+    label: "Mobil",
+    phone: "0157 96 08 500",
+    href: "tel:+491579608500",
   },
   {
-    kicker: "Öffnungszeiten",
-    title: "Noch offen",
-    text: "Die Öffnungszeiten können hier eingetragen werden, sobald sie bestätigt sind.",
-  },
-  {
-    kicker: "Termine",
-    title: "Kontakt nach Absprache",
-    text: "Für konkrete Anliegen ist aktuell der telefonische Kontakt der klare nächste Schritt.",
+    name: "Muhammed Göküzüm",
+    label: "Mobil",
+    phone: "0163 25 07 342",
+    href: "tel:+491632507342",
   },
 ];
 
-const trustItems = [
-  "Klare Kontaktmöglichkeit",
-  "Standort in Frankfurt-Schwanheim",
-  "Platz für bestätigte Werkstattinformationen",
+const benefits = [
+  "Mit oder ohne Terminvereinbarung",
+  "Schnell & günstig",
+  "Kompetenter Service",
+];
+
+const services = [
+  "TÜV + AU-Vorfahrten",
+  "Inspektion",
+  "Ölwechsel",
+  "Reifenservice",
+  "Fahrzeugdiagnose",
+  "Fehlerauslesen",
+  "Motordiagnose",
+  "Klima-Check",
+  "Kfz-Aufbereitung inklusive Reinigung per Hand",
+  "Fahrzeuglackierungen",
+  "Fahrzeugbeschriftungen",
 ];
 
 export default function Home() {
@@ -35,8 +48,8 @@ export default function Home() {
     <main className="site-shell">
       <header className="topbar" aria-label="Hauptnavigation">
         <a className="brand" href="#start" aria-label="Autodienst Schwanheim">
-          <span className="brand-mark" aria-hidden="true">
-            AS
+          <span className="logo-shell">
+            <img src="/autodienst-logo.png" alt="" />
           </span>
           <span>
             <strong>Autodienst Schwanheim</strong>
@@ -44,32 +57,41 @@ export default function Home() {
           </span>
         </a>
         <nav className="nav-links" aria-label="Seitenbereiche">
+          <a href="#leistungen">Leistungen</a>
+          <a href="#bilder">Bilder</a>
           <a href="#kontakt">Kontakt</a>
-          <a href="#standort">Standort</a>
-          <a href="#informationen">Informationen</a>
         </nav>
-        <a className="topbar-call" href={contact.phoneHref}>
-          Anrufen
+        <a className="topbar-call" href={contact.landlineHref}>
+          Jetzt anrufen
         </a>
       </header>
 
       <section id="start" className="hero">
-        <div className="hero-media" aria-hidden="true" />
+        <img
+          className="hero-photo"
+          src="/werkstatt-aussen.png"
+          alt="Außenansicht von Autodienst Schwanheim mit Fahrzeugen vor der Werkstatt"
+        />
         <div className="hero-overlay" />
         <div className="hero-content">
           <p className="eyebrow">Autowerkstatt in Frankfurt-Schwanheim</p>
           <h1>Autodienst Schwanheim</h1>
           <p className="hero-copy">
-            Moderne Startseite für eine professionelle Werkstattpräsenz mit
-            klarer Adresse, direktem Telefonkontakt und neutralen Bereichen für
-            noch zu bestätigende Informationen.
+            Kompetenter Kfz-Service in der Rheinlandstraße 3. Direkt anrufen,
+            Route starten oder die Leistungen der Werkstatt auf einen Blick
+            ansehen.
           </p>
           <div className="hero-actions" aria-label="Kontaktaktionen">
-            <a className="button primary" href={contact.phoneHref}>
-              {contact.phone}
+            <a className="button primary" href={contact.landlineHref}>
+              Jetzt anrufen
             </a>
-            <a className="button secondary" href="#standort">
-              Standort ansehen
+            <a
+              className="button secondary"
+              href={contact.mapsHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Route starten
             </a>
           </div>
         </div>
@@ -78,7 +100,11 @@ export default function Home() {
       <section className="quick-info" aria-label="Kurzinfos">
         <article>
           <span>Telefon</span>
-          <a href={contact.phoneHref}>{contact.phone}</a>
+          <a href={contact.landlineHref}>{contact.landline}</a>
+        </article>
+        <article>
+          <span>E-Mail</span>
+          <a href={contact.emailHref}>{contact.email}</a>
         </article>
         <article>
           <span>Adresse</span>
@@ -88,68 +114,99 @@ export default function Home() {
             {contact.addressLines[1]}
           </p>
         </article>
-        <article>
-          <span>Status</span>
-          <p>Weitere Angaben werden ergänzt</p>
-        </article>
       </section>
 
       <section className="intro-section" aria-labelledby="intro-title">
         <div>
-          <p className="section-label">Werkstattpräsenz</p>
-          <h2 id="intro-title">Seriös, übersichtlich und auf den Punkt.</h2>
+          <p className="section-label">Ihre Werkstatt</p>
+          <h2 id="intro-title">Schnelle Hilfe, klare Wege, direkter Kontakt.</h2>
         </div>
-        <p>
-          Diese Startseite stellt die bekannten Informationen prominent dar und
-          lässt bewusst Raum für später bestätigte Inhalte. So bleibt der
-          Auftritt professionell, ohne unbelegte Bewertungen, Preise,
-          Öffnungszeiten oder Leistungsversprechen zu verwenden.
-        </p>
-      </section>
-
-      <section id="informationen" className="info-grid" aria-label="Informationen">
-        {placeholderCards.map((card) => (
-          <article className="info-card" key={card.kicker}>
-            <p>{card.kicker}</p>
-            <h3>{card.title}</h3>
-            <span>{card.text}</span>
-          </article>
-        ))}
-      </section>
-
-      <section className="trust-band" aria-label="Schwerpunkte">
-        <div>
-          <p className="section-label">Aufbau</p>
-          <h2>Bereit für echte Inhalte, sobald sie vorliegen.</h2>
-        </div>
-        <ul>
-          {trustItems.map((item) => (
-            <li key={item}>{item}</li>
+        <div className="benefit-list" aria-label="Vorteile">
+          {benefits.map((benefit) => (
+            <p key={benefit}>{benefit}</p>
           ))}
-        </ul>
+        </div>
       </section>
 
-      <section id="standort" className="location-section" aria-labelledby="location-title">
-        <div className="location-copy">
-          <p className="section-label">Standort</p>
-          <h2 id="location-title">Rheinlandstraße 3 in Frankfurt am Main</h2>
-          <p>
-            Der Standort ist für Besucherinnen und Besucher klar ausgewiesen.
-            Die Routenplanung öffnet die Adresse in Google Maps.
-          </p>
-          <a className="button primary" href={contact.mapsHref} target="_blank" rel="noreferrer">
-            Route planen
-          </a>
+      <section id="leistungen" className="services-section" aria-labelledby="services-title">
+        <div className="section-heading">
+          <p className="section-label">Service / Leistungen</p>
+          <h2 id="services-title">Alles übersichtlich auf einen Blick.</h2>
         </div>
-        <div className="address-panel" id="kontakt">
-          <span>Kontakt</span>
-          <h3>Autodienst Schwanheim</h3>
+        <div className="service-grid">
+          {services.map((service, index) => (
+            <article className="service-card" key={service}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{service}</h3>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section id="bilder" className="photo-feature" aria-labelledby="photos-title">
+        <div className="photo-copy">
+          <p className="section-label">Werkstattbilder</p>
+          <h2 id="photos-title">Ein realer Blick auf den Standort.</h2>
           <p>
-            {contact.addressLines[0]}
-            <br />
-            {contact.addressLines[1]}
+            Die Website verwendet ausschließlich die bereitgestellten Bilder:
+            das offizielle Logo sowie Werkstattfotos von Autodienst Schwanheim.
           </p>
-          <a href={contact.phoneHref}>{contact.phone}</a>
+        </div>
+        <figure className="workshop-image">
+          <img
+            src="/werkstatt-service.png"
+            alt="Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren"
+          />
+        </figure>
+      </section>
+
+      <section id="kontakt" className="contact-section" aria-labelledby="contact-title">
+        <div className="contact-copy">
+          <p className="section-label">Kontakt</p>
+          <h2 id="contact-title">Anrufen, schreiben oder direkt hinfinden.</h2>
+          <div className="contact-actions">
+            <a className="button primary" href={contact.landlineHref}>
+              Jetzt anrufen
+            </a>
+            <a
+              className="button dark"
+              href={contact.mapsHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Route starten
+            </a>
+            <a className="button light" href={contact.emailHref}>
+              E-Mail senden
+            </a>
+          </div>
+        </div>
+        <div className="contact-panel">
+          <div className="contact-logo">
+            <img src="/autodienst-logo.png" alt="Autodienst Schwanheim Logo" />
+          </div>
+          <div className="people-grid">
+            {people.map((person) => (
+              <article className="person-card" key={person.name}>
+                <span>Ansprechpartner</span>
+                <h3>{person.name}</h3>
+                <p>{person.label}</p>
+                <a href={person.href}>{person.phone}</a>
+              </article>
+            ))}
+          </div>
+          <div className="address-card">
+            <span>Festnetz</span>
+            <a href={contact.landlineHref}>{contact.landline}</a>
+            <span>E-Mail</span>
+            <a href={contact.emailHref}>{contact.email}</a>
+            <span>Adresse</span>
+            <p>
+              {contact.addressLines[0]}
+              <br />
+              {contact.addressLines[1]}
+            </p>
+          </div>
         </div>
       </section>
     </main>
