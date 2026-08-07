@@ -74,6 +74,11 @@ export default function Home() {
         />
         <div className="hero-overlay" />
         <div className="hero-content">
+          <img
+            className="hero-logo"
+            src="/autodienst-logo.png"
+            alt="Autodienst Schwanheim Logo"
+          />
           <p className="eyebrow">Autowerkstatt in Frankfurt-Schwanheim</p>
           <h1>Autodienst Schwanheim</h1>
           <p className="hero-copy">
@@ -151,12 +156,26 @@ export default function Home() {
             den Standort in Frankfurt-Schwanheim hochwertig präsentiert.
           </p>
         </div>
-        <figure className="workshop-image">
-          <img
-            src="/werkstatt-service.png"
-            alt="Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren"
-          />
-        </figure>
+        <div className="photo-gallery" aria-label="Werkstattfotos">
+          <figure className="workshop-image">
+            <img
+              src="/werkstatt-service.png"
+              alt="Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren"
+            />
+          </figure>
+          <figure className="gallery-image">
+            <img
+              src="/werkstatt-detail-1.jpg"
+              alt="Außenbereich von Autodienst Schwanheim mit Fahrzeugen vor dem Betrieb"
+            />
+          </figure>
+          <figure className="gallery-image">
+            <img
+              src="/werkstatt-detail-2.jpg"
+              alt="Werkstattalltag bei Autodienst Schwanheim mit Fahrzeugen auf dem Hof"
+            />
+          </figure>
+        </div>
       </section>
 
       <section id="kontakt" className="contact-section" aria-labelledby="contact-title">

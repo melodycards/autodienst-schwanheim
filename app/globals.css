@@ -59,10 +59,10 @@ a {
   background: rgba(5, 6, 8, 0.86);
   border-bottom: 1px solid rgba(232, 237, 245, 0.1);
   display: grid;
-  gap: 22px;
+  gap: 18px;
   grid-template-columns: minmax(0, 1fr) auto auto;
   left: 0;
-  padding: 12px clamp(18px, 5vw, 72px);
+  padding: 10px clamp(18px, 5vw, 72px);
   position: fixed;
   right: 0;
   top: 0;
@@ -83,8 +83,8 @@ a {
   background: transparent;
   border: 0;
   display: inline-flex;
-  flex: 0 0 92px;
-  height: 56px;
+  flex: 0 0 116px;
+  height: 68px;
   justify-content: center;
   min-width: 0;
   overflow: hidden;
@@ -179,9 +179,9 @@ a {
   background: #050607;
   color: white;
   display: grid;
-  min-height: 90vh;
+  min-height: 86vh;
   overflow: hidden;
-  padding: 154px clamp(18px, 5vw, 72px) 86px;
+  padding: 136px clamp(18px, 5vw, 72px) 64px;
   position: relative;
 }
 
@@ -224,6 +224,13 @@ a {
   z-index: 1;
 }
 
+.hero-logo {
+  filter: drop-shadow(0 24px 34px rgba(0, 0, 0, 0.58));
+  margin: 0 0 18px;
+  max-width: min(310px, 58vw);
+  width: 100%;
+}
+
 .eyebrow,
 .section-label,
 .person-card span,
@@ -261,7 +268,7 @@ a {
   color: rgba(246, 248, 251, 0.78);
   font-size: clamp(1.04rem, 1.65vw, 1.2rem);
   line-height: 1.72;
-  margin: 28px 0 0;
+  margin: 22px 0 0;
   max-width: 660px;
 }
 
@@ -270,7 +277,7 @@ a {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 34px;
+  margin-top: 28px;
 }
 
 .quick-info {
@@ -280,7 +287,7 @@ a {
   margin: 0 auto;
   max-width: 1180px;
   position: relative;
-  transform: translateY(-34px);
+  transform: translateY(-22px);
   width: calc(100% - clamp(36px, 10vw, 144px));
   z-index: 4;
 }
@@ -305,7 +312,7 @@ a {
 
 .quick-info article {
   min-width: 0;
-  padding: 26px 28px;
+  padding: 22px 28px;
 }
 
 .quick-info article + article {
@@ -326,11 +333,11 @@ a {
 .photo-feature,
 .contact-section {
   display: grid;
-  gap: clamp(34px, 6vw, 78px);
+  gap: clamp(28px, 5vw, 62px);
   grid-template-columns: minmax(0, 0.94fr) minmax(0, 1.06fr);
   margin: 0 auto;
   max-width: 1180px;
-  padding: clamp(48px, 8vw, 104px) clamp(18px, 5vw, 0px);
+  padding: clamp(34px, 6vw, 78px) clamp(18px, 5vw, 0px);
 }
 
 .intro-section h2,
@@ -355,7 +362,7 @@ a {
   font-weight: 620;
   line-height: 1.45;
   margin: 0;
-  padding: 22px 0 22px 28px;
+  padding: 18px 0 18px 28px;
   position: relative;
 }
 
@@ -370,7 +377,7 @@ a {
   height: 6px;
   left: 0;
   position: absolute;
-  top: 30px;
+  top: 26px;
   width: 6px;
 }
 
@@ -378,11 +385,11 @@ a {
   background: linear-gradient(180deg, #0a0c10 0%, #060708 100%);
   border-top: 1px solid var(--line);
   color: white;
-  padding: clamp(64px, 9vw, 112px) clamp(18px, 5vw, 72px);
+  padding: clamp(46px, 7vw, 86px) clamp(18px, 5vw, 72px);
 }
 
 .section-heading {
-  margin: 0 auto clamp(32px, 5vw, 58px);
+  margin: 0 auto clamp(24px, 4vw, 42px);
   max-width: 1180px;
 }
 
@@ -397,7 +404,7 @@ a {
 .service-card {
   border-top: 1px solid var(--line);
   min-width: 0;
-  padding: 18px 0 18px 30px;
+  padding: 15px 0 15px 30px;
   position: relative;
 }
 
@@ -413,7 +420,7 @@ a {
   height: 14px;
   left: 0;
   position: absolute;
-  top: 23px;
+  top: 20px;
   width: 14px;
 }
 
@@ -424,7 +431,7 @@ a {
   height: 4px;
   left: 5px;
   position: absolute;
-  top: 28px;
+  top: 25px;
   width: 4px;
 }
 
@@ -440,7 +447,8 @@ a {
 .photo-feature {
   align-items: center;
   max-width: none;
-  padding-right: 0;
+  padding-block: clamp(38px, 7vw, 86px);
+  padding-right: clamp(18px, 5vw, 72px);
 }
 
 .photo-copy {
@@ -453,13 +461,20 @@ a {
   color: var(--muted);
   font-size: clamp(1rem, 1.65vw, 1.12rem);
   line-height: 1.82;
-  margin: 24px 0 0;
+  margin: 18px 0 0;
+}
+
+.photo-gallery {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
 }
 
 .workshop-image {
-  aspect-ratio: 16 / 10;
+  aspect-ratio: 16 / 11;
+  grid-row: span 2;
   margin: 0;
-  min-height: 500px;
+  min-height: 440px;
   overflow: hidden;
   position: relative;
 }
@@ -482,29 +497,53 @@ a {
   width: 100%;
 }
 
+.gallery-image {
+  aspect-ratio: 4 / 3;
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.gallery-image::after {
+  background: linear-gradient(0deg, rgba(5, 6, 8, 0.24), transparent 58%);
+  content: "";
+  inset: 0;
+  pointer-events: none;
+  position: absolute;
+}
+
+.gallery-image img {
+  filter: saturate(0.82) contrast(1.08) brightness(0.94);
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+}
+
 .contact-section {
   align-items: start;
   border-top: 1px solid var(--line);
-  padding-bottom: clamp(64px, 9vw, 110px);
+  padding-bottom: clamp(46px, 8vw, 86px);
 }
 
 .contact-panel {
   color: white;
   display: grid;
-  gap: 30px;
+  gap: 22px;
 }
 
 .contact-logo {
   align-items: center;
   display: flex;
   justify-content: flex-start;
-  min-height: 120px;
+  min-height: 94px;
 }
 
 .contact-logo img {
-  max-height: 136px;
+  max-height: 154px;
   object-fit: contain;
-  width: min(390px, 100%);
+  width: min(430px, 100%);
 }
 
 .people-grid {
@@ -634,7 +673,7 @@ a {
 
   .hero {
     min-height: 82vh;
-    padding-top: 126px;
+    padding-top: 118px;
   }
 
   .hero-overlay {
@@ -667,7 +706,7 @@ a {
   }
 
   .photo-feature {
-    padding: clamp(46px, 8vw, 80px) 0;
+    padding: clamp(34px, 7vw, 60px) 0;
   }
 
   .photo-copy {
@@ -676,8 +715,14 @@ a {
     padding-inline: 18px;
   }
 
+  .photo-gallery {
+    grid-template-columns: 1fr;
+    padding-inline: 18px;
+  }
+
   .workshop-image {
-    min-height: 380px;
+    grid-row: auto;
+    min-height: 340px;
   }
 
   .footer-actions {
@@ -723,12 +768,12 @@ a {
 @media (max-width: 560px) {
   .topbar {
     gap: 10px;
-    padding: 10px 14px;
+    padding: 8px 14px;
   }
 
   .logo-shell {
-    flex-basis: 70px;
-    height: 46px;
+    flex-basis: 86px;
+    height: 52px;
   }
 
   .brand {
@@ -746,16 +791,21 @@ a {
   .topbar-call {
     font-size: 0.86rem;
     min-height: 40px;
-    padding: 0 12px;
+    padding: 0 11px;
   }
 
   .hero {
-    min-height: 78vh;
-    padding: 112px 18px 48px;
+    min-height: 76vh;
+    padding: 104px 18px 40px;
   }
 
   .hero-photo {
     object-position: 54% center;
+  }
+
+  .hero-logo {
+    margin-bottom: 14px;
+    max-width: min(220px, 64vw);
   }
 
   .hero h1 {
@@ -784,7 +834,7 @@ a {
 
   .intro-section,
   .contact-section {
-    padding-block: 54px;
+    padding-block: 42px;
   }
 
   .benefit-list p,
@@ -816,7 +866,7 @@ a {
   }
 
   .contact-logo img {
-    max-height: 118px;
+    max-height: 128px;
   }
 
   .site-footer {
