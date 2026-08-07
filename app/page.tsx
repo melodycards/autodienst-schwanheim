@@ -3,7 +3,8 @@ const contact = {
   landlineHref: "tel:+496915392723",
   email: "autodienstschwanheim@gmail.com",
   emailHref: "mailto:autodienstschwanheim@gmail.com",
-  addressLines: ["Rheinlandstraße 3", "60529 Frankfurt am Main"],
+  street: "Rheinlandstraße 3",
+  city: "60529 Frankfurt am Main",
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=Rheinlandstra%C3%9Fe%203%2C%2060529%20Frankfurt%20am%20Main",
 };
@@ -43,15 +44,21 @@ const services = [
   "Fahrzeugbeschriftungen",
 ];
 
+const longServices = new Set([
+  "Kfz-Aufbereitung inklusive Reinigung per Hand",
+  "Fahrzeuglackierungen",
+  "Fahrzeugbeschriftungen",
+]);
+
 export default function Home() {
   return (
     <main className="site-shell">
       <header className="topbar" aria-label="Hauptnavigation">
         <a className="brand" href="#start" aria-label="Autodienst Schwanheim">
-          <span className="logo-shell">
+          <span className="brand-mark">
             <img src="/autodienst-logo.png" alt="" />
           </span>
-          <span>
+          <span className="brand-text">
             <strong>Autodienst Schwanheim</strong>
             <small>Frankfurt am Main</small>
           </span>
@@ -66,32 +73,31 @@ export default function Home() {
         </a>
       </header>
 
-      <section id="start" className="hero">
+      <section id="start" className="hero" aria-labelledby="hero-title">
         <img
           className="hero-photo"
           src="/werkstatt-aussen.png"
           alt="Außenansicht von Autodienst Schwanheim mit Fahrzeugen vor der Werkstatt"
         />
-        <div className="hero-overlay" />
-        <div className="hero-content">
+        <div className="hero-shade" />
+        <div className="hero-inner">
           <img
             className="hero-logo"
             src="/autodienst-logo.png"
             alt="Autodienst Schwanheim Logo"
           />
           <p className="eyebrow">Autowerkstatt in Frankfurt-Schwanheim</p>
-          <h1>Autodienst Schwanheim</h1>
-          <p className="hero-copy">
-            Kompetenter Kfz-Service in der Rheinlandstraße 3. Direkt anrufen,
-            Route starten oder die Leistungen der Werkstatt auf einen Blick
-            ansehen.
+          <h1 id="hero-title">Autodienst Schwanheim</h1>
+          <p>
+            Premium-orientierter Kfz-Service in der Rheinlandstraße 3. Direkt
+            anrufen, Route starten oder Leistungen übersichtlich ansehen.
           </p>
-          <div className="hero-actions" aria-label="Kontaktaktionen">
-            <a className="button primary" href={contact.landlineHref}>
+          <div className="action-row" aria-label="Kontaktaktionen">
+            <a className="button button-primary" href={contact.landlineHref}>
               Jetzt anrufen
             </a>
             <a
-              className="button secondary"
+              className="button button-ghost"
               href={contact.mapsHref}
               target="_blank"
               rel="noreferrer"
@@ -102,33 +108,38 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="quick-info" aria-label="Kurzinfos">
-        <article>
+      <section className="signal-strip" aria-label="Kurzinfos">
+        <div>
           <span>Telefon</span>
           <a href={contact.landlineHref}>{contact.landline}</a>
-        </article>
-        <article>
+        </div>
+        <div>
           <span>E-Mail</span>
-          <a href={contact.emailHref}>{contact.email}</a>
-        </article>
-        <article>
+          <a className="mail-link" href={contact.emailHref}>
+            {contact.email}
+          </a>
+        </div>
+        <div>
           <span>Adresse</span>
           <p>
-            {contact.addressLines[0]}
+            <span className="keep-together">Rheinlandstraße&nbsp;3</span>
             <br />
-            {contact.addressLines[1]}
+            {contact.city}
           </p>
-        </article>
+        </div>
       </section>
 
       <section className="intro-section" aria-labelledby="intro-title">
-        <div>
+        <div className="section-copy">
           <p className="section-label">Ihre Werkstatt</p>
-          <h2 id="intro-title">Schnelle Hilfe, klare Wege, direkter Kontakt.</h2>
+          <h2 id="intro-title">Klare Abläufe, direkte Hilfe, sauberer Service.</h2>
         </div>
-        <div className="benefit-list" aria-label="Vorteile">
+        <div className="advantage-flow" aria-label="Vorteile">
           {benefits.map((benefit) => (
-            <p key={benefit}>{benefit}</p>
+            <p key={benefit}>
+              <span aria-hidden="true" />
+              {benefit}
+            </p>
           ))}
         </div>
       </section>
@@ -136,111 +147,125 @@ export default function Home() {
       <section id="leistungen" className="services-section" aria-labelledby="services-title">
         <div className="section-heading">
           <p className="section-label">Service / Leistungen</p>
-          <h2 id="services-title">Alles übersichtlich auf einen Blick.</h2>
+          <h2 id="services-title">Kfz-Service kompakt und hochwertig strukturiert.</h2>
         </div>
-        <div className="service-grid">
+        <div className="service-flow">
           {services.map((service) => (
-            <article className="service-card" key={service}>
-              <h3>{service}</h3>
-            </article>
+            <div
+              className={`service-item ${longServices.has(service) ? "service-wide" : ""}`}
+              key={service}
+            >
+              <span aria-hidden="true" />
+              <p>{service}</p>
+            </div>
           ))}
         </div>
       </section>
 
-      <section id="bilder" className="photo-feature" aria-labelledby="photos-title">
-        <div className="photo-copy">
+      <section id="bilder" className="atelier-section" aria-labelledby="photos-title">
+        <div className="atelier-copy">
           <p className="section-label">Werkstattbilder</p>
-          <h2 id="photos-title">Ein realer Blick auf den Standort.</h2>
+          <h2 id="photos-title">Echter Standort, echte Fahrzeuge, klare Präsenz.</h2>
           <p>
-            Klare Werkstattatmosphäre, direkte Zufahrt und ein Auftritt, der
-            den Standort in Frankfurt-Schwanheim hochwertig präsentiert.
+            Die Bilder zeigen den Betrieb und den Werkstattalltag in
+            Frankfurt-Schwanheim, integriert als ruhige, hochwertige Bildstrecke.
           </p>
         </div>
-        <div className="photo-gallery" aria-label="Werkstattfotos">
-          <figure className="workshop-image">
-            <img
-              src="/werkstatt-service.png"
-              alt="Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren"
-            />
-          </figure>
-          <figure className="gallery-image">
-            <img
-              src="/werkstatt-detail-1.jpg"
-              alt="Außenbereich von Autodienst Schwanheim mit Fahrzeugen vor dem Betrieb"
-            />
-          </figure>
-          <figure className="gallery-image">
-            <img
-              src="/werkstatt-detail-2.jpg"
-              alt="Werkstattalltag bei Autodienst Schwanheim mit Fahrzeugen auf dem Hof"
-            />
-          </figure>
+        <div className="atelier-image atelier-main">
+          <img
+            src="/werkstatt-service.png"
+            alt="Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren"
+          />
+        </div>
+        <div className="wide-photo">
+          <img
+            src="/werkstatt-detail-1.jpg"
+            alt="Außenbereich von Autodienst Schwanheim mit Fahrzeugen vor dem Betrieb"
+          />
+        </div>
+        <div className="atelier-image">
+          <img
+            src="/werkstatt-detail-2.jpg"
+            alt="Werkstattalltag bei Autodienst Schwanheim mit Fahrzeugen auf dem Hof"
+          />
         </div>
       </section>
 
       <section id="kontakt" className="contact-section" aria-labelledby="contact-title">
-        <div className="contact-copy">
+        <div className="contact-lead">
           <p className="section-label">Kontakt</p>
           <h2 id="contact-title">Anrufen, schreiben oder direkt hinfinden.</h2>
-          <div className="contact-actions">
-            <a className="button primary" href={contact.landlineHref}>
+          <div className="action-row contact-buttons">
+            <a className="button button-primary" href={contact.landlineHref}>
               Jetzt anrufen
             </a>
             <a
-              className="button dark"
+              className="button button-ghost"
               href={contact.mapsHref}
               target="_blank"
               rel="noreferrer"
             >
               Route starten
             </a>
-            <a className="button light" href={contact.emailHref}>
+            <a className="button button-silver" href={contact.emailHref}>
               E-Mail senden
             </a>
           </div>
         </div>
-        <div className="contact-panel">
-          <div className="contact-logo">
-            <img src="/autodienst-logo.png" alt="Autodienst Schwanheim Logo" />
+
+        <div className="contact-system">
+          <img src="/autodienst-logo.png" alt="Autodienst Schwanheim Logo" />
+          <div className="contact-grid" aria-label="Kontaktdaten">
+            <div>
+              <span>Telefon</span>
+              <a href={contact.landlineHref}>{contact.landline}</a>
+            </div>
+            <div>
+              <span>E-Mail</span>
+              <a className="mail-link" href={contact.emailHref}>
+                {contact.email}
+              </a>
+            </div>
+            <div>
+              <span>Adresse</span>
+              <p>
+                <span className="keep-together">Rheinlandstraße&nbsp;3</span>
+                <br />
+                {contact.city}
+              </p>
+            </div>
           </div>
-          <div className="people-grid">
+          <div className="people-flow" aria-label="Ansprechpartner">
             {people.map((person) => (
-              <article className="person-card" key={person.name}>
+              <div key={person.name}>
                 <span>Ansprechpartner</span>
                 <h3>{person.name}</h3>
                 <p>{person.label}</p>
                 <a href={person.href}>{person.phone}</a>
-              </article>
+              </div>
             ))}
-          </div>
-          <div className="address-card">
-            <span>Festnetz</span>
-            <a href={contact.landlineHref}>{contact.landline}</a>
-            <span>E-Mail</span>
-            <a href={contact.emailHref}>{contact.email}</a>
-            <span>Adresse</span>
-            <p>
-              {contact.addressLines[0]}
-              <br />
-              {contact.addressLines[1]}
-            </p>
           </div>
         </div>
       </section>
 
       <footer className="site-footer" aria-label="Footer">
         <a className="footer-brand" href="#start" aria-label="Autodienst Schwanheim">
-          <span className="logo-shell footer-logo">
+          <span className="footer-mark">
             <img src="/autodienst-logo.png" alt="" />
           </span>
           <span>
             <strong>Autodienst Schwanheim</strong>
-            <small>{contact.addressLines.join(" · ")}</small>
+            <small>
+              <span className="keep-together">Rheinlandstraße&nbsp;3</span> ·{" "}
+              {contact.city}
+            </small>
           </span>
         </a>
-        <div className="footer-actions">
+        <div className="footer-links">
           <a href={contact.landlineHref}>{contact.landline}</a>
-          <a href={contact.emailHref}>{contact.email}</a>
+          <a className="mail-link" href={contact.emailHref}>
+            {contact.email}
+          </a>
           <a href={contact.mapsHref} target="_blank" rel="noreferrer">
             Route starten
           </a>
