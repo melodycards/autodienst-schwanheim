@@ -402,6 +402,7 @@ a {
 
 .intro-section,
 .services-section,
+.hours-section,
 .atelier-section,
 .contact-section {
   margin: 0 auto;
@@ -420,6 +421,7 @@ a {
 
 .section-copy h2,
 .section-heading h2,
+.hours-heading h2,
 .atelier-copy h2,
 .contact-lead h2 {
   font-size: clamp(1.9rem, 3.6vw, 3.45rem);
@@ -511,6 +513,54 @@ a {
   margin: 0;
   min-width: 0;
   overflow-wrap: anywhere;
+}
+
+.hours-section {
+  align-items: start;
+  display: grid;
+  gap: clamp(24px, 4vw, 54px);
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  padding-block: clamp(38px, 6vw, 70px);
+}
+
+.hours-list {
+  display: grid;
+  gap: 0 clamp(26px, 4vw, 58px);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 0;
+}
+
+.hours-list div {
+  align-items: baseline;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  min-width: 0;
+  padding: 14px 0;
+}
+
+.hours-list div:nth-last-child(-n + 2) {
+  border-bottom: 1px solid var(--line);
+}
+
+.hours-list dt {
+  color: rgba(246, 248, 251, 0.72);
+  font-size: 0.96rem;
+  font-weight: 620;
+  line-height: 1.25;
+  margin: 0;
+  min-width: 0;
+}
+
+.hours-list dd {
+  color: var(--silver);
+  font-size: 0.98rem;
+  font-weight: 720;
+  line-height: 1.25;
+  margin: 0;
+  text-align: right;
+  white-space: nowrap;
 }
 
 .atelier-section {
@@ -763,6 +813,7 @@ a {
 
   .signal-strip,
   .intro-section,
+  .hours-section,
   .atelier-section,
   .contact-lead,
   .contact-system,
@@ -921,6 +972,7 @@ a {
 
   .intro-section,
   .services-section,
+  .hours-section,
   .atelier-section,
   .contact-section {
     padding-inline: 18px;
@@ -982,6 +1034,33 @@ a {
 
   .service-item p {
     font-size: 0.95rem;
+  }
+
+  .hours-section {
+    gap: 20px;
+    padding-block: 36px 38px;
+  }
+
+  .hours-list {
+    grid-template-columns: 1fr;
+  }
+
+  .hours-list div {
+    gap: 12px;
+    padding: 13px 0;
+  }
+
+  .hours-list div:nth-last-child(-n + 2) {
+    border-bottom: 0;
+  }
+
+  .hours-list div:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hours-list dt,
+  .hours-list dd {
+    font-size: 0.96rem;
   }
 
   .atelier-section {

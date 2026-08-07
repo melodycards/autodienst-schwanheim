@@ -39,16 +39,26 @@ const services = [
   "Fehlerauslesen",
   "Motordiagnose",
   "Klima-Check",
-  "Kfz-Aufbereitung inklusive Reinigung per Hand",
-  "Fahrzeuglackierungen",
-  "Fahrzeugbeschriftungen",
+  "Akku",
+  "Auspuff",
+  "Austausch von Luft- und Innenraumfiltern",
+  "Getriebe",
+  "Radeinstellung",
 ];
 
 const longServices = new Set([
-  "Kfz-Aufbereitung inklusive Reinigung per Hand",
-  "Fahrzeuglackierungen",
-  "Fahrzeugbeschriftungen",
+  "Austausch von Luft- und Innenraumfiltern",
 ]);
+
+const openingHours = [
+  ["Montag", "08:30–18:00"],
+  ["Dienstag", "08:30–18:00"],
+  ["Mittwoch", "08:30–18:00"],
+  ["Donnerstag", "08:30–18:00"],
+  ["Freitag", "08:30–18:00"],
+  ["Samstag", "09:00–13:00"],
+  ["Sonntag", "Geschlossen"],
+];
 
 export default function Home() {
   return (
@@ -160,6 +170,21 @@ export default function Home() {
             </div>
           ))}
         </div>
+      </section>
+
+      <section className="hours-section" aria-labelledby="hours-title">
+        <div className="hours-heading">
+          <p className="section-label">Öffnungszeiten</p>
+          <h2 id="hours-title">Vorbeikommen oder Termin abstimmen.</h2>
+        </div>
+        <dl className="hours-list">
+          {openingHours.map(([day, time]) => (
+            <div key={day}>
+              <dt>{day}</dt>
+              <dd>{time}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
 
       <section id="bilder" className="atelier-section" aria-labelledby="photos-title">

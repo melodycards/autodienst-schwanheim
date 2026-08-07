@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 const siteTitle = "Autodienst Schwanheim | Autowerkstatt in Frankfurt am Main";
 const siteDescription =
-  "Autowerkstatt in Frankfurt-Schwanheim: TÜV + AU-Vorfahrten, Inspektion, Ölwechsel, Reifenservice, Diagnose, Aufbereitung, Lackierungen und Beschriftungen.";
+  "Autowerkstatt in Frankfurt-Schwanheim: TÜV + AU-Vorfahrten, Inspektion, Ölwechsel, Reifenservice, Fahrzeugdiagnose, Akku, Auspuff, Getriebe und Radeinstellung.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
