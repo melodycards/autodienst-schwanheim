@@ -134,9 +134,8 @@ export default function Home() {
           <h2 id="services-title">Alles übersichtlich auf einen Blick.</h2>
         </div>
         <div className="service-grid">
-          {services.map((service, index) => (
+          {services.map((service) => (
             <article className="service-card" key={service}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{service}</h3>
             </article>
           ))}
@@ -148,8 +147,8 @@ export default function Home() {
           <p className="section-label">Werkstattbilder</p>
           <h2 id="photos-title">Ein realer Blick auf den Standort.</h2>
           <p>
-            Die Website verwendet ausschließlich die bereitgestellten Bilder:
-            das offizielle Logo sowie Werkstattfotos von Autodienst Schwanheim.
+            Klare Werkstattatmosphäre, direkte Zufahrt und ein Auftritt, der
+            den Standort in Frankfurt-Schwanheim hochwertig präsentiert.
           </p>
         </div>
         <figure className="workshop-image">
@@ -209,6 +208,25 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <footer className="site-footer" aria-label="Footer">
+        <a className="footer-brand" href="#start" aria-label="Autodienst Schwanheim">
+          <span className="logo-shell footer-logo">
+            <img src="/autodienst-logo.png" alt="" />
+          </span>
+          <span>
+            <strong>Autodienst Schwanheim</strong>
+            <small>{contact.addressLines.join(" · ")}</small>
+          </span>
+        </a>
+        <div className="footer-actions">
+          <a href={contact.landlineHref}>{contact.landline}</a>
+          <a href={contact.emailHref}>{contact.email}</a>
+          <a href={contact.mapsHref} target="_blank" rel="noreferrer">
+            Route starten
+          </a>
+        </div>
+      </footer>
     </main>
   );
 }
