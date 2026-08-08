@@ -33,17 +33,17 @@ const benefits = [
 ];
 
 const services = [
-  { label: "TÜV & AU-Service", icon: "checklist" },
+  { label: "TÜV & AU-Service", icon: "inspectionBadge" },
   { label: "Inspektion", icon: "wrench" },
-  { label: "Ölwechsel", icon: "oil" },
-  { label: "Reifenservice", icon: "wheel" },
-  { label: "Fahrzeugdiagnose", icon: "carDiagnostic" },
+  { label: "Ölwechsel", icon: "oilCan" },
+  { label: "Reifenservice", icon: "tire" },
+  { label: "Fahrzeugdiagnose", icon: "carCheck" },
   { label: "Fehlerauslesen", icon: "scanner" },
   { label: "Motordiagnose", icon: "engine" },
   { label: "Klima-Check", icon: "snowflake" },
   { label: "Akku", icon: "battery" },
   { label: "Auspuff", icon: "exhaust" },
-  { label: "Getriebe", icon: "gear" },
+  { label: "Getriebe", icon: "gears" },
   { label: "Radeinstellung", icon: "alignment" },
   { label: "Austausch von Luft- und Innenraumfiltern", icon: "filter" },
 ];
@@ -62,26 +62,25 @@ const openingHours = [
   ["Sonntag", "Geschlossen"],
 ];
 
-type IconName =
-  | "calendar"
-  | "tag"
-  | "shieldTool"
-  | "checklist"
+type ServiceIconName =
+  | "inspectionBadge"
   | "wrench"
-  | "oil"
-  | "wheel"
-  | "carDiagnostic"
+  | "oilCan"
+  | "tire"
+  | "carCheck"
   | "scanner"
   | "engine"
   | "snowflake"
   | "battery"
   | "exhaust"
-  | "gear"
+  | "gears"
   | "alignment"
   | "filter";
 
+type BenefitIconName = "calendar" | "tag" | "shieldTool";
+
 function LineIcon({ name }: { name: string }) {
-  const paths: Record<IconName, ReactNode> = {
+  const paths: Record<BenefitIconName, ReactNode> = {
     calendar: (
       <>
         <rect x="4" y="5" width="16" height="15" rx="2" />
@@ -100,86 +99,6 @@ function LineIcon({ name }: { name: string }) {
         <path d="m9 14 2.1-2.1M13.2 9.8l1.4-1.4M8.7 14.3l1 1 5.9-5.9-1-1-5.9 5.9Z" />
       </>
     ),
-    checklist: (
-      <>
-        <rect x="5" y="4" width="14" height="16" rx="2" />
-        <path d="M9 8h6M9 12h6M9 16h6M7.2 8l.6.6 1.1-1.3M7.2 12l.6.6 1.1-1.3" />
-      </>
-    ),
-    wrench: (
-      <>
-        <path d="M14.7 5.3a4.2 4.2 0 0 0 4.9 5.4l-8.9 8.9a2.1 2.1 0 0 1-3-3l8.9-8.9a4.2 4.2 0 0 0-1.9-2.4Z" />
-        <path d="M7.9 17.8h.1" />
-      </>
-    ),
-    oil: (
-      <>
-        <path d="M7 14h8l4-4-3-3-4 4H7v3Z" />
-        <path d="M6 14v4h8v-4M17.5 15.5c1.1 1.2 1.5 2.1 1.5 2.8a1.5 1.5 0 0 1-3 0c0-.7.4-1.6 1.5-2.8Z" />
-      </>
-    ),
-    wheel: (
-      <>
-        <circle cx="12" cy="12" r="8" />
-        <circle cx="12" cy="12" r="2.1" />
-        <path d="M12 4v5.9M12 14.1V20M4 12h5.9M14.1 12H20M6.4 6.4l4.2 4.2M13.4 13.4l4.2 4.2M17.6 6.4l-4.2 4.2M10.6 13.4l-4.2 4.2" />
-      </>
-    ),
-    carDiagnostic: (
-      <>
-        <path d="M5 14h14l-1.6-5.2A2.4 2.4 0 0 0 15.1 7H8.9a2.4 2.4 0 0 0-2.3 1.8L5 14Z" />
-        <path d="M6 14v3M18 14v3M7 17h2M15 17h2M10 11h4M16.5 5.5l2-2M18.5 5.5l-2-2" />
-      </>
-    ),
-    scanner: (
-      <>
-        <rect x="5" y="5" width="14" height="14" rx="2" />
-        <path d="M8 9h8M8 13h5M8 17h2M15 16l2 2M17 16l-2 2" />
-      </>
-    ),
-    engine: (
-      <>
-        <path d="M7 10h3V7h4v3h3l2 2v5h-3l-1.5 2h-5L8 17H5v-5l2-2Z" />
-        <path d="M10 7V5h5M6 14H4M19 14h2M11 14h2" />
-      </>
-    ),
-    snowflake: (
-      <>
-        <path d="M12 3v18M5.6 6.6l12.8 10.8M18.4 6.6 5.6 17.4" />
-        <path d="m9 5 3 3 3-3M9 19l3-3 3 3M4.8 10.2l4.1 1.1-1.1 4.1M19.2 10.2l-4.1 1.1 1.1 4.1" />
-      </>
-    ),
-    battery: (
-      <>
-        <rect x="4" y="8" width="15" height="8" rx="2" />
-        <path d="M21 11v2M8 12h4M10 10v4M14.5 12H17" />
-      </>
-    ),
-    exhaust: (
-      <>
-        <path d="M4 14h9v4H4v-4ZM13 16h3.5c1.9 0 3.5-1.6 3.5-3.5V8" />
-        <path d="M7 14v-3h5M18 6.5c1.3-.8 2.4-.8 3.3 0M17.5 3.8c1.8-1 3.4-1 4.8 0" />
-      </>
-    ),
-    gear: (
-      <>
-        <circle cx="12" cy="12" r="3" />
-        <path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5 6.8 15M17.2 9l2.6-1.5M6 12H3M21 12h-3" />
-      </>
-    ),
-    alignment: (
-      <>
-        <circle cx="7" cy="12" r="3" />
-        <circle cx="17" cy="12" r="3" />
-        <path d="M7 5v3M7 16v3M17 5v3M17 16v3M10 12h4M4 7l-2 2M20 7l2 2M4 17l-2-2M20 17l2-2" />
-      </>
-    ),
-    filter: (
-      <>
-        <path d="M4 5h16l-6 7v5l-4 2v-7L4 5Z" />
-        <path d="M7 9h10M9 12h6" />
-      </>
-    ),
   };
 
   return (
@@ -193,8 +112,75 @@ function LineIcon({ name }: { name: string }) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      {paths[name as IconName]}
+      {paths[name as BenefitIconName]}
     </svg>
+  );
+}
+
+function ServiceIcon({ name }: { name: ServiceIconName }) {
+  const icons: Record<ServiceIconName, ReactNode> = {
+    inspectionBadge: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M32 4 45.8 9.8 60 24 54.2 40.2 40 60 23.8 54.2 4 40 9.8 23.8 24 9.8 32 4Z" fill="#244b85" />
+        <path d="M32 7.8 44 12.9 56.2 25.1 51.1 39 39 56.2 25.1 51.1 7.8 39 12.9 25.1 25.1 12.9 32 7.8Z" fill="#f5f7fb" opacity=".95" />
+        <path d="M32 12.5 42 16.6 51.5 26.1 47.4 38 38 51.5 26.1 47.4 12.5 38 16.6 26.1 26.1 16.6 32 12.5Z" fill="#2f67ac" />
+        <path d="M19 29h26v15H19z" fill="#f6f8fb" />
+        <text x="32" y="39" fill="#1b2635" fontSize="13" fontWeight="800" textAnchor="middle">TÜV</text>
+      </svg>
+    ),
+    wrench: "🛠️",
+    oilCan: "🛢️💧",
+    tire: "🛞",
+    carCheck: "🚙🔎",
+    scanner: "📟",
+    engine: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M16 28h8v-7h16v7h8l7 7v14h-9l-4 6H23l-4-6h-9V35l6-7Z" fill="#c9d0d8" />
+        <path d="M18 31h7v-7h14v7h8l5 5v10h-8l-4 6H25l-4-6h-8V36l5-5Z" fill="#8b949e" />
+        <circle cx="39" cy="40" r="7" fill="#b91619" />
+        <circle cx="39" cy="40" r="3" fill="#f2f5f8" />
+        <path d="M25 23v-6h19M10 40H4M60 40h-6" stroke="#e5e9ef" strokeWidth="4" strokeLinecap="round" />
+      </svg>
+    ),
+    snowflake: "❄️",
+    battery: "🔋",
+    exhaust: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="exhaust-metal" x1="0" x2="1">
+            <stop offset="0" stopColor="#b7bdc5" />
+            <stop offset=".5" stopColor="#f0f2f5" />
+            <stop offset="1" stopColor="#6f7782" />
+          </linearGradient>
+        </defs>
+        <path d="M20 34h23c6 0 11-5 11-11v-6" fill="none" stroke="#b8c0c9" strokeWidth="7" strokeLinecap="round" />
+        <path d="M8 35h25v13H8z" fill="url(#exhaust-metal)" stroke="#f2f5f8" strokeWidth="2" />
+        <path d="M6 39h-3M6 45h-3M50 13c4-3 8-3 12 0" stroke="#9fa8b4" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    ),
+    gears: "⚙️",
+    alignment: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="14" fill="#10151c" stroke="#d8dde4" strokeWidth="4" />
+        <circle cx="32" cy="32" r="6" fill="#d8dde4" />
+        <path d="M14 14v36M50 14v36M10 20h8M10 44h8M46 20h8M46 44h8" stroke="#b91619" strokeWidth="4" strokeLinecap="round" />
+        <path d="M22 10 10 22M42 10l12 12M22 54 10 42M42 54l12-12" stroke="#8c96a2" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    ),
+    filter: (
+      <svg viewBox="0 0 78 44" aria-hidden="true">
+        <rect x="4" y="5" width="24" height="34" rx="2" fill="#f1f4f7" stroke="#aab2bd" strokeWidth="2" />
+        <path d="M9 10h14M9 15h14M9 20h14M9 25h14M9 30h14M9 35h14" stroke="#6e7782" strokeWidth="1.5" />
+        <path d="M43 10 70 4v30l-27 6V10Z" fill="#d7ecff" stroke="#eef5ff" strokeWidth="2" />
+        <path d="M47 13v23M52 12v23M57 10v23M62 9v23M67 7v23" stroke="#2c7cc3" strokeWidth="1.3" />
+      </svg>
+    ),
+  };
+
+  return (
+    <span className="service-icon" aria-hidden="true">
+      {icons[name]}
+    </span>
   );
 }
 
@@ -308,10 +294,8 @@ export default function Home() {
             >
               <span className="service-dot" aria-hidden="true" />
               <p>
-                <span className="item-content">
-                  <span>{service.label}</span>
-                  <LineIcon name={service.icon} />
-                </span>
+                <span className="service-label-text">{service.label}</span>
+                <ServiceIcon name={service.icon as ServiceIconName} />
               </p>
             </div>
           ))}
