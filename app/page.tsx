@@ -127,11 +127,12 @@ function ServiceIcon({ name }: { name: ServiceIconName }) {
   const icons: Record<ServiceIconName, ReactNode> = {
     inspectionBadge: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="25" fill="#e9eef5" stroke="#ffffff" strokeWidth="2.5" />
-        <circle cx="32" cy="32" r="20" fill="#245b9a" stroke="#9fb8d4" strokeWidth="2" />
-        <circle cx="32" cy="32" r="12.8" fill="#f7faff" />
-        <path d="M23.2 32.4 29 38.2 41.3 25.4" fill="none" stroke="#b91619" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M32 8.5v7M32 48.5v7M8.5 32h7M48.5 32h7M15.4 15.4l5 5M43.6 43.6l5 5M48.6 15.4l-5 5M20.4 43.6l-5 5" stroke="#eef4fb" strokeWidth="2" strokeLinecap="round" opacity=".72" />
+        <circle cx="32" cy="32" r="26" fill="#f3f7fc" stroke="#ffffff" strokeWidth="2.5" />
+        <circle cx="32" cy="32" r="21" fill="#1f5f9f" stroke="#9fb9d5" strokeWidth="2" />
+        <circle cx="32" cy="32" r="15.2" fill="#f8fbff" />
+        <text x="32" y="36.5" fill="#1b2f48" fontSize="13" fontWeight="900" textAnchor="middle">TÜV</text>
+        <path d="M32 7.5v6.5M32 50v6.5M7.5 32H14M50 32h6.5M14.7 14.7l4.6 4.6M44.7 44.7l4.6 4.6M49.3 14.7l-4.6 4.6M19.3 44.7l-4.6 4.6" stroke="#eef4fb" strokeWidth="2" strokeLinecap="round" opacity=".76" />
+        <path d="m25.1 42.5 2.8 2.8 5.7-6" fill="none" stroke="#b91619" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
       </svg>
     ),
     wrench: "🛠️",

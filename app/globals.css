@@ -1061,21 +1061,32 @@ a {
 
   .advantage-flow {
     gap: 0;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: 1fr;
   }
 
   .advantage-flow p {
-    padding: 15px 14px 15px 0;
+    gap: 13px;
+    padding: 14px 0;
   }
 
   .advantage-flow p + p {
-    padding-left: 14px;
+    border-left: 0;
+    padding-left: 0;
   }
 
-  .advantage-flow p:nth-child(3) {
-    border-left: 0;
-    grid-column: 1 / -1;
-    padding-left: 0;
+  .item-content {
+    flex-wrap: nowrap;
+    gap: 11px;
+  }
+
+  .item-content > span {
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
+  .item-icon {
+    height: 22px;
+    width: 22px;
   }
 
   .services-section {
