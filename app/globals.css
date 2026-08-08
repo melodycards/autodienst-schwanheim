@@ -215,10 +215,21 @@ a {
   color: #f9fbff;
 }
 
+.route-button {
+  background:
+    linear-gradient(180deg, rgba(27, 128, 76, 0.36), rgba(11, 83, 50, 0.24)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.03));
+  border-color: rgba(49, 184, 112, 0.62);
+}
+
 .button:hover,
 .topbar-call:hover {
   border-color: rgba(255, 255, 255, 0.42);
   transform: translateY(-1px);
+}
+
+.route-button:hover {
+  border-color: rgba(78, 213, 139, 0.78);
 }
 
 .hero {

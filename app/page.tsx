@@ -107,7 +107,7 @@ export default function Home() {
               Jetzt anrufen
             </a>
             <a
-              className="button button-ghost"
+              className="button button-ghost route-button"
               href={contact.mapsHref}
               target="_blank"
               rel="noreferrer"
@@ -225,7 +225,7 @@ export default function Home() {
               Jetzt anrufen
             </a>
             <a
-              className="button button-ghost"
+              className="button button-ghost route-button"
               href={contact.mapsHref}
               target="_blank"
               rel="noreferrer"
