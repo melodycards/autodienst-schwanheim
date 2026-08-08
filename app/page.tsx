@@ -83,20 +83,26 @@ function LineIcon({ name }: { name: string }) {
   const paths: Record<BenefitIconName, ReactNode> = {
     calendar: (
       <>
-        <rect x="4" y="5" width="16" height="15" rx="2" />
-        <path d="M8 3v4M16 3v4M4 10h16M8 14h3M13 14h3" />
+        <rect x="4" y="5.5" width="16" height="14.5" rx="2.2" fill="#dfe5ee" stroke="#f8fbff" strokeWidth="1.2" />
+        <path d="M4 10h16" stroke="#8d97a4" strokeWidth="1.2" />
+        <path d="M8 3.8v3.4M16 3.8v3.4" stroke="#b91619" strokeWidth="1.7" strokeLinecap="round" />
+        <rect x="7.3" y="12.6" width="3.3" height="3.3" rx=".7" fill="#b91619" opacity=".88" />
+        <rect x="12.4" y="12.6" width="3.3" height="3.3" rx=".7" fill="#7f8996" opacity=".82" />
       </>
     ),
     tag: (
       <>
-        <path d="M4 11.2V5h6.2L20 14.8 14.8 20 4 11.2Z" />
-        <circle cx="8.2" cy="8.2" r="1.2" />
+        <path d="M4 11.1V5h6.2L20 14.8 14.8 20 4 11.1Z" fill="#dfe5ee" stroke="#f8fbff" strokeWidth="1.2" />
+        <circle cx="8.4" cy="8.2" r="1.35" fill="#b91619" />
+        <path d="M11.2 13.9h5.1M11.2 16.1h3.1" stroke="#6f7884" strokeWidth="1.2" strokeLinecap="round" />
+        <path d="M17.7 7.3v4M15.7 9.3h4" stroke="#b91619" strokeWidth="1.4" strokeLinecap="round" />
       </>
     ),
     shieldTool: (
       <>
-        <path d="M12 3 19 6v5.4c0 4.1-2.7 7.7-7 9.6-4.3-1.9-7-5.5-7-9.6V6l7-3Z" />
-        <path d="m9 14 2.1-2.1M13.2 9.8l1.4-1.4M8.7 14.3l1 1 5.9-5.9-1-1-5.9 5.9Z" />
+        <path d="M12 3.2 19 6.1v5.3c0 4.1-2.6 7.5-7 9.4-4.4-1.9-7-5.3-7-9.4V6.1l7-2.9Z" fill="#dfe5ee" stroke="#f8fbff" strokeWidth="1.2" />
+        <path d="M12 5.8 16.6 7.7v3.4c0 2.7-1.7 5-4.6 6.3-2.9-1.3-4.6-3.6-4.6-6.3V7.7L12 5.8Z" fill="#27313d" opacity=".84" />
+        <path d="m9.4 12.4 1.6 1.6 3.9-4.2" stroke="#b91619" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
       </>
     ),
   };
@@ -121,11 +127,11 @@ function ServiceIcon({ name }: { name: ServiceIconName }) {
   const icons: Record<ServiceIconName, ReactNode> = {
     inspectionBadge: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M32 4 45.8 9.8 60 24 54.2 40.2 40 60 23.8 54.2 4 40 9.8 23.8 24 9.8 32 4Z" fill="#244b85" />
-        <path d="M32 7.8 44 12.9 56.2 25.1 51.1 39 39 56.2 25.1 51.1 7.8 39 12.9 25.1 25.1 12.9 32 7.8Z" fill="#f5f7fb" opacity=".95" />
-        <path d="M32 12.5 42 16.6 51.5 26.1 47.4 38 38 51.5 26.1 47.4 12.5 38 16.6 26.1 26.1 16.6 32 12.5Z" fill="#2f67ac" />
-        <path d="M19 29h26v15H19z" fill="#f6f8fb" />
-        <text x="32" y="39" fill="#1b2635" fontSize="13" fontWeight="800" textAnchor="middle">TÜV</text>
+        <circle cx="32" cy="32" r="25" fill="#e9eef5" stroke="#ffffff" strokeWidth="2.5" />
+        <circle cx="32" cy="32" r="20" fill="#245b9a" stroke="#9fb8d4" strokeWidth="2" />
+        <circle cx="32" cy="32" r="12.8" fill="#f7faff" />
+        <path d="M23.2 32.4 29 38.2 41.3 25.4" fill="none" stroke="#b91619" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M32 8.5v7M32 48.5v7M8.5 32h7M48.5 32h7M15.4 15.4l5 5M43.6 43.6l5 5M48.6 15.4l-5 5M20.4 43.6l-5 5" stroke="#eef4fb" strokeWidth="2" strokeLinecap="round" opacity=".72" />
       </svg>
     ),
     wrench: "🛠️",

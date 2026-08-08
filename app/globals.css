@@ -456,10 +456,13 @@ a {
 }
 
 .advantage-flow p {
+  align-items: center;
   border-top: 1px solid var(--line);
   color: var(--silver);
+  display: flex;
   font-size: clamp(0.98rem, 1.4vw, 1.1rem);
   font-weight: 650;
+  gap: 12px;
   line-height: 1.36;
   margin: 0;
   min-width: 0;
@@ -481,7 +484,7 @@ a {
   display: inline-block;
   flex: 0 0 auto;
   height: 16px;
-  margin-bottom: 12px;
+  margin-bottom: 0;
   width: 16px;
 }
 
@@ -501,11 +504,10 @@ a {
 }
 
 .item-icon {
-  color: currentColor;
   flex: 0 0 auto;
-  height: 17px;
-  opacity: 0.76;
-  width: 17px;
+  height: 19px;
+  opacity: 0.9;
+  width: 19px;
 }
 
 .services-section {
