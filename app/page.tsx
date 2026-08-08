@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 const contact = {
   landline: "069 15 39 27 23",
   landlineHref: "tel:+496915392723",
@@ -25,25 +27,25 @@ const people = [
 ];
 
 const benefits = [
-  "Mit oder ohne Terminvereinbarung",
-  "Schnell & günstig",
-  "Kompetenter Service",
+  { label: "Mit oder ohne Terminvereinbarung", icon: "calendar" },
+  { label: "Schnell & günstig", icon: "tag" },
+  { label: "Kompetenter Service", icon: "shieldTool" },
 ];
 
 const services = [
-  "TÜV & AU-Service",
-  "Inspektion",
-  "Ölwechsel",
-  "Reifenservice",
-  "Fahrzeugdiagnose",
-  "Fehlerauslesen",
-  "Motordiagnose",
-  "Klima-Check",
-  "Akku",
-  "Auspuff",
-  "Austausch von Luft- und Innenraumfiltern",
-  "Getriebe",
-  "Radeinstellung",
+  { label: "TÜV & AU-Service", icon: "checklist" },
+  { label: "Inspektion", icon: "wrench" },
+  { label: "Ölwechsel", icon: "oil" },
+  { label: "Reifenservice", icon: "wheel" },
+  { label: "Fahrzeugdiagnose", icon: "carDiagnostic" },
+  { label: "Fehlerauslesen", icon: "scanner" },
+  { label: "Motordiagnose", icon: "engine" },
+  { label: "Klima-Check", icon: "snowflake" },
+  { label: "Akku", icon: "battery" },
+  { label: "Auspuff", icon: "exhaust" },
+  { label: "Getriebe", icon: "gear" },
+  { label: "Radeinstellung", icon: "alignment" },
+  { label: "Austausch von Luft- und Innenraumfiltern", icon: "filter" },
 ];
 
 const longServices = new Set([
@@ -59,6 +61,142 @@ const openingHours = [
   ["Samstag", "09:00–13:00"],
   ["Sonntag", "Geschlossen"],
 ];
+
+type IconName =
+  | "calendar"
+  | "tag"
+  | "shieldTool"
+  | "checklist"
+  | "wrench"
+  | "oil"
+  | "wheel"
+  | "carDiagnostic"
+  | "scanner"
+  | "engine"
+  | "snowflake"
+  | "battery"
+  | "exhaust"
+  | "gear"
+  | "alignment"
+  | "filter";
+
+function LineIcon({ name }: { name: string }) {
+  const paths: Record<IconName, ReactNode> = {
+    calendar: (
+      <>
+        <rect x="4" y="5" width="16" height="15" rx="2" />
+        <path d="M8 3v4M16 3v4M4 10h16M8 14h3M13 14h3" />
+      </>
+    ),
+    tag: (
+      <>
+        <path d="M4 11.2V5h6.2L20 14.8 14.8 20 4 11.2Z" />
+        <circle cx="8.2" cy="8.2" r="1.2" />
+      </>
+    ),
+    shieldTool: (
+      <>
+        <path d="M12 3 19 6v5.4c0 4.1-2.7 7.7-7 9.6-4.3-1.9-7-5.5-7-9.6V6l7-3Z" />
+        <path d="m9 14 2.1-2.1M13.2 9.8l1.4-1.4M8.7 14.3l1 1 5.9-5.9-1-1-5.9 5.9Z" />
+      </>
+    ),
+    checklist: (
+      <>
+        <rect x="5" y="4" width="14" height="16" rx="2" />
+        <path d="M9 8h6M9 12h6M9 16h6M7.2 8l.6.6 1.1-1.3M7.2 12l.6.6 1.1-1.3" />
+      </>
+    ),
+    wrench: (
+      <>
+        <path d="M14.7 5.3a4.2 4.2 0 0 0 4.9 5.4l-8.9 8.9a2.1 2.1 0 0 1-3-3l8.9-8.9a4.2 4.2 0 0 0-1.9-2.4Z" />
+        <path d="M7.9 17.8h.1" />
+      </>
+    ),
+    oil: (
+      <>
+        <path d="M7 14h8l4-4-3-3-4 4H7v3Z" />
+        <path d="M6 14v4h8v-4M17.5 15.5c1.1 1.2 1.5 2.1 1.5 2.8a1.5 1.5 0 0 1-3 0c0-.7.4-1.6 1.5-2.8Z" />
+      </>
+    ),
+    wheel: (
+      <>
+        <circle cx="12" cy="12" r="8" />
+        <circle cx="12" cy="12" r="2.1" />
+        <path d="M12 4v5.9M12 14.1V20M4 12h5.9M14.1 12H20M6.4 6.4l4.2 4.2M13.4 13.4l4.2 4.2M17.6 6.4l-4.2 4.2M10.6 13.4l-4.2 4.2" />
+      </>
+    ),
+    carDiagnostic: (
+      <>
+        <path d="M5 14h14l-1.6-5.2A2.4 2.4 0 0 0 15.1 7H8.9a2.4 2.4 0 0 0-2.3 1.8L5 14Z" />
+        <path d="M6 14v3M18 14v3M7 17h2M15 17h2M10 11h4M16.5 5.5l2-2M18.5 5.5l-2-2" />
+      </>
+    ),
+    scanner: (
+      <>
+        <rect x="5" y="5" width="14" height="14" rx="2" />
+        <path d="M8 9h8M8 13h5M8 17h2M15 16l2 2M17 16l-2 2" />
+      </>
+    ),
+    engine: (
+      <>
+        <path d="M7 10h3V7h4v3h3l2 2v5h-3l-1.5 2h-5L8 17H5v-5l2-2Z" />
+        <path d="M10 7V5h5M6 14H4M19 14h2M11 14h2" />
+      </>
+    ),
+    snowflake: (
+      <>
+        <path d="M12 3v18M5.6 6.6l12.8 10.8M18.4 6.6 5.6 17.4" />
+        <path d="m9 5 3 3 3-3M9 19l3-3 3 3M4.8 10.2l4.1 1.1-1.1 4.1M19.2 10.2l-4.1 1.1 1.1 4.1" />
+      </>
+    ),
+    battery: (
+      <>
+        <rect x="4" y="8" width="15" height="8" rx="2" />
+        <path d="M21 11v2M8 12h4M10 10v4M14.5 12H17" />
+      </>
+    ),
+    exhaust: (
+      <>
+        <path d="M4 14h9v4H4v-4ZM13 16h3.5c1.9 0 3.5-1.6 3.5-3.5V8" />
+        <path d="M7 14v-3h5M18 6.5c1.3-.8 2.4-.8 3.3 0M17.5 3.8c1.8-1 3.4-1 4.8 0" />
+      </>
+    ),
+    gear: (
+      <>
+        <circle cx="12" cy="12" r="3" />
+        <path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M4.2 16.5 6.8 15M17.2 9l2.6-1.5M6 12H3M21 12h-3" />
+      </>
+    ),
+    alignment: (
+      <>
+        <circle cx="7" cy="12" r="3" />
+        <circle cx="17" cy="12" r="3" />
+        <path d="M7 5v3M7 16v3M17 5v3M17 16v3M10 12h4M4 7l-2 2M20 7l2 2M4 17l-2-2M20 17l2-2" />
+      </>
+    ),
+    filter: (
+      <>
+        <path d="M4 5h16l-6 7v5l-4 2v-7L4 5Z" />
+        <path d="M7 9h10M9 12h6" />
+      </>
+    ),
+  };
+
+  return (
+    <svg
+      className="item-icon"
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.7"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      {paths[name as IconName]}
+    </svg>
+  );
+}
 
 export default function Home() {
   return (
@@ -146,9 +284,12 @@ export default function Home() {
         </div>
         <div className="advantage-flow" aria-label="Vorteile">
           {benefits.map((benefit) => (
-            <p key={benefit}>
-              <span aria-hidden="true" />
-              {benefit}
+            <p key={benefit.label}>
+              <span className="advantage-dot" aria-hidden="true" />
+              <span className="item-content">
+                <span>{benefit.label}</span>
+                <LineIcon name={benefit.icon} />
+              </span>
             </p>
           ))}
         </div>
@@ -162,11 +303,16 @@ export default function Home() {
         <div className="service-flow">
           {services.map((service) => (
             <div
-              className={`service-item ${longServices.has(service) ? "service-wide" : ""}`}
-              key={service}
+              className={`service-item ${longServices.has(service.label) ? "service-wide" : ""}`}
+              key={service.label}
             >
-              <span aria-hidden="true" />
-              <p>{service}</p>
+              <span className="service-dot" aria-hidden="true" />
+              <p>
+                <span className="item-content">
+                  <span>{service.label}</span>
+                  <LineIcon name={service.icon} />
+                </span>
+              </p>
             </div>
           ))}
         </div>

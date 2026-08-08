@@ -471,8 +471,8 @@ a {
   border-left: 1px solid var(--line-soft);
 }
 
-.advantage-flow span,
-.service-item span {
+.advantage-dot,
+.service-dot {
   background:
     radial-gradient(circle, rgba(185, 22, 25, 0.88) 0 28%, transparent 32%),
     linear-gradient(135deg, rgba(231, 236, 244, 0.42), rgba(231, 236, 244, 0.08));
@@ -483,6 +483,29 @@ a {
   height: 16px;
   margin-bottom: 12px;
   width: 16px;
+}
+
+.item-content {
+  align-items: center;
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-width: 100%;
+  min-width: 0;
+  vertical-align: top;
+}
+
+.item-content > span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.item-icon {
+  color: currentColor;
+  flex: 0 0 auto;
+  height: 17px;
+  opacity: 0.76;
+  width: 17px;
 }
 
 .services-section {
@@ -520,7 +543,7 @@ a {
   border-bottom: 1px solid var(--line);
 }
 
-.service-item span {
+.service-dot {
   height: 14px;
   margin: 0;
   width: 14px;
