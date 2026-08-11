@@ -221,11 +221,17 @@ export default function Home() {
       </header>
 
       <section id="start" className="hero" aria-labelledby="hero-title">
-        <img
+        <video
           className="hero-photo"
-          src="/werkstatt-aussen.png"
-          alt="Außenansicht von Autodienst Schwanheim mit Fahrzeugen vor der Werkstatt"
-        />
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="metadata"
+          aria-hidden="true"
+        >
+          <source src="/hero-background.mov" type="video/quicktime" />
+        </video>
         <div className="hero-shade" />
         <div className="hero-inner">
           <img
