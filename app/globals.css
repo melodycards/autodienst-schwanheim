@@ -748,9 +748,15 @@ a {
   margin-top: 34px;
 }
 
-.contact-system > img {
+.contact-video {
   align-self: start;
+  aspect-ratio: 4 / 5;
+  background: rgba(5, 6, 8, 0.78);
+  border-radius: 8px;
+  display: block;
   filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.55));
+  object-fit: cover;
+  overflow: hidden;
   width: min(240px, 100%);
 }
 
@@ -947,7 +953,7 @@ a {
     justify-content: flex-start;
   }
 
-  .contact-system > img {
+  .contact-video {
     width: min(250px, 68vw);
   }
 
@@ -1191,7 +1197,7 @@ a {
     margin-top: 26px;
   }
 
-  .contact-system > img {
+  .contact-video {
     width: min(230px, 70vw);
   }
 

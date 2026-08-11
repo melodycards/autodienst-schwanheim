@@ -388,7 +388,17 @@ export default function Home() {
         </div>
 
         <div className="contact-system">
-          <img src="/autodienst-logo.png" alt="Autodienst Schwanheim Logo" />
+          <video
+            className="contact-video"
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          >
+            <source src="/contact-video.mov" type="video/quicktime" />
+          </video>
           <div className="contact-grid" aria-label="Kontaktdaten">
             <div>
               <span>Telefon</span>
