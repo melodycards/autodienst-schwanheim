@@ -148,7 +148,29 @@ function ServiceIcon({ name }: { name: ServiceIconName }) {
       </svg>
     ),
     snowflake: "❄️",
-    battery: "🔋",
+    battery: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <defs>
+          <linearGradient id="battery-case" x1="0" x2="1">
+            <stop offset="0" stopColor="#2b3138" />
+            <stop offset=".52" stopColor="#4f5965" />
+            <stop offset="1" stopColor="#15191f" />
+          </linearGradient>
+          <linearGradient id="battery-top" x1="0" x2="1">
+            <stop offset="0" stopColor="#d7dde5" />
+            <stop offset="1" stopColor="#7c8794" />
+          </linearGradient>
+        </defs>
+        <rect x="13" y="19" width="38" height="30" rx="4" fill="url(#battery-case)" stroke="#dce2ea" strokeWidth="2.4" />
+        <path d="M18 19v-4h8v4M38 19v-4h8v4" fill="none" stroke="url(#battery-top)" strokeWidth="3" strokeLinecap="round" />
+        <rect x="18" y="24" width="28" height="5" rx="1.4" fill="#20262d" opacity=".78" />
+        <path d="M22 38h8M26 34v8M38 38h8" stroke="#f0f4f8" strokeWidth="3" strokeLinecap="round" />
+        <path d="M16 22h12" stroke="#b91619" strokeWidth="3" strokeLinecap="round" />
+        <path d="M38 22h10" stroke="#2c7cc3" strokeWidth="3" strokeLinecap="round" />
+        <circle cx="20" cy="17" r="4.4" fill="#b91619" stroke="#f4f7fb" strokeWidth="1.4" />
+        <circle cx="42" cy="17" r="4.4" fill="#2c7cc3" stroke="#f4f7fb" strokeWidth="1.4" />
+      </svg>
+    ),
     exhaust: (
       <svg viewBox="0 0 64 64" aria-hidden="true">
         <defs>
