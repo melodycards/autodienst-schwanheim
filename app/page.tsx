@@ -45,7 +45,7 @@ const services = [
   { label: "Auspuff", icon: "exhaust" },
   { label: "Getriebe", icon: "gears" },
   { label: "Radeinstellung", icon: "alignment" },
-  { label: "Bremsservice", icon: "brakes" },
+  { label: "Bremsenservice", icon: "brakes" },
   { label: "Austausch von Luft- und Innenraumfiltern", icon: "filter" },
 ];
 
