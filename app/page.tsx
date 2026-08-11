@@ -45,6 +45,7 @@ const services = [
   { label: "Auspuff", icon: "exhaust" },
   { label: "Getriebe", icon: "gears" },
   { label: "Radeinstellung", icon: "alignment" },
+  { label: "Bremsservice", icon: "brakes" },
   { label: "Austausch von Luft- und Innenraumfiltern", icon: "filter" },
 ];
 
@@ -53,11 +54,7 @@ const longServices = new Set([
 ]);
 
 const openingHours = [
-  ["Montag", "08:30–18:00"],
-  ["Dienstag", "08:30–18:00"],
-  ["Mittwoch", "08:30–18:00"],
-  ["Donnerstag", "08:30–18:00"],
-  ["Freitag", "08:30–18:00"],
+  ["Mo – Fr", "08:30 – 18:00"],
   ["Samstag", "09:00–13:00"],
   ["Sonntag", "Geschlossen"],
 ];
@@ -75,6 +72,7 @@ type ServiceIconName =
   | "exhaust"
   | "gears"
   | "alignment"
+  | "brakes"
   | "filter";
 
 type BenefitIconName = "calendar" | "tag" | "shieldTool";
@@ -172,6 +170,14 @@ function ServiceIcon({ name }: { name: ServiceIconName }) {
         <circle cx="32" cy="32" r="6" fill="#d8dde4" />
         <path d="M14 14v36M50 14v36M10 20h8M10 44h8M46 20h8M46 44h8" stroke="#b91619" strokeWidth="4" strokeLinecap="round" />
         <path d="M22 10 10 22M42 10l12 12M22 54 10 42M42 54l12-12" stroke="#8c96a2" strokeWidth="3" strokeLinecap="round" />
+      </svg>
+    ),
+    brakes: (
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <circle cx="32" cy="32" r="20" fill="#c9d0d8" stroke="#eef2f7" strokeWidth="3" />
+        <circle cx="32" cy="32" r="9" fill="#10151c" stroke="#8b949e" strokeWidth="3" />
+        <path d="M46 15c6 5 9 12 8 20-.9 6.6-4.8 12.1-10.5 15.1L38 39.6c4.3-2.1 6.8-6.4 6.8-11.2 0-3.3-1.3-6.4-3.6-8.7L46 15Z" fill="#b91619" stroke="#f1f4f8" strokeWidth="2" />
+        <path d="M22 18.5a17.5 17.5 0 0 0 0 27M32 12v5M32 47v5M12 32h5" fill="none" stroke="#7f8996" strokeWidth="3" strokeLinecap="round" />
       </svg>
     ),
     filter: (
@@ -335,7 +341,7 @@ export default function Home() {
         </div>
         <div className="atelier-image atelier-main">
           <img
-            src="/werkstatt-service.png"
+            src="/werkstatt-service-new.jpg"
             alt="Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren"
           />
         </div>

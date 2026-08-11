@@ -603,7 +603,7 @@ a {
 .hours-list {
   display: grid;
   gap: 0 clamp(26px, 4vw, 58px);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   margin: 0;
 }
 
