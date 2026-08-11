@@ -388,17 +388,18 @@ export default function Home() {
         </div>
 
         <div className="contact-system">
-          <video
-            className="contact-video"
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-          >
-            <source src="/contact-video.mov" type="video/quicktime" />
-          </video>
+          <div className="contact-video">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="metadata"
+              aria-hidden="true"
+            >
+              <source src="/contact-video.mov" type="video/quicktime" />
+            </video>
+          </div>
           <div className="contact-grid" aria-label="Kontaktdaten">
             <div>
               <span>Telefon</span>

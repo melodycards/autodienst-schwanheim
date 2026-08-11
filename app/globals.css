@@ -753,11 +753,20 @@ a {
   aspect-ratio: 4 / 5;
   background: rgba(5, 6, 8, 0.78);
   border-radius: 8px;
-  display: block;
   filter: drop-shadow(0 20px 34px rgba(0, 0, 0, 0.55));
-  object-fit: cover;
   overflow: hidden;
+  position: relative;
   width: min(240px, 100%);
+}
+
+.contact-video video {
+  display: block;
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  width: 100%;
 }
 
 .contact-grid {
