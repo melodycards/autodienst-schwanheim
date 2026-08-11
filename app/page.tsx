@@ -308,7 +308,7 @@ export default function Home() {
         <div className="service-flow">
           {services.map((service) => (
             <div
-              className={`service-item ${longServices.has(service.label) ? "service-wide" : ""}`}
+              className={`service-item ${longServices.has(service.label) ? "service-wide" : ""} ${service.label === "Bremsenservice" ? "service-brakes" : ""}`}
               key={service.label}
             >
               <span className="service-dot" aria-hidden="true" />

@@ -1124,6 +1124,15 @@ a {
     font-size: 0.95rem;
   }
 
+  .service-brakes p {
+    font-size: 0.92rem;
+    gap: 7px;
+  }
+
+  .service-brakes .service-label-text {
+    white-space: nowrap;
+  }
+
   .hours-section {
     gap: 20px;
     padding-block: 36px 38px;
