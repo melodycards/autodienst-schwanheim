@@ -963,7 +963,11 @@ a {
   }
 
   .contact-video {
-    width: min(250px, 68vw);
+    aspect-ratio: auto;
+    grid-column: 1 / -1;
+    height: 313px;
+    max-width: none;
+    width: 100%;
   }
 
   .contact-grid,
@@ -1207,7 +1211,7 @@ a {
   }
 
   .contact-video {
-    width: min(230px, 70vw);
+    height: 288px;
   }
 
   .contact-grid,
