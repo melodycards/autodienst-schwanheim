@@ -777,6 +777,12 @@ a {
   width: 100%;
 }
 
+@media (min-width: 861px) {
+  .contact-video video {
+    object-position: center 62%;
+  }
+}
+
 .contact-grid {
   display: grid;
   gap: 0;

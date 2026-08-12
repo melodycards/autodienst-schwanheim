@@ -15,8 +15,8 @@ const people = [
   {
     name: "Ömür Ete",
     label: "Mobil",
-    phone: "0157 96 08 500",
-    href: "tel:+491579608500",
+    phone: "0174 9608500",
+    href: "tel:+491749608500",
   },
   {
     name: "Muhammed Göküzüm",
