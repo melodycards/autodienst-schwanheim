@@ -387,7 +387,7 @@ video {
 .workshop-copy h2,
 .contact-stage h2 {
   color: white;
-  font-size: clamp(2.5rem, 6vw, 6.4rem);
+  font-size: clamp(2.125rem, 5.1vw, 5.44rem);
   font-weight: 840;
   letter-spacing: 0;
   line-height: 0.94;
@@ -429,7 +429,7 @@ video {
   align-items: center;
   color: rgba(255, 255, 255, 0.94);
   display: inline-flex;
-  font-size: clamp(1.65rem, 4.6vw, 4.8rem);
+  font-size: clamp(1.4025rem, 3.91vw, 4.08rem);
   font-weight: 820;
   gap: clamp(12px, 2vw, 22px);
   line-height: 0.98;
@@ -910,7 +910,7 @@ video {
 .intro-type strong {
   color: white;
   display: block;
-  font-size: clamp(1.65rem, 5.8vw, 5.4rem);
+  font-size: clamp(1.4025rem, 4.93vw, 4.59rem);
   font-weight: 860;
   line-height: 0.96;
 }
@@ -939,7 +939,7 @@ video {
 
 .legal-page h1 {
   color: white;
-  font-size: clamp(2.4rem, 7vw, 5.2rem);
+  font-size: clamp(2.04rem, 5.95vw, 4.42rem);
   line-height: 0.96;
   margin: 28px 0 34px;
   text-transform: uppercase;
@@ -1189,7 +1189,7 @@ video {
   .section-head h2,
   .workshop-copy h2,
   .contact-stage h2 {
-    font-size: clamp(2.25rem, 11.8vw, 3.35rem);
+    font-size: clamp(1.9125rem, 10.03vw, 2.8475rem);
   }
 
   .service-panel summary {
@@ -1204,7 +1204,7 @@ video {
   }
 
   .service-title {
-    font-size: clamp(1.42rem, 7.2vw, 2.1rem);
+    font-size: clamp(1.207rem, 6.12vw, 1.785rem);
     line-height: 1.03;
   }
 
@@ -1296,7 +1296,7 @@ video {
   }
 
   .service-title {
-    font-size: 1.35rem;
+    font-size: 1.1475rem;
   }
 
   .contact-data strong,
