@@ -521,17 +521,55 @@ video {
   display: grid;
   gap: 0;
   margin-top: 30px;
+  perspective: 780px;
+  transform-style: preserve-3d;
 }
 
 .workshop-facts span {
+  animation: workshopFactDepth both;
+  animation-range: entry 0% cover 34%;
+  animation-timeline: view();
   border-top: 1px solid var(--line);
   color: rgba(239, 245, 251, 0.86);
+  display: block;
   font-weight: 680;
+  max-width: 100%;
   padding: 14px 0;
+  text-shadow:
+    0 1px 0 rgba(186, 220, 247, 0.16),
+    0 10px 26px rgba(20, 64, 112, 0.28),
+    0 22px 46px rgba(0, 0, 0, 0.42);
+  transform: translate3d(var(--fact-indent, 0), 0, var(--fact-depth, 0)) scale(var(--fact-scale, 1));
+  transform-origin: left center;
 }
 
 .workshop-facts span:last-child {
   border-bottom: 1px solid var(--line);
+}
+
+.workshop-facts span:nth-child(1) {
+  --fact-depth: 28px;
+  --fact-indent: 0;
+  --fact-scale: 1;
+  --fact-start-scale: 0.94;
+  animation-range: entry 0% cover 24%;
+  font-size: 1.05rem;
+}
+
+.workshop-facts span:nth-child(2) {
+  --fact-depth: 10px;
+  --fact-indent: 24px;
+  --fact-scale: 0.9;
+  --fact-start-scale: 0.846;
+  animation-range: entry 8% cover 32%;
+}
+
+.workshop-facts span:nth-child(3) {
+  --fact-depth: -8px;
+  --fact-indent: 48px;
+  --fact-scale: 0.81;
+  --fact-start-scale: 0.7614;
+  animation-range: entry 16% cover 40%;
 }
 
 .workshop-media,
@@ -1005,6 +1043,17 @@ video {
   }
 }
 
+@keyframes workshopFactDepth {
+  from {
+    opacity: 0.1;
+    transform: translate3d(calc(var(--fact-indent, 0) + 18px), 18px, -120px) scale(var(--fact-start-scale, 0.94));
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(var(--fact-indent, 0), 0, var(--fact-depth, 0)) scale(var(--fact-scale, 1));
+  }
+}
+
 @keyframes introPhoto {
   from {
     opacity: 0;
@@ -1251,6 +1300,22 @@ video {
   .gallery-grid figure,
   .contact-video {
     border-radius: 14px;
+  }
+
+  .workshop-facts {
+    perspective: 560px;
+  }
+
+  .workshop-facts span:nth-child(1) {
+    font-size: 1rem;
+  }
+
+  .workshop-facts span:nth-child(2) {
+    --fact-indent: 14px;
+  }
+
+  .workshop-facts span:nth-child(3) {
+    --fact-indent: 28px;
   }
 
   .gallery-grid {
