@@ -15,7 +15,7 @@ export default function DatenschutzPage() {
       <h1>Datenschutz</h1>
 
       <section>
-        <h2>1. Verantwortlicher</h2>
+        <h2>Verantwortlicher</h2>
         <p>
           Verantwortlich für die Datenverarbeitung auf dieser Website ist:
         </p>
@@ -41,7 +41,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>2. Allgemeine Hinweise</h2>
+        <h2>Allgemeine Hinweise</h2>
         <p>
           Der Schutz personenbezogener Daten ist uns wichtig. Personenbezogene Daten
           sind alle Informationen, mit denen eine Person direkt oder indirekt
@@ -52,7 +52,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>3. Zugriffsdaten und Hosting</h2>
+        <h2>Zugriffsdaten und Hosting</h2>
         <p>
           Beim Aufruf dieser Website werden durch den technischen Hosting-Anbieter
           automatisch Daten verarbeitet, die für die Bereitstellung der Website,
@@ -73,7 +73,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>4. Kontaktaufnahme</h2>
+        <h2>Kontaktaufnahme</h2>
         <p>
           Wenn Sie uns telefonisch, per Mobiltelefon oder per E-Mail kontaktieren,
           verarbeiten wir die von Ihnen übermittelten Angaben, um Ihre Anfrage zu
@@ -90,7 +90,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>5. Telefonlinks, E-Mail-Links und Routenfunktion</h2>
+        <h2>Telefonlinks, E-Mail-Links und Routenfunktion</h2>
         <p>
           Diese Website enthält anklickbare Telefon- und E-Mail-Links. Beim Anklicken
           wird die jeweilige Anwendung Ihres Geräts geöffnet. Die eigentliche
@@ -105,7 +105,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>6. Session-Speicher</h2>
+        <h2>Session-Speicher</h2>
         <p>
           Für die Darstellung des Intro-Effekts kann im Browser ein Eintrag im
           Session-Speicher gesetzt werden. Dieser Eintrag dient ausschließlich dazu,
@@ -115,7 +115,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>7. Cookies, Analyse und Marketing</h2>
+        <h2>Cookies, Analyse und Marketing</h2>
         <p>
           Nach aktuellem Stand werden auf dieser Website keine eigenen Analyse- oder
           Marketing-Cookies eingesetzt. Sollten zukünftig entsprechende Dienste
@@ -125,7 +125,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>8. Speicherdauer</h2>
+        <h2>Speicherdauer</h2>
         <p>
           Personenbezogene Daten werden nur so lange gespeichert, wie es für die
           jeweiligen Zwecke erforderlich ist oder gesetzliche Aufbewahrungspflichten
@@ -135,7 +135,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>9. Ihre Rechte</h2>
+        <h2>Ihre Rechte</h2>
         <p>
           Sie haben im Rahmen der gesetzlichen Voraussetzungen das Recht auf Auskunft,
           Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit
@@ -151,7 +151,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>10. SSL- bzw. TLS-Verschlüsselung</h2>
+        <h2>SSL- bzw. TLS-Verschlüsselung</h2>
         <p>
           Diese Website nutzt aus Sicherheitsgründen eine verschlüsselte Verbindung.
           Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des
@@ -160,7 +160,7 @@ export default function DatenschutzPage() {
       </section>
 
       <section>
-        <h2>11. Aktualisierung dieser Datenschutzerklärung</h2>
+        <h2>Aktualisierung dieser Datenschutzerklärung</h2>
         <p>
           Diese Datenschutzerklärung kann angepasst werden, wenn sich die Website, die
           eingesetzten technischen Dienste oder rechtliche Anforderungen ändern.

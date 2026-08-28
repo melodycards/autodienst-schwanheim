@@ -289,7 +289,6 @@ export default function Home() {
           {serviceGroups.map((group, index) => (
             <details className="service-panel" key={group.title} open={index === 0}>
               <summary>
-                <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
                 <span className="service-title">
                   <Icon name={group.icon as IconName} />
                   {group.title}
@@ -366,9 +365,8 @@ export default function Home() {
           <h2 id="process-title">Kontakt. Prüfung. Reparatur. Abholung.</h2>
         </div>
         <div className="process-line">
-          {processSteps.map(([title, text], index) => (
+          {processSteps.map(([title, text]) => (
             <div className="process-step reveal" key={title}>
-              <span>{String(index + 1).padStart(2, "0")}</span>
               <h3>{title}</h3>
               <p>{text}</p>
             </div>

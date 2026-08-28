@@ -415,7 +415,7 @@ video {
   cursor: pointer;
   display: grid;
   gap: clamp(14px, 3vw, 32px);
-  grid-template-columns: 54px minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto;
   list-style: none;
   min-height: 92px;
   padding: clamp(18px, 3vw, 30px) 0;
@@ -423,12 +423,6 @@ video {
 
 .service-panel summary::-webkit-details-marker {
   display: none;
-}
-
-.service-index {
-  color: rgba(160, 215, 255, 0.48);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.86rem;
 }
 
 .service-title {
@@ -472,7 +466,7 @@ video {
   display: grid;
   gap: 22px;
   grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-  padding: 0 0 32px 86px;
+  padding: 0 0 32px;
 }
 
 .service-detail p {
@@ -634,17 +628,11 @@ video {
   padding-left: 22px;
 }
 
-.process-step span {
-  color: var(--electric);
-  font-family: var(--font-geist-mono), monospace;
-  font-size: 0.82rem;
-}
-
 .process-step h3 {
   color: white;
   font-size: clamp(1.2rem, 2.1vw, 1.8rem);
   line-height: 1.1;
-  margin: 16px 0 10px;
+  margin: 0 0 10px;
 }
 
 .process-step p {
@@ -1229,13 +1217,9 @@ video {
 
   .service-panel summary {
     gap: 12px;
-    grid-template-columns: 30px minmax(0, 1fr) 34px;
+    grid-template-columns: minmax(0, 1fr) 34px;
     min-height: 74px;
     padding: 18px 0;
-  }
-
-  .service-index {
-    font-size: 0.72rem;
   }
 
   .service-title {
@@ -1251,7 +1235,7 @@ video {
   .service-detail {
     gap: 16px;
     grid-template-columns: 1fr;
-    padding: 0 0 24px 42px;
+    padding: 0 0 24px;
   }
 
   .service-detail li {
