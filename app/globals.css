@@ -697,108 +697,63 @@ video {
 
 .gallery-grid {
   display: grid;
-  gap: clamp(12px, 2.2vw, 24px);
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  margin-top: 34px;
-  perspective: 1200px;
+  gap: clamp(30px, 4.5vw, 56px);
+  grid-template-columns: 1fr;
+  margin-top: clamp(30px, 4vw, 44px);
 }
 
 .gallery-grid figure {
-  --pin-rotate: -1.1deg;
-  --pin-start-rotate: -0.4deg;
-  --pin-overshoot-rotate: -1.2deg;
-  --tape-a-left: 8%;
-  --tape-a-top: -13px;
-  --tape-a-rotate: -7deg;
-  --tape-b-left: auto;
-  --tape-b-right: 8%;
-  --tape-b-top: -12px;
-  --tape-b-bottom: auto;
-  --tape-b-rotate: 7deg;
-  animation: galleryPinIn both;
+  animation: galleryPanelInLeft both;
   animation-range: entry 0% cover 36%;
   animation-timeline: view();
-  background: linear-gradient(180deg, #e7ebee, #cfd6db);
-  border: 1px solid rgba(239, 245, 251, 0.34);
-  border-radius: 2px;
+  background:
+    linear-gradient(135deg, rgba(30, 167, 255, 0.28), transparent 18%, transparent 82%, rgba(30, 167, 255, 0.2)),
+    linear-gradient(180deg, rgba(22, 29, 39, 0.96), rgba(5, 8, 12, 0.98));
+  border: 1px solid rgba(108, 132, 150, 0.34);
+  border-radius: 0;
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.36) inset,
-    0 22px 42px rgba(0, 0, 0, 0.44),
-    0 7px 16px rgba(0, 0, 0, 0.34);
+    0 0 0 1px rgba(30, 167, 255, 0.18) inset,
+    0 26px 68px rgba(0, 0, 0, 0.52),
+    0 8px 24px rgba(0, 0, 0, 0.34);
+  clip-path: polygon(18px 0, 100% 0, 100% calc(100% - 18px), calc(100% - 18px) 100%, 0 100%, 0 18px);
+  justify-self: start;
   margin: 0;
-  overflow: visible;
-  padding: clamp(7px, 1vw, 10px);
-  transform: rotate(var(--pin-rotate));
-  transform-origin: center 22px;
+  overflow: hidden;
+  padding: 2px;
+  position: relative;
+  width: min(1080px, 96%);
 }
 
 .gallery-grid figure:nth-child(2) {
-  --pin-rotate: 1.1deg;
-  --pin-start-rotate: 0.4deg;
-  --pin-overshoot-rotate: 1.2deg;
-  --tape-a-left: 50%;
-  --tape-a-top: -15px;
-  --tape-a-rotate: 5deg;
-  --tape-b-left: -9999px;
-  margin-top: clamp(22px, 3vw, 42px);
+  animation-name: galleryPanelInRight;
+  justify-self: end;
 }
 
 .gallery-grid figure:nth-child(3) {
-  --pin-rotate: -1.25deg;
-  --pin-start-rotate: -0.45deg;
-  --pin-overshoot-rotate: -1.35deg;
-  --tape-a-left: 9%;
-  --tape-a-top: -12px;
-  --tape-a-rotate: -5deg;
-  --tape-b-left: auto;
-  --tape-b-right: 8%;
-  --tape-b-top: auto;
-  --tape-b-bottom: -12px;
-  --tape-b-rotate: -8deg;
   animation-range: entry 6% cover 38%;
-  justify-self: end;
-  margin-top: clamp(-44px, -3vw, -22px);
-  width: 92%;
 }
 
-.gallery-grid figure::before,
 .gallery-grid figure::after {
   background:
-    linear-gradient(90deg, rgba(118, 140, 156, 0.18), rgba(174, 194, 207, 0.64) 20%, rgba(122, 145, 162, 0.46) 54%, rgba(210, 224, 232, 0.34)),
-    repeating-linear-gradient(92deg, rgba(255, 255, 255, 0.12) 0 1px, transparent 1px 7px);
-  border-radius: 1px;
-  box-shadow:
-    0 5px 9px rgba(0, 0, 0, 0.22),
-    0 1px 0 rgba(255, 255, 255, 0.2) inset;
-  clip-path: polygon(0 8%, 7% 0, 14% 8%, 22% 0, 30% 7%, 40% 1%, 51% 8%, 61% 0, 70% 7%, 81% 1%, 91% 8%, 100% 2%, 96% 92%, 88% 100%, 78% 93%, 68% 99%, 58% 92%, 48% 100%, 39% 93%, 30% 100%, 19% 92%, 9% 99%, 0 91%);
+    linear-gradient(115deg, rgba(255, 255, 255, 0.1), transparent 26%),
+    linear-gradient(0deg, rgba(3, 5, 7, 0.34), transparent 38%),
+    linear-gradient(120deg, rgba(30, 167, 255, 0.11), transparent 44%);
   content: "";
-  height: 28px;
-  left: var(--tape-a-left);
-  opacity: 0.86;
+  inset: 2px;
+  pointer-events: none;
   position: absolute;
-  top: var(--tape-a-top);
-  transform: translateX(-50%) rotate(var(--tape-a-rotate));
-  width: clamp(70px, 9vw, 108px);
-  z-index: 3;
-}
-
-.gallery-grid figure::after {
-  bottom: var(--tape-b-bottom);
-  left: var(--tape-b-left);
-  right: var(--tape-b-right);
-  top: var(--tape-b-top);
-  transform: rotate(var(--tape-b-rotate));
 }
 
 .gallery-large {
-  grid-row: span 2;
+  grid-row: auto;
 }
 
 .gallery-grid img {
-  border-radius: 1px;
+  display: block;
   height: auto;
-  object-fit: contain;
+  object-fit: cover;
   transition: none;
+  width: 100%;
 }
 
 .gallery-large img {
@@ -1345,18 +1300,25 @@ video {
   }
 }
 
-@keyframes galleryPinIn {
+@keyframes galleryPanelInLeft {
   from {
     opacity: 0.08;
-    transform: translate3d(0, 34px, -120px) rotate(var(--pin-start-rotate)) scale(0.96);
-  }
-  74% {
-    opacity: 1;
-    transform: translate3d(0, -4px, 10px) rotate(var(--pin-overshoot-rotate)) scale(1.01);
+    transform: translate3d(-54px, 16px, 0);
   }
   to {
     opacity: 1;
-    transform: translate3d(0, 0, 0) rotate(var(--pin-rotate)) scale(1);
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes galleryPanelInRight {
+  from {
+    opacity: 0.08;
+    transform: translate3d(54px, 16px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
   }
 }
 
@@ -1642,75 +1604,28 @@ video {
   }
 
   .gallery-grid {
-    gap: 24px;
+    gap: 26px;
     grid-template-columns: 1fr;
   }
 
   .gallery-grid figure {
-    --pin-rotate: -0.45deg;
-    --pin-start-rotate: -0.15deg;
-    --pin-overshoot-rotate: -0.55deg;
-    --tape-a-left: 16%;
-    --tape-b-right: 11%;
     box-shadow:
-      0 1px 0 rgba(255, 255, 255, 0.12) inset,
-      0 18px 44px rgba(0, 0, 0, 0.46),
-      0 0 22px rgba(30, 167, 255, 0.07);
-    justify-self: center;
-    padding: 6px;
-    width: calc(100% - 8px);
+      0 0 0 1px rgba(30, 167, 255, 0.16) inset,
+      0 18px 44px rgba(0, 0, 0, 0.48),
+      0 6px 18px rgba(0, 0, 0, 0.34);
+    clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+    justify-self: stretch;
+    padding: 2px;
+    width: 100%;
   }
 
   .gallery-grid figure:nth-child(2) {
-    --pin-rotate: 0.45deg;
-    --pin-start-rotate: 0.15deg;
-    --pin-overshoot-rotate: 0.55deg;
-    --tape-a-left: 50%;
-    margin-top: 0;
+    justify-self: stretch;
   }
 
   .gallery-grid figure:nth-child(3) {
-    --pin-rotate: -0.45deg;
-    --pin-start-rotate: -0.15deg;
-    --pin-overshoot-rotate: -0.55deg;
     justify-self: center;
-    margin-top: 0;
-    width: calc(100% - 8px);
-  }
-
-  .gallery-grid figure::before {
-    height: 15px;
-    top: 6px;
-    width: clamp(58px, 18vw, 78px);
-  }
-
-  .gallery-grid figure::after {
-    width: clamp(58px, 18vw, 78px);
-  }
-
-  .gallery-grid figure:nth-child(1)::before {
-    top: -10px;
-  }
-
-  .gallery-grid figure:nth-child(1)::after {
-    top: -10px;
-  }
-
-  .gallery-grid figure:nth-child(3)::before {
-    top: -10px;
-  }
-
-  .gallery-grid figure:nth-child(3)::after {
-    bottom: -10px;
-    top: auto;
-  }
-
-  .gallery-grid figure::after {
-    border-radius: 8px;
-  }
-
-  .gallery-grid img {
-    border-radius: 8px;
+    width: 100%;
   }
 
   .gallery-large {
