@@ -892,7 +892,7 @@ video {
 
 .intro-overlay {
   align-items: center;
-  animation: introExit 2.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  animation: introExit 4.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
   background: #020305;
   display: grid;
   inset: 0;
@@ -922,38 +922,116 @@ video {
   width: 130%;
 }
 
-.intro-logo {
-  animation: introLogo 1.7s ease 0.28s both;
-  filter: drop-shadow(0 28px 44px rgba(0, 0, 0, 0.8));
+.intro-statements {
+  display: grid;
+  gap: clamp(14px, 2.4vw, 22px);
+  max-width: calc(100vw - 38px);
   position: relative;
-  width: min(320px, 68vw);
-  z-index: 2;
-}
-
-.intro-type {
-  animation: introType 1.8s ease 0.48s both;
-  margin-top: min(33vh, 260px);
-  position: absolute;
-  text-align: center;
-  text-transform: uppercase;
+  width: min(720px, 84vw);
   z-index: 3;
 }
 
-.intro-type strong {
-  color: white;
-  display: block;
-  font-size: clamp(1.4025rem, 4.93vw, 4.59rem);
-  font-weight: 860;
-  line-height: 0.96;
+.intro-statement {
+  align-items: center;
+  animation: introStatementIn 0.62s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  display: flex;
+  gap: clamp(12px, 2vw, 18px);
+  justify-content: flex-start;
+  opacity: 0;
+  transform: translate3d(0, 22px, -80px) scale(0.94);
 }
 
-.intro-type span {
-  color: rgba(160, 215, 255, 0.86);
+.intro-statement:nth-child(1) {
+  animation-delay: 0.42s;
+}
+
+.intro-statement:nth-child(2) {
+  animation-delay: 1.18s;
+}
+
+.intro-statement:nth-child(3) {
+  animation-delay: 1.94s;
+}
+
+.intro-statement strong {
+  color: white;
   display: block;
-  font-size: clamp(0.74rem, 1.8vw, 1.02rem);
-  font-weight: 760;
-  letter-spacing: 0.1em;
-  margin-top: 14px;
+  font-size: clamp(1.74rem, 5.2vw, 4.16rem);
+  font-weight: 840;
+  letter-spacing: 0;
+  line-height: 1.02;
+  text-shadow: 0 18px 44px rgba(0, 0, 0, 0.66);
+}
+
+.intro-check {
+  animation: introCheckPop 0.34s ease-out both;
+  color: #39d881;
+  filter: drop-shadow(0 0 13px rgba(57, 216, 129, 0.34));
+  flex: 0 0 auto;
+  height: clamp(24px, 4.2vw, 38px);
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.3;
+  width: clamp(24px, 4.2vw, 38px);
+}
+
+.intro-statement:nth-child(1) .intro-check {
+  animation-delay: 0.86s;
+}
+
+.intro-statement:nth-child(2) .intro-check {
+  animation-delay: 1.62s;
+}
+
+.intro-statement:nth-child(3) .intro-check {
+  animation-delay: 2.38s;
+}
+
+.intro-check circle,
+.intro-check path {
+  animation: introCheckDraw 0.42s ease-out both;
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+}
+
+.intro-statement:nth-child(1) .intro-check circle,
+.intro-statement:nth-child(1) .intro-check path {
+  animation-delay: 0.9s;
+}
+
+.intro-statement:nth-child(2) .intro-check circle,
+.intro-statement:nth-child(2) .intro-check path {
+  animation-delay: 1.66s;
+}
+
+.intro-statement:nth-child(3) .intro-check circle,
+.intro-statement:nth-child(3) .intro-check path {
+  animation-delay: 2.42s;
+}
+
+.intro-skip {
+  backdrop-filter: blur(16px);
+  background: rgba(5, 10, 16, 0.46);
+  border: 1px solid rgba(239, 245, 251, 0.2);
+  border-radius: 999px;
+  bottom: clamp(24px, 5vw, 46px);
+  color: rgba(239, 245, 251, 0.82);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-weight: 720;
+  min-height: 42px;
+  padding: 0 18px;
+  position: absolute;
+  transition: border-color 180ms ease, color 180ms ease, transform 180ms ease;
+  z-index: 4;
+}
+
+.intro-skip:hover,
+.intro-skip:focus-visible {
+  border-color: rgba(57, 216, 129, 0.5);
+  color: white;
+  transform: translateY(-1px);
 }
 
 .reveal {
@@ -1079,25 +1157,34 @@ video {
   }
 }
 
-@keyframes introLogo {
+@keyframes introStatementIn {
   from {
     opacity: 0;
-    transform: translateY(18px) scale(0.94);
+    transform: translate3d(0, 22px, -80px) scale(0.94);
   }
   to {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
-@keyframes introType {
+@keyframes introCheckPop {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: scale(0.72);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: scale(1);
+  }
+}
+
+@keyframes introCheckDraw {
+  from {
+    stroke-dashoffset: 80;
+  }
+  to {
+    stroke-dashoffset: 0;
   }
 }
 
@@ -1388,6 +1475,28 @@ video {
   .hours-module dd {
     font-size: 0.93rem;
   }
+
+  .intro-statements {
+    gap: 13px;
+    width: min(560px, calc(100vw - 34px));
+  }
+
+  .intro-statement strong {
+    font-size: clamp(1.42rem, 8.4vw, 2.2rem);
+    line-height: 1.06;
+  }
+
+  .intro-check {
+    height: 25px;
+    width: 25px;
+  }
+
+  .intro-skip {
+    bottom: 22px;
+    font-size: 0.78rem;
+    min-height: 42px;
+    padding-inline: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1402,5 +1511,21 @@ video {
 
   .reveal {
     animation: none;
+  }
+
+  .intro-overlay {
+    animation: none !important;
+  }
+
+  .intro-photo,
+  .intro-light,
+  .intro-statement,
+  .intro-check,
+  .intro-check circle,
+  .intro-check path {
+    animation: none !important;
+    opacity: 1;
+    stroke-dashoffset: 0;
+    transform: none;
   }
 }
