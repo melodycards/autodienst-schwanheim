@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import { headers } from "next/headers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
 const siteTitle = "Autodienst Schwanheim | Autowerkstatt in Frankfurt am Main";
 const siteDescription =
-  "Autowerkstatt in Frankfurt-Schwanheim: TÜV & AU-Service, Inspektion, Ölwechsel, Reifenservice, Fahrzeugdiagnose, Akku, Auspuff, Getriebe und Radeinstellung.";
+  "Autodienst Schwanheim ist eine Kfz-Werkstatt in Frankfurt-Schwanheim für TÜV & AU-Service, Inspektion, Ölwechsel, Reifenservice, Fahrzeugdiagnose, Klima-Check, Bremsenservice und weitere Kfz-Leistungen.";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
@@ -26,6 +15,17 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: siteTitle,
     description: siteDescription,
+    keywords: [
+      "Autodienst Schwanheim",
+      "Kfz-Werkstatt Frankfurt-Schwanheim",
+      "Autowerkstatt Frankfurt am Main",
+      "TÜV AU-Service",
+      "Inspektion",
+      "Ölwechsel",
+      "Reifenservice",
+      "Fahrzeugdiagnose",
+      "Bremsenservice",
+    ],
     metadataBase: new URL(origin),
     openGraph: {
       title: siteTitle,
@@ -61,11 +61,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }

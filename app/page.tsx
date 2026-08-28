@@ -1,4 +1,6 @@
+/* eslint-disable @next/next/no-img-element */
 import type { ReactNode } from "react";
+import { IntroOverlay } from "./IntroOverlay";
 
 const contact = {
   landline: "069 15 39 27 23",
@@ -28,455 +30,448 @@ const people = [
 
 const benefits = [
   { label: "Mit oder ohne Terminvereinbarung", icon: "calendar" },
-  { label: "Schnell & günstig", icon: "tag" },
-  { label: "Kompetenter Service", icon: "shieldTool" },
+  { label: "Schnell & günstig", icon: "boltTag" },
+  { label: "Kompetenter Service", icon: "shieldCheck" },
 ];
 
-const services = [
-  { label: "TÜV & AU-Service", icon: "inspectionBadge" },
-  { label: "Inspektion", icon: "wrench" },
-  { label: "Ölwechsel", icon: "oilCan" },
-  { label: "Reifenservice", icon: "tire" },
-  { label: "Fahrzeugdiagnose", icon: "carCheck" },
-  { label: "Fehlerauslesen", icon: "scanner" },
-  { label: "Motordiagnose", icon: "engine" },
-  { label: "Klima-Check", icon: "snowflake" },
-  { label: "Akku", icon: "battery" },
-  { label: "Auspuff", icon: "exhaust" },
-  { label: "Getriebe", icon: "gears" },
-  { label: "Radeinstellung", icon: "alignment" },
-  { label: "Bremsenservice", icon: "brakes" },
-  { label: "Austausch von Luft- und Innenraumfiltern", icon: "filter" },
+const serviceGroups = [
+  {
+    title: "Wartung und Inspektion",
+    icon: "wrench",
+    description:
+      "Regelmäßige Arbeiten für Werterhalt, Zuverlässigkeit und eine klare Einschätzung des Fahrzeugzustands.",
+    services: ["TÜV & AU-Service", "Inspektion", "Ölwechsel"],
+  },
+  {
+    title: "Diagnose und Elektronik",
+    icon: "scan",
+    description:
+      "Systematische Prüfung elektronischer Fahrzeugsysteme mit nachvollziehbarer Diagnose.",
+    services: ["Fahrzeugdiagnose", "Fehlerauslesen", "Motordiagnose"],
+  },
+  {
+    title: "Reifen und Fahrwerk",
+    icon: "wheel",
+    description:
+      "Service rund um Reifen, Räder und die präzise Ausrichtung des Fahrwerks.",
+    services: ["Reifenservice", "Radeinstellung"],
+  },
+  {
+    title: "Motor und Getriebe",
+    icon: "engine",
+    description:
+      "Gezielte Prüfung und Arbeiten an zentralen Komponenten des Antriebsstrangs.",
+    services: ["Batterie und Akku", "Getriebe"],
+  },
+  {
+    title: "Bremsen und Abgasanlage",
+    icon: "brake",
+    description:
+      "Kontrolle und Service an sicherheitsrelevanten Komponenten und der Abgasanlage.",
+    services: ["Bremsenservice", "Auspuff"],
+  },
+  {
+    title: "Klima und Filter",
+    icon: "snow",
+    description:
+      "Für Luftqualität, Komfort und funktionierende Klimatisierung im Fahrzeug.",
+    services: ["Klima-Check", "Austausch von Luft- und Innenraumfiltern"],
+  },
 ];
 
-const longServices = new Set([
-  "Austausch von Luft- und Innenraumfiltern",
-]);
+const gallery = [
+  {
+    src: "/werkstatt-detail-1.jpg",
+    alt: "Außenbereich von Autodienst Schwanheim mit Fahrzeugen vor dem Betrieb",
+  },
+  {
+    src: "/werkstatt-service-new.jpg",
+    alt: "Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren",
+  },
+  {
+    src: "/werkstatt-detail-2.jpg",
+    alt: "Werkstattalltag bei Autodienst Schwanheim mit Fahrzeugen auf dem Hof",
+  },
+];
+
+const processSteps = [
+  ["Kontakt", "Anrufen, schreiben oder direkt die Route starten."],
+  ["Prüfung", "Fahrzeug ansehen und den nächsten Schritt abstimmen."],
+  ["Reparatur", "Die vereinbarten Arbeiten werden nachvollziehbar durchgeführt."],
+  ["Abholung", "Fahrzeug abholen und wieder mobil sein."],
+];
 
 const openingHours = [
   ["Mo – Fr", "08:30 – 18:00"],
-  ["Samstag", "09:00–13:00"],
+  ["Samstag", "09:00 – 13:00"],
   ["Sonntag", "Geschlossen"],
 ];
 
-type ServiceIconName =
-  | "inspectionBadge"
-  | "wrench"
-  | "oilCan"
-  | "tire"
-  | "carCheck"
-  | "scanner"
-  | "engine"
-  | "snowflake"
+type IconName =
+  | "arrow"
   | "battery"
-  | "exhaust"
-  | "gears"
-  | "alignment"
-  | "brakes"
-  | "filter";
+  | "boltTag"
+  | "brake"
+  | "calendar"
+  | "check"
+  | "engine"
+  | "mail"
+  | "map"
+  | "phone"
+  | "scan"
+  | "shieldCheck"
+  | "snow"
+  | "wheel"
+  | "wrench";
 
-type BenefitIconName = "calendar" | "tag" | "shieldTool";
-
-function LineIcon({ name }: { name: string }) {
-  const paths: Record<BenefitIconName, ReactNode> = {
+function Icon({ name }: { name: IconName }) {
+  const content: Record<IconName, ReactNode> = {
+    arrow: <path d="M5 12h14m-6-6 6 6-6 6" />,
+    battery: (
+      <>
+        <path d="M6 9h11a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-6a2 2 0 0 1 2-2Z" />
+        <path d="M20 12v4M9 14h5M11.5 11.5v5" />
+      </>
+    ),
+    boltTag: (
+      <>
+        <path d="M4 12.5V5h7.5L21 14.5 14.5 21 4 12.5Z" />
+        <path d="m13 8-3 5h4l-3 5" />
+        <circle cx="8" cy="8" r="1.2" />
+      </>
+    ),
+    brake: (
+      <>
+        <circle cx="12" cy="12" r="7" />
+        <circle cx="12" cy="12" r="2.4" />
+        <path d="M18.5 5.5c2 1.8 3.1 4.2 3.1 6.8 0 3.2-1.6 6-4.1 7.7l-2.2-4a4.5 4.5 0 0 0 1.7-3.6 4.8 4.8 0 0 0-1.7-3.7l3.2-3.2Z" />
+      </>
+    ),
     calendar: (
       <>
-        <rect x="4" y="5.5" width="16" height="14.5" rx="2.2" fill="#dfe5ee" stroke="#f8fbff" strokeWidth="1.2" />
-        <path d="M4 10h16" stroke="#8d97a4" strokeWidth="1.2" />
-        <path d="M8 3.8v3.4M16 3.8v3.4" stroke="#b91619" strokeWidth="1.7" strokeLinecap="round" />
-        <rect x="7.3" y="12.6" width="3.3" height="3.3" rx=".7" fill="#b91619" opacity=".88" />
-        <rect x="12.4" y="12.6" width="3.3" height="3.3" rx=".7" fill="#7f8996" opacity=".82" />
+        <rect x="4" y="5" width="16" height="15" rx="2" />
+        <path d="M8 3v4M16 3v4M4 10h16M8 14h3M13 14h3M8 17h3" />
       </>
     ),
-    tag: (
+    check: (
       <>
-        <path d="M4 11.1V5h6.2L20 14.8 14.8 20 4 11.1Z" fill="#dfe5ee" stroke="#f8fbff" strokeWidth="1.2" />
-        <circle cx="8.4" cy="8.2" r="1.35" fill="#b91619" />
-        <path d="M11.2 13.9h5.1M11.2 16.1h3.1" stroke="#6f7884" strokeWidth="1.2" strokeLinecap="round" />
-        <path d="M17.7 7.3v4M15.7 9.3h4" stroke="#b91619" strokeWidth="1.4" strokeLinecap="round" />
+        <circle cx="12" cy="12" r="9" />
+        <path d="m8.5 12.3 2.2 2.2 4.8-5.2" />
       </>
     ),
-    shieldTool: (
-      <>
-        <path d="M12 3.2 19 6.1v5.3c0 4.1-2.6 7.5-7 9.4-4.4-1.9-7-5.3-7-9.4V6.1l7-2.9Z" fill="#dfe5ee" stroke="#f8fbff" strokeWidth="1.2" />
-        <path d="M12 5.8 16.6 7.7v3.4c0 2.7-1.7 5-4.6 6.3-2.9-1.3-4.6-3.6-4.6-6.3V7.7L12 5.8Z" fill="#27313d" opacity=".84" />
-        <path d="m9.4 12.4 1.6 1.6 3.9-4.2" stroke="#b91619" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      </>
-    ),
-  };
-
-  return (
-    <svg
-      className="item-icon"
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="1.7"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      {paths[name as BenefitIconName]}
-    </svg>
-  );
-}
-
-function ServiceIcon({ name }: { name: ServiceIconName }) {
-  const icons: Record<ServiceIconName, ReactNode> = {
-    inspectionBadge: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="26" fill="#f3f7fc" stroke="#ffffff" strokeWidth="2.5" />
-        <circle cx="32" cy="32" r="21" fill="#1f5f9f" stroke="#9fb9d5" strokeWidth="2" />
-        <circle cx="32" cy="32" r="15.2" fill="#f8fbff" />
-        <text x="32" y="36.5" fill="#1b2f48" fontSize="13" fontWeight="900" textAnchor="middle">TÜV</text>
-        <path d="M32 7.5v6.5M32 50v6.5M7.5 32H14M50 32h6.5M14.7 14.7l4.6 4.6M44.7 44.7l4.6 4.6M49.3 14.7l-4.6 4.6M19.3 44.7l-4.6 4.6" stroke="#eef4fb" strokeWidth="2" strokeLinecap="round" opacity=".76" />
-        <path d="m25.1 42.5 2.8 2.8 5.7-6" fill="none" stroke="#b91619" strokeWidth="3.2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-    wrench: "🛠️",
-    oilCan: "🛢️💧",
-    tire: "🛞",
-    carCheck: "🚙🔎",
-    scanner: "📟",
     engine: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <path d="M16 28h8v-7h16v7h8l7 7v14h-9l-4 6H23l-4-6h-9V35l6-7Z" fill="#c9d0d8" />
-        <path d="M18 31h7v-7h14v7h8l5 5v10h-8l-4 6H25l-4-6h-8V36l5-5Z" fill="#8b949e" />
-        <circle cx="39" cy="40" r="7" fill="#b91619" />
-        <circle cx="39" cy="40" r="3" fill="#f2f5f8" />
-        <path d="M25 23v-6h19M10 40H4M60 40h-6" stroke="#e5e9ef" strokeWidth="4" strokeLinecap="round" />
-      </svg>
+      <>
+        <path d="M7 13h3V9h5v4h3l3 3v4h-4l-2 2h-5l-2-2H4v-4l3-3Z" />
+        <path d="M10 9V6h6M4 17H2M22 17h-2" />
+      </>
     ),
-    snowflake: "❄️",
-    battery: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <defs>
-          <linearGradient id="battery-case" x1="0" x2="1">
-            <stop offset="0" stopColor="#2b3138" />
-            <stop offset=".52" stopColor="#4f5965" />
-            <stop offset="1" stopColor="#15191f" />
-          </linearGradient>
-          <linearGradient id="battery-top" x1="0" x2="1">
-            <stop offset="0" stopColor="#d7dde5" />
-            <stop offset="1" stopColor="#7c8794" />
-          </linearGradient>
-        </defs>
-        <rect x="13" y="19" width="38" height="30" rx="4" fill="url(#battery-case)" stroke="#dce2ea" strokeWidth="2.4" />
-        <path d="M18 19v-4h8v4M38 19v-4h8v4" fill="none" stroke="url(#battery-top)" strokeWidth="3" strokeLinecap="round" />
-        <rect x="18" y="24" width="28" height="5" rx="1.4" fill="#20262d" opacity=".78" />
-        <path d="M22 38h8M26 34v8M38 38h8" stroke="#f0f4f8" strokeWidth="3" strokeLinecap="round" />
-        <path d="M16 22h12" stroke="#b91619" strokeWidth="3" strokeLinecap="round" />
-        <path d="M38 22h10" stroke="#2c7cc3" strokeWidth="3" strokeLinecap="round" />
-        <circle cx="20" cy="17" r="4.4" fill="#b91619" stroke="#f4f7fb" strokeWidth="1.4" />
-        <circle cx="42" cy="17" r="4.4" fill="#2c7cc3" stroke="#f4f7fb" strokeWidth="1.4" />
-      </svg>
+    mail: (
+      <>
+        <rect x="4" y="6" width="16" height="12" rx="2" />
+        <path d="m4.5 7.5 7.5 5.2 7.5-5.2" />
+      </>
     ),
-    exhaust: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <defs>
-          <linearGradient id="exhaust-metal" x1="0" x2="1">
-            <stop offset="0" stopColor="#b7bdc5" />
-            <stop offset=".5" stopColor="#f0f2f5" />
-            <stop offset="1" stopColor="#6f7782" />
-          </linearGradient>
-        </defs>
-        <path d="M20 34h23c6 0 11-5 11-11v-6" fill="none" stroke="#b8c0c9" strokeWidth="7" strokeLinecap="round" />
-        <path d="M8 35h25v13H8z" fill="url(#exhaust-metal)" stroke="#f2f5f8" strokeWidth="2" />
-        <path d="M6 39h-3M6 45h-3M50 13c4-3 8-3 12 0" stroke="#9fa8b4" strokeWidth="3" strokeLinecap="round" />
-      </svg>
+    map: (
+      <>
+        <path d="M12 21s7-5.1 7-11a7 7 0 0 0-14 0c0 5.9 7 11 7 11Z" />
+        <circle cx="12" cy="10" r="2.3" />
+      </>
     ),
-    gears: "⚙️",
-    alignment: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="14" fill="#10151c" stroke="#d8dde4" strokeWidth="4" />
-        <circle cx="32" cy="32" r="6" fill="#d8dde4" />
-        <path d="M14 14v36M50 14v36M10 20h8M10 44h8M46 20h8M46 44h8" stroke="#b91619" strokeWidth="4" strokeLinecap="round" />
-        <path d="M22 10 10 22M42 10l12 12M22 54 10 42M42 54l12-12" stroke="#8c96a2" strokeWidth="3" strokeLinecap="round" />
-      </svg>
+    phone: (
+      <path d="M7 4h3l1.4 4-2 1.2a11 11 0 0 0 5.4 5.4l1.2-2 4 1.4v3a2 2 0 0 1-2.1 2A15.9 15.9 0 0 1 5 6.1 2 2 0 0 1 7 4Z" />
     ),
-    brakes: (
-      <svg viewBox="0 0 64 64" aria-hidden="true">
-        <circle cx="32" cy="32" r="20" fill="#c9d0d8" stroke="#eef2f7" strokeWidth="3" />
-        <circle cx="32" cy="32" r="9" fill="#10151c" stroke="#8b949e" strokeWidth="3" />
-        <path d="M46 15c6 5 9 12 8 20-.9 6.6-4.8 12.1-10.5 15.1L38 39.6c4.3-2.1 6.8-6.4 6.8-11.2 0-3.3-1.3-6.4-3.6-8.7L46 15Z" fill="#b91619" stroke="#f1f4f8" strokeWidth="2" />
-        <path d="M22 18.5a17.5 17.5 0 0 0 0 27M32 12v5M32 47v5M12 32h5" fill="none" stroke="#7f8996" strokeWidth="3" strokeLinecap="round" />
-      </svg>
+    scan: (
+      <>
+        <path d="M7 8h10a3 3 0 0 1 3 3v3H4v-3a3 3 0 0 1 3-3Z" />
+        <path d="M6 14v4h12v-4M8 18v2M12 18v2M16 18v2M8 11h8" />
+      </>
     ),
-    filter: (
-      <svg viewBox="0 0 78 44" aria-hidden="true">
-        <rect x="4" y="5" width="24" height="34" rx="2" fill="#f1f4f7" stroke="#aab2bd" strokeWidth="2" />
-        <path d="M9 10h14M9 15h14M9 20h14M9 25h14M9 30h14M9 35h14" stroke="#6e7782" strokeWidth="1.5" />
-        <path d="M43 10 70 4v30l-27 6V10Z" fill="#d7ecff" stroke="#eef5ff" strokeWidth="2" />
-        <path d="M47 13v23M52 12v23M57 10v23M62 9v23M67 7v23" stroke="#2c7cc3" strokeWidth="1.3" />
-      </svg>
+    shieldCheck: (
+      <>
+        <path d="M12 3 20 6.5v5.8c0 4.4-3.1 7.5-8 8.7-4.9-1.2-8-4.3-8-8.7V6.5L12 3Z" />
+        <path d="m8.5 12 2.2 2.2 4.8-5" />
+      </>
+    ),
+    snow: (
+      <>
+        <path d="M12 3v18M5.6 6.5l12.8 11M18.4 6.5l-12.8 11" />
+        <path d="m9 5.2 3 2.1 3-2.1M9 18.8l3-2.1 3 2.1M4.9 10.3l3.4.4.5-3.4M19.1 13.7l-3.4-.4-.5 3.4M19.1 10.3l-3.4.4-.5-3.4M4.9 13.7l3.4-.4.5 3.4" />
+      </>
+    ),
+    wheel: (
+      <>
+        <circle cx="12" cy="12" r="8.5" />
+        <circle cx="12" cy="12" r="2.2" />
+        <path d="M12 3.5v6.3M12 14.2v6.3M3.5 12h6.3M14.2 12h6.3M6 6l4.4 4.4M13.6 13.6 18 18M18 6l-4.4 4.4M10.4 13.6 6 18" />
+      </>
+    ),
+    wrench: (
+      <path d="M14.8 6.2a5 5 0 0 0 6.1 6.1L12 21.2a2.6 2.6 0 0 1-3.7-3.7l8.9-8.9a5 5 0 0 1-2.4-2.4Z" />
     ),
   };
 
   return (
-    <span className="service-icon" aria-hidden="true">
-      {icons[name]}
-    </span>
+    <svg aria-hidden="true" className="icon" viewBox="0 0 24 24" fill="none">
+      {content[name]}
+    </svg>
   );
 }
 
 export default function Home() {
   return (
     <main className="site-shell">
+      <IntroOverlay />
+
       <header className="topbar" aria-label="Hauptnavigation">
         <a className="brand" href="#start" aria-label="Autodienst Schwanheim">
-          <span className="brand-mark">
-            <img src="/autodienst-logo.png" alt="" />
-          </span>
-          <span className="brand-text">
+          <img src="/autodienst-logo.png" alt="" width="156" height="104" />
+          <span>
             <strong>Autodienst Schwanheim</strong>
-            <small>Frankfurt am Main</small>
+            <small>Frankfurt-Schwanheim</small>
           </span>
         </a>
         <nav className="nav-links" aria-label="Seitenbereiche">
           <a href="#leistungen">Leistungen</a>
-          <a href="#bilder">Bilder</a>
+          <a href="#werkstatt">Werkstatt</a>
+          <a href="#galerie">Galerie</a>
           <a href="#kontakt">Kontakt</a>
         </nav>
-        <a className="topbar-call" href={contact.landlineHref}>
+        <a className="nav-call" href={contact.landlineHref}>
           Jetzt anrufen
         </a>
       </header>
 
       <section id="start" className="hero" aria-labelledby="hero-title">
-        <video
-          className="hero-photo"
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-hidden="true"
-        >
-          <source src="/hero-background.mov" type="video/quicktime" />
-        </video>
-        <div className="hero-shade" />
-        <div className="hero-inner">
-          <img
-            className="hero-logo"
-            src="/autodienst-logo.png"
-            alt="Autodienst Schwanheim Logo"
-          />
-          <p className="eyebrow">Autowerkstatt in Frankfurt-Schwanheim</p>
-          <h1 id="hero-title">Autodienst Schwanheim</h1>
-          <p>
-            Premium-orientierter Kfz-Service in der Rheinlandstraße 3. Direkt
-            anrufen, Route starten oder Leistungen übersichtlich ansehen.
-          </p>
-          <div className="action-row" aria-label="Kontaktaktionen">
+        <img
+          className="hero-image"
+          src="/werkstatt-aussen.png"
+          alt="Außenansicht von Autodienst Schwanheim"
+          width="1536"
+          height="1024"
+          fetchPriority="high"
+        />
+        <div className="hero-orbit" aria-hidden="true" />
+        <div className="hero-content">
+          <p className="kicker">Autowerkstatt in Frankfurt-Schwanheim</p>
+          <h1 id="hero-title">
+            Autodienst
+            <span>Schwanheim</span>
+          </h1>
+          <p className="hero-subtitle">Ihr moderner Kfz-Service in Frankfurt-Schwanheim</p>
+          <div className="hero-actions" aria-label="Kontaktaktionen">
             <a className="button button-primary" href={contact.landlineHref}>
               Jetzt anrufen
             </a>
             <a
-              className="button button-ghost route-button"
+              className="button button-secondary"
               href={contact.mapsHref}
               target="_blank"
               rel="noreferrer"
             >
               Route starten
             </a>
+            <a className="button button-glass" href="#leistungen">
+              Leistungen ansehen
+            </a>
           </div>
-        </div>
-      </section>
-
-      <section className="signal-strip" aria-label="Kurzinfos">
-        <div>
-          <span>Telefon</span>
-          <a href={contact.landlineHref}>{contact.landline}</a>
-        </div>
-        <div>
-          <span>E-Mail</span>
-          <a className="mail-link" href={contact.emailHref}>
-            {contact.email}
-          </a>
-        </div>
-        <div>
-          <span>Adresse</span>
-          <p>
-            <span className="keep-together">Rheinlandstraße&nbsp;3</span>
-            <br />
-            {contact.city}
-          </p>
-        </div>
-      </section>
-
-      <section className="intro-section" aria-labelledby="intro-title">
-        <div className="section-copy">
-          <p className="section-label">Ihre Werkstatt</p>
-          <h2 id="intro-title">Klare Abläufe, direkte Hilfe, sauberer Service.</h2>
-        </div>
-        <div className="advantage-flow" aria-label="Vorteile">
-          {benefits.map((benefit) => (
-            <p key={benefit.label}>
-              <span className="advantage-dot" aria-hidden="true" />
-              <span className="item-content">
-                <span>{benefit.label}</span>
-                <LineIcon name={benefit.icon} />
+          <div className="proof-line" aria-label="Kurzvorteile">
+            {benefits.map((benefit) => (
+              <span key={benefit.label}>
+                <Icon name={benefit.icon as IconName} />
+                {benefit.label}
               </span>
-            </p>
-          ))}
-        </div>
-      </section>
-
-      <section id="leistungen" className="services-section" aria-labelledby="services-title">
-        <div className="section-heading">
-          <p className="section-label">Service / Leistungen</p>
-          <h2 id="services-title">Kfz-Service kompakt und hochwertig strukturiert.</h2>
-        </div>
-        <div className="service-flow">
-          {services.map((service) => (
-            <div
-              className={`service-item ${longServices.has(service.label) ? "service-wide" : ""} ${service.label === "Bremsenservice" ? "service-brakes" : ""}`}
-              key={service.label}
-            >
-              <span className="service-dot" aria-hidden="true" />
-              <p>
-                <span className="service-label-text">{service.label}</span>
-                <ServiceIcon name={service.icon as ServiceIconName} />
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="hours-section" aria-labelledby="hours-title">
-        <div className="hours-heading">
-          <p className="section-label">Öffnungszeiten</p>
-          <h2 id="hours-title">Vorbeikommen oder Termin abstimmen.</h2>
-        </div>
-        <dl className="hours-list">
-          {openingHours.map(([day, time]) => (
-            <div key={day}>
-              <dt>{day}</dt>
-              <dd>{time}</dd>
-            </div>
-          ))}
-        </dl>
-      </section>
-
-      <section id="bilder" className="atelier-section" aria-labelledby="photos-title">
-        <div className="atelier-copy">
-          <p className="section-label">Werkstattbilder</p>
-          <h2 id="photos-title">Echter Standort, echte Fahrzeuge, klare Präsenz.</h2>
-          <p>
-            Die Bilder zeigen den Betrieb und den Werkstattalltag in
-            Frankfurt-Schwanheim, integriert als ruhige, hochwertige Bildstrecke.
-          </p>
-        </div>
-        <div className="atelier-image atelier-main">
-          <img
-            src="/werkstatt-service-new.jpg"
-            alt="Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren"
-          />
-        </div>
-        <div className="wide-photo">
-          <img
-            src="/werkstatt-detail-1.jpg"
-            alt="Außenbereich von Autodienst Schwanheim mit Fahrzeugen vor dem Betrieb"
-          />
-        </div>
-        <div className="atelier-image">
-          <img
-            src="/werkstatt-detail-2.jpg"
-            alt="Werkstattalltag bei Autodienst Schwanheim mit Fahrzeugen auf dem Hof"
-          />
-        </div>
-      </section>
-
-      <section id="kontakt" className="contact-section" aria-labelledby="contact-title">
-        <div className="contact-lead">
-          <p className="section-label">Kontakt</p>
-          <h2 id="contact-title">Anrufen, schreiben oder direkt hinfinden.</h2>
-          <div className="action-row contact-buttons">
-            <a className="button button-primary" href={contact.landlineHref}>
-              Jetzt anrufen
-            </a>
-            <a
-              className="button button-ghost route-button"
-              href={contact.mapsHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              Route starten
-            </a>
-            <a className="button button-silver" href={contact.emailHref}>
-              E-Mail senden
-            </a>
-          </div>
-        </div>
-
-        <div className="contact-system">
-          <div className="contact-video">
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-hidden="true"
-            >
-              <source src="/contact-video.mov" type="video/quicktime" />
-            </video>
-          </div>
-          <div className="contact-grid" aria-label="Kontaktdaten">
-            <div>
-              <span>Telefon</span>
-              <a href={contact.landlineHref}>{contact.landline}</a>
-            </div>
-            <div>
-              <span>E-Mail</span>
-              <a className="mail-link" href={contact.emailHref}>
-                {contact.email}
-              </a>
-            </div>
-            <div>
-              <span>Adresse</span>
-              <p>
-                <span className="keep-together">Rheinlandstraße&nbsp;3</span>
-                <br />
-                {contact.city}
-              </p>
-            </div>
-          </div>
-          <div className="people-flow" aria-label="Ansprechpartner">
-            {people.map((person) => (
-              <div key={person.name}>
-                <span>Ansprechpartner</span>
-                <h3>{person.name}</h3>
-                <p>{person.label}</p>
-                <a href={person.href}>{person.phone}</a>
-              </div>
             ))}
           </div>
         </div>
       </section>
 
-      <footer className="site-footer" aria-label="Footer">
+      <section id="leistungen" className="service-section" aria-labelledby="service-title">
+        <div className="section-head">
+          <p className="kicker">Service / Leistungen</p>
+          <h2 id="service-title">Kfz-Service</h2>
+        </div>
+
+        <div className="service-accordion">
+          {serviceGroups.map((group, index) => (
+            <details className="service-panel" key={group.title} open={index === 0}>
+              <summary>
+                <span className="service-index">{String(index + 1).padStart(2, "0")}</span>
+                <span className="service-title">
+                  <Icon name={group.icon as IconName} />
+                  {group.title}
+                </span>
+                <span className="summary-arrow">
+                  <Icon name="arrow" />
+                </span>
+              </summary>
+              <div className="service-detail">
+                <p>{group.description}</p>
+                <ul>
+                  {group.services.map((service) => (
+                    <li key={service}>
+                      <Icon name="check" />
+                      <span>{service}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section id="werkstatt" className="workshop-section" aria-labelledby="workshop-title">
+        <div className="workshop-copy reveal">
+          <p className="kicker">Ihre Werkstatt in Schwanheim</p>
+          <h2 id="workshop-title">Technischer Service mit direkter persönlicher Abstimmung.</h2>
+          <p>
+            Autodienst Schwanheim ist in der Rheinlandstraße 3 in Frankfurt am Main
+            erreichbar. Sie können telefonisch Kontakt aufnehmen, eine Route starten
+            oder sich vor Ort zum passenden nächsten Schritt abstimmen.
+          </p>
+          <div className="workshop-facts">
+            <span>Persönliche Beratung</span>
+            <span>Moderne Fahrzeugdiagnose</span>
+            <span>Umfassender Kfz-Service</span>
+          </div>
+        </div>
+        <div className="workshop-media reveal">
+          <img
+            src="/werkstatt-service-new.jpg"
+            alt="Werkstattbereich von Autodienst Schwanheim"
+            width="1206"
+            height="879"
+            loading="lazy"
+          />
+        </div>
+      </section>
+
+      <section id="galerie" className="gallery-section" aria-labelledby="gallery-title">
+        <div className="section-head">
+          <p className="kicker">Galerie</p>
+          <h2 id="gallery-title">Echte Einblicke in den Standort.</h2>
+        </div>
+        <div className="gallery-grid">
+          {gallery.map((image, index) => (
+            <figure className={index === 0 ? "gallery-large reveal" : "reveal"} key={image.src}>
+              <img
+                src={image.src}
+                alt={image.alt}
+                width="2200"
+                height="1650"
+                loading="lazy"
+              />
+            </figure>
+          ))}
+        </div>
+      </section>
+
+      <section className="process-section" aria-labelledby="process-title">
+        <div className="section-head">
+          <p className="kicker">Ablauf</p>
+          <h2 id="process-title">Kontakt. Prüfung. Reparatur. Abholung.</h2>
+        </div>
+        <div className="process-line">
+          {processSteps.map(([title, text], index) => (
+            <div className="process-step reveal" key={title}>
+              <span>{String(index + 1).padStart(2, "0")}</span>
+              <h3>{title}</h3>
+              <p>{text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section id="kontakt" className="contact-section" aria-labelledby="contact-title">
+        <div className="contact-stage">
+          <div>
+            <p className="kicker">Kontakt</p>
+            <h2 id="contact-title">Direkt erreichen oder Route starten.</h2>
+          </div>
+          <div className="contact-actions">
+            <a className="button button-primary" href={contact.landlineHref}>
+              Jetzt anrufen
+            </a>
+            <a
+              className="button button-secondary"
+              href={contact.mapsHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Route starten
+            </a>
+            <a className="button button-glass" href={contact.emailHref}>
+              E-Mail senden
+            </a>
+          </div>
+        </div>
+
+        <div className="contact-layout">
+          <div className="contact-video" aria-hidden="true">
+            <video autoPlay muted loop playsInline preload="metadata">
+              <source src="/contact-video.mov" type="video/quicktime" />
+            </video>
+          </div>
+          <div className="contact-data">
+            <a href={contact.landlineHref}>
+              <Icon name="phone" />
+              <span>Telefon</span>
+              <strong>{contact.landline}</strong>
+            </a>
+            <a className="mail-link" href={contact.emailHref}>
+              <Icon name="mail" />
+              <span>E-Mail</span>
+              <strong>{contact.email}</strong>
+            </a>
+            <a href={contact.mapsHref} target="_blank" rel="noreferrer">
+              <Icon name="map" />
+              <span>Adresse</span>
+              <strong>
+                <span className="keep-together">{contact.street}</span>
+                <br />
+                {contact.city}
+              </strong>
+            </a>
+          </div>
+          <div className="hours-module">
+            <h3>Öffnungszeiten</h3>
+            <dl>
+              {openingHours.map(([day, time]) => (
+                <div key={day}>
+                  <dt>{day}</dt>
+                  <dd>{time}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+          <div className="people-module">
+            <h3>Ansprechpartner</h3>
+            {people.map((person) => (
+              <a href={person.href} key={person.name}>
+                <span>{person.label}</span>
+                <strong>{person.name}</strong>
+                <em>{person.phone}</em>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <footer className="site-footer">
         <a className="footer-brand" href="#start" aria-label="Autodienst Schwanheim">
-          <span className="footer-mark">
-            <img src="/autodienst-logo.png" alt="" />
-          </span>
+          <img src="/autodienst-logo.png" alt="" width="118" height="79" loading="lazy" />
           <span>
             <strong>Autodienst Schwanheim</strong>
             <small>
-              <span className="keep-together">Rheinlandstraße&nbsp;3</span> ·{" "}
-              {contact.city}
+              {contact.street} · {contact.city}
             </small>
           </span>
         </a>
-        <div className="footer-links">
-          <a href={contact.landlineHref}>{contact.landline}</a>
-          <a className="mail-link" href={contact.emailHref}>
-            {contact.email}
-          </a>
-          <a href={contact.mapsHref} target="_blank" rel="noreferrer">
-            Route starten
-          </a>
-        </div>
+        <nav aria-label="Rechtliches">
+          <a href="/impressum">Impressum</a>
+          <a href="/datenschutz">Datenschutz</a>
+          <a href={contact.emailHref}>{contact.email}</a>
+        </nav>
       </footer>
     </main>
   );
