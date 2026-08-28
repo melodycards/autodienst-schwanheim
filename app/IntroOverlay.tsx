@@ -15,7 +15,7 @@ export function IntroOverlay() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(false), 4300);
+    const timer = window.setTimeout(() => setVisible(false), 5300);
     return () => {
       window.clearTimeout(timer);
     };
@@ -35,6 +35,10 @@ export function IntroOverlay() {
         height="1024"
       />
       <div className="intro-light" />
+      <div className="intro-brand-mark">
+        <strong>AUTODIENST SCHWANHEIM</strong>
+        <span>KFZ-SERVICE • DIAGNOSE • REPARATUR</span>
+      </div>
       <div className="intro-statements">
         {introStatements.map((statement, index) => (
           <div
@@ -51,7 +55,7 @@ export function IntroOverlay() {
         ))}
       </div>
       <button className="intro-skip" type="button" onClick={() => setVisible(false)}>
-        Intro überspringen
+        INTRO ÜBERSPRINGEN
       </button>
     </div>
   );
