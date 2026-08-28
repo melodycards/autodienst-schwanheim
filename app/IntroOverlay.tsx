@@ -14,7 +14,7 @@ export function IntroOverlay() {
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setVisible(false), 6300);
+    const timer = window.setTimeout(() => setVisible(false), 5800);
     return () => {
       window.clearTimeout(timer);
     };
