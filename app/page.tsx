@@ -1,5 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
-import type { ReactNode } from "react";
+import type { ImgHTMLAttributes, ReactNode } from "react";
 import { IntroOverlay } from "./IntroOverlay";
 
 const contact = {
@@ -82,15 +82,24 @@ const serviceGroups = [
 const gallery = [
   {
     src: "/werkstatt-detail-1.jpg",
+    optimizedName: "werkstatt-detail-1",
     alt: "Außenbereich von Autodienst Schwanheim mit Fahrzeugen vor dem Betrieb",
+    width: 2200,
+    height: 1650,
   },
   {
     src: "/werkstatt-service-new.jpg",
+    optimizedName: "werkstatt-service-new",
     alt: "Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren",
+    width: 1206,
+    height: 879,
   },
   {
     src: "/werkstatt-detail-2.jpg",
+    optimizedName: "werkstatt-detail-2",
     alt: "Werkstattalltag bei Autodienst Schwanheim mit Fahrzeugen auf dem Hof",
+    width: 2200,
+    height: 1650,
   },
 ];
 
@@ -217,6 +226,37 @@ function Icon({ name }: { name: IconName }) {
   );
 }
 
+type ResponsiveImageProps = Omit<ImgHTMLAttributes<HTMLImageElement>, "src" | "srcSet" | "sizes"> & {
+  fallbackSrc: string;
+  name: string;
+  pictureClassName?: string;
+  sizes: string;
+  widths: number[];
+};
+
+function srcSet(name: string, widths: number[], extension: "avif" | "webp") {
+  return widths
+    .map((width) => `/assets/optimized/${name}-${width}.${extension} ${width}w`)
+    .join(", ");
+}
+
+function ResponsiveImage({
+  fallbackSrc,
+  name,
+  pictureClassName,
+  sizes,
+  widths,
+  ...imageProps
+}: ResponsiveImageProps) {
+  return (
+    <picture className={pictureClassName}>
+      <source type="image/avif" srcSet={srcSet(name, widths, "avif")} sizes={sizes} />
+      <source type="image/webp" srcSet={srcSet(name, widths, "webp")} sizes={sizes} />
+      <img {...imageProps} src={fallbackSrc} />
+    </picture>
+  );
+}
+
 export default function Home() {
   return (
     <main className="site-shell">
@@ -224,7 +264,15 @@ export default function Home() {
 
       <header className="topbar" aria-label="Hauptnavigation">
         <a className="brand" href="#start" aria-label="Autodienst Schwanheim">
-          <img src="/autodienst-logo.png" alt="" width="156" height="104" />
+          <ResponsiveImage
+            name="autodienst-logo"
+            widths={[160, 240, 320]}
+            sizes="(max-width: 680px) 75px, 99px"
+            fallbackSrc="/autodienst-logo.png"
+            alt=""
+            width="156"
+            height="104"
+          />
           <span>
             <strong>Autodienst Schwanheim</strong>
             <small>Frankfurt-Schwanheim</small>
@@ -239,9 +287,13 @@ export default function Home() {
       </header>
 
       <section id="start" className="hero" aria-labelledby="hero-title">
-        <img
+        <ResponsiveImage
+          pictureClassName="hero-picture"
+          name="werkstatt-aussen"
+          widths={[768, 960, 1536]}
+          sizes="100vw"
+          fallbackSrc="/werkstatt-aussen.png"
           className="hero-image"
-          src="/werkstatt-aussen.png"
           alt="Außenansicht von Autodienst Schwanheim"
           width="1536"
           height="1024"
@@ -338,8 +390,11 @@ export default function Home() {
           </div>
         </div>
         <div className="workshop-media reveal">
-          <img
-            src="/werkstatt-service-new.jpg"
+          <ResponsiveImage
+            name="werkstatt-service-new"
+            widths={[640, 960, 1200]}
+            sizes="(max-width: 680px) calc(100vw - 36px), 47vw"
+            fallbackSrc="/werkstatt-service-new.jpg"
             alt="Werkstattbereich von Autodienst Schwanheim"
             width="1206"
             height="879"
@@ -356,11 +411,14 @@ export default function Home() {
         <div className="gallery-grid">
           {gallery.map((image, index) => (
             <figure className={index === 0 ? "gallery-large reveal" : "reveal"} key={image.src}>
-              <img
-                src={image.src}
+              <ResponsiveImage
+                name={image.optimizedName}
+                widths={[640, 960, 1200]}
+                sizes="(max-width: 680px) calc(100vw - 36px), 96vw"
+                fallbackSrc={image.src}
                 alt={image.alt}
-                width="2200"
-                height="1650"
+                width={image.width}
+                height={image.height}
                 loading="lazy"
               />
             </figure>
@@ -460,7 +518,16 @@ export default function Home() {
 
       <footer className="site-footer">
         <a className="footer-brand" href="#start" aria-label="Autodienst Schwanheim">
-          <img src="/autodienst-logo.png" alt="" width="118" height="79" loading="lazy" />
+          <ResponsiveImage
+            name="autodienst-logo"
+            widths={[160, 240, 320]}
+            sizes="81px"
+            fallbackSrc="/autodienst-logo.png"
+            alt=""
+            width="118"
+            height="79"
+            loading="lazy"
+          />
           <span>
             <strong>Autodienst Schwanheim</strong>
             <small>

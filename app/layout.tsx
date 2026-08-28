@@ -48,8 +48,8 @@ export async function generateMetadata(): Promise<Metadata> {
       images: [`${origin}/og.png`],
     },
     icons: {
-      icon: "/autodienst-logo.png",
-      shortcut: "/autodienst-logo.png",
+      icon: "/assets/optimized/autodienst-logo-160.png",
+      shortcut: "/assets/optimized/autodienst-logo-160.png",
     },
   };
 }

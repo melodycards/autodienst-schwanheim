@@ -61,6 +61,10 @@ video {
   max-width: 100%;
 }
 
+picture {
+  display: block;
+}
+
 .site-shell {
   min-height: 100vh;
   overflow-x: clip;
@@ -273,6 +277,13 @@ video {
   position: absolute;
   transform: scale(1.04);
   width: 100%;
+}
+
+.hero-picture,
+.intro-picture {
+  inset: 0;
+  overflow: hidden;
+  position: absolute;
 }
 
 .hero-orbit {
@@ -657,6 +668,15 @@ video {
   height: 100%;
   object-fit: cover;
   transition: transform 900ms ease;
+  width: 100%;
+}
+
+.workshop-media picture {
+  height: 100%;
+  width: 100%;
+}
+
+.gallery-grid picture {
   width: 100%;
 }
 
@@ -1138,8 +1158,10 @@ video {
 .intro-check circle,
 .intro-check path {
   animation: introCheckDraw 0.42s ease-out both;
-  stroke-dasharray: 80;
-  stroke-dashoffset: 80;
+  opacity: 0;
+  transform: scale(0.88);
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
 .intro-statement:nth-child(1) .intro-check circle,
@@ -1371,10 +1393,12 @@ video {
 
 @keyframes introCheckDraw {
   from {
-    stroke-dashoffset: 80;
+    opacity: 0;
+    transform: scale(0.88);
   }
   to {
-    stroke-dashoffset: 0;
+    opacity: 1;
+    transform: scale(1);
   }
 }
 

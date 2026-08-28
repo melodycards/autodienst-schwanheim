@@ -26,13 +26,26 @@ export function IntroOverlay() {
 
   return (
     <div className="intro-overlay" aria-label="Website-Intro">
-      <img
-        className="intro-photo"
-        src="/werkstatt-aussen.png"
-        alt=""
-        width="1536"
-        height="1024"
-      />
+      <picture className="intro-picture">
+        <source
+          type="image/avif"
+          srcSet="/assets/optimized/werkstatt-aussen-768.avif 768w, /assets/optimized/werkstatt-aussen-960.avif 960w, /assets/optimized/werkstatt-aussen-1536.avif 1536w"
+          sizes="100vw"
+        />
+        <source
+          type="image/webp"
+          srcSet="/assets/optimized/werkstatt-aussen-768.webp 768w, /assets/optimized/werkstatt-aussen-960.webp 960w, /assets/optimized/werkstatt-aussen-1536.webp 1536w"
+          sizes="100vw"
+        />
+        <img
+          className="intro-photo"
+          src="/werkstatt-aussen.png"
+          alt=""
+          width="1536"
+          height="1024"
+          fetchPriority="high"
+        />
+      </picture>
       <div className="intro-light" />
       <div className="intro-stage">
         <div className="intro-brand-mark">
