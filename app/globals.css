@@ -346,6 +346,12 @@ video {
   margin-top: 28px;
 }
 
+.hero-actions .button {
+  font-size: 0.72rem;
+  min-height: 35px;
+  padding-inline: 15px;
+}
+
 .proof-line {
   border-top: 1px solid var(--line);
   display: flex;
@@ -387,10 +393,10 @@ video {
 .workshop-copy h2,
 .contact-stage h2 {
   color: white;
-  font-size: clamp(2.125rem, 5.1vw, 5.44rem);
+  font-size: clamp(1.9125rem, 4.59vw, 4.896rem);
   font-weight: 840;
   letter-spacing: 0;
-  line-height: 0.94;
+  line-height: 1.04;
   margin: 18px 0 0;
   text-transform: uppercase;
 }
@@ -429,10 +435,10 @@ video {
   align-items: center;
   color: rgba(255, 255, 255, 0.94);
   display: inline-flex;
-  font-size: clamp(1.4025rem, 3.91vw, 4.08rem);
+  font-size: clamp(1.26225rem, 3.519vw, 3.672rem);
   font-weight: 820;
   gap: clamp(12px, 2vw, 22px);
-  line-height: 0.98;
+  line-height: 1.08;
   min-width: 0;
   overflow-wrap: normal;
   text-transform: uppercase;
@@ -1188,6 +1194,12 @@ video {
     padding-inline: 12px;
   }
 
+  .hero-actions .button {
+    font-size: 0.672rem;
+    min-height: 34px;
+    padding-inline: 10px;
+  }
+
   .hero-actions .button-glass {
     flex-basis: 100%;
   }
@@ -1211,7 +1223,8 @@ video {
   .section-head h2,
   .workshop-copy h2,
   .contact-stage h2 {
-    font-size: clamp(1.9125rem, 10.03vw, 2.8475rem);
+    font-size: clamp(1.72125rem, 9.027vw, 2.56275rem);
+    line-height: 1.08;
   }
 
   .service-panel summary {
@@ -1226,8 +1239,8 @@ video {
   }
 
   .service-title {
-    font-size: clamp(1.207rem, 6.12vw, 1.785rem);
-    line-height: 1.03;
+    font-size: clamp(1.0863rem, 5.508vw, 1.6065rem);
+    line-height: 1.1;
   }
 
   .summary-arrow {
@@ -1318,7 +1331,7 @@ video {
   }
 
   .service-title {
-    font-size: 1.1475rem;
+    font-size: 1.03275rem;
   }
 
   .contact-data strong,

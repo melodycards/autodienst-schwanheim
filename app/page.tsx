@@ -236,9 +236,6 @@ export default function Home() {
           <a href="#galerie">Galerie</a>
           <a href="#kontakt">Kontakt</a>
         </nav>
-        <a className="nav-call" href={contact.landlineHref}>
-          Jetzt anrufen
-        </a>
       </header>
 
       <section id="start" className="hero" aria-labelledby="hero-title">
@@ -269,9 +266,6 @@ export default function Home() {
               rel="noreferrer"
             >
               Route starten
-            </a>
-            <a className="button button-glass" href="#leistungen">
-              Leistungen ansehen
             </a>
           </div>
           <div className="proof-line" aria-label="Kurzvorteile">
