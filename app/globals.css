@@ -950,6 +950,15 @@ video {
   padding: 24px 0;
 }
 
+.legal-page .legal-kicker {
+  color: var(--red);
+  font-size: 0.78rem;
+  font-weight: 840;
+  letter-spacing: 0.12em;
+  margin: 0;
+  text-transform: uppercase;
+}
+
 .legal-page h2 {
   color: white;
   font-size: 1.25rem;
@@ -960,6 +969,19 @@ video {
 .legal-page a {
   color: rgba(239, 245, 251, 0.76);
   line-height: 1.65;
+}
+
+.legal-page strong {
+  color: rgba(255, 255, 255, 0.94);
+}
+
+.legal-placeholder {
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 720;
+}
+
+.legal-page .legal-muted {
+  color: rgba(174, 186, 198, 0.72);
 }
 
 .legal-back {
