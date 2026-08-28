@@ -323,9 +323,18 @@ export default function Home() {
             oder sich vor Ort zum passenden nächsten Schritt abstimmen.
           </p>
           <div className="workshop-facts">
-            <span>Persönliche Beratung</span>
-            <span>Moderne Fahrzeugdiagnose</span>
-            <span>Umfassender Kfz-Service</span>
+            <span>
+              <Icon name="phone" />
+              Persönliche Beratung
+            </span>
+            <span>
+              <Icon name="scan" />
+              Moderne Fahrzeugdiagnose
+            </span>
+            <span>
+              <Icon name="wrench" />
+              Umfassender Kfz-Service
+            </span>
           </div>
         </div>
         <div className="workshop-media reveal">

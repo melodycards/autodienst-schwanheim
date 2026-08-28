@@ -519,57 +519,109 @@ video {
 
 .workshop-facts {
   display: grid;
-  gap: 0;
+  gap: 12px;
   margin-top: 30px;
-  perspective: 780px;
+  perspective: 900px;
   transform-style: preserve-3d;
 }
 
 .workshop-facts span {
-  animation: workshopFactDepth both;
-  animation-range: entry 0% cover 34%;
+  align-items: center;
+  animation: workshopStepIn 620ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  animation-range: entry 0% cover 32%;
   animation-timeline: view();
-  border-top: 1px solid var(--line);
+  background:
+    linear-gradient(145deg, rgba(239, 245, 251, 0.12), rgba(30, 167, 255, 0.055) 42%, rgba(4, 11, 18, 0.72)),
+    linear-gradient(180deg, rgba(13, 24, 36, 0.94), rgba(4, 8, 13, 0.94));
+  border: 1px solid rgba(160, 215, 255, 0.28);
+  border-radius: 14px;
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.12) inset,
+    -12px 16px 0 rgba(3, 8, 14, 0.72),
+    -13px 17px 0 rgba(70, 137, 188, 0.12),
+    0 24px 54px rgba(0, 0, 0, 0.38),
+    0 0 28px rgba(30, 167, 255, 0.07);
   color: rgba(239, 245, 251, 0.86);
-  display: block;
+  display: inline-flex;
   font-weight: 680;
-  max-width: 100%;
-  padding: 14px 0;
+  gap: 12px;
+  justify-content: flex-start;
+  justify-self: center;
+  line-height: 1.15;
+  overflow: visible;
+  padding: 16px 18px;
+  position: relative;
   text-shadow:
     0 1px 0 rgba(186, 220, 247, 0.16),
-    0 10px 26px rgba(20, 64, 112, 0.28),
-    0 22px 46px rgba(0, 0, 0, 0.42);
-  transform: translate3d(var(--fact-indent, 0), 0, var(--fact-depth, 0)) scale(var(--fact-scale, 1));
-  transform-origin: left center;
+    0 10px 24px rgba(20, 64, 112, 0.22);
+  transform: translate3d(0, var(--step-drop, 0), var(--step-depth, 0)) scale(var(--step-scale, 1));
+  transform-origin: center center;
+  width: var(--step-width, 100%);
 }
 
-.workshop-facts span:last-child {
-  border-bottom: 1px solid var(--line);
+.workshop-facts span::before {
+  background: linear-gradient(90deg, rgba(30, 167, 255, 0.78), rgba(160, 215, 255, 0.16), transparent);
+  border-radius: inherit;
+  content: "";
+  height: 1px;
+  left: 12px;
+  position: absolute;
+  right: 12px;
+  top: 0;
+}
+
+.workshop-facts span::after {
+  background: linear-gradient(180deg, rgba(30, 167, 255, 0.24), rgba(3, 8, 14, 0.04));
+  border-radius: 0 14px 14px 0;
+  bottom: 8px;
+  content: "";
+  position: absolute;
+  right: -6px;
+  top: 8px;
+  transform: skewY(-14deg);
+  width: 6px;
+}
+
+.workshop-facts .icon {
+  color: rgba(160, 215, 255, 0.92);
+  filter: drop-shadow(0 0 10px rgba(30, 167, 255, 0.22));
+  font-size: 1.15em;
 }
 
 .workshop-facts span:nth-child(1) {
-  --fact-depth: 28px;
-  --fact-indent: 0;
-  --fact-scale: 1;
-  --fact-start-scale: 0.94;
+  --step-depth: 34px;
+  --step-drop: 0;
+  --step-scale: 1;
+  --step-width: 100%;
   animation-range: entry 0% cover 24%;
-  font-size: 1.05rem;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.16), rgba(30, 167, 255, 0.075) 46%, rgba(8, 18, 28, 0.74)),
+    linear-gradient(180deg, rgba(22, 35, 48, 0.96), rgba(6, 11, 18, 0.94));
+  font-size: clamp(1rem, 1.45vw, 1.24rem);
+  font-weight: 760;
 }
 
 .workshop-facts span:nth-child(2) {
-  --fact-depth: 10px;
-  --fact-indent: 24px;
-  --fact-scale: 0.9;
-  --fact-start-scale: 0.846;
+  --step-depth: 8px;
+  --step-drop: 4px;
+  --step-scale: 0.96;
+  --step-width: 90%;
   animation-range: entry 8% cover 32%;
+  animation-delay: 90ms;
+  font-size: clamp(0.93rem, 1.3vw, 1.12rem);
 }
 
 .workshop-facts span:nth-child(3) {
-  --fact-depth: -8px;
-  --fact-indent: 48px;
-  --fact-scale: 0.81;
-  --fact-start-scale: 0.7614;
+  --step-depth: -14px;
+  --step-drop: 8px;
+  --step-scale: 0.93;
+  --step-width: 80%;
   animation-range: entry 16% cover 40%;
+  animation-delay: 180ms;
+  background:
+    linear-gradient(145deg, rgba(239, 245, 251, 0.09), rgba(30, 167, 255, 0.045) 42%, rgba(3, 8, 14, 0.76)),
+    linear-gradient(180deg, rgba(11, 20, 31, 0.94), rgba(4, 8, 13, 0.94));
+  font-size: clamp(0.86rem, 1.17vw, 1rem);
 }
 
 .workshop-media,
@@ -1121,14 +1173,14 @@ video {
   }
 }
 
-@keyframes workshopFactDepth {
+@keyframes workshopStepIn {
   from {
     opacity: 0.1;
-    transform: translate3d(calc(var(--fact-indent, 0) + 18px), 18px, -120px) scale(var(--fact-start-scale, 0.94));
+    transform: translate3d(0, calc(var(--step-drop, 0) + 24px), -130px) scale(0.92);
   }
   to {
     opacity: 1;
-    transform: translate3d(var(--fact-indent, 0), 0, var(--fact-depth, 0)) scale(var(--fact-scale, 1));
+    transform: translate3d(0, var(--step-drop, 0), var(--step-depth, 0)) scale(var(--step-scale, 1));
   }
 }
 
@@ -1393,16 +1445,24 @@ video {
     perspective: 560px;
   }
 
+  .workshop-facts span {
+    gap: 10px;
+    padding: 14px 15px;
+  }
+
   .workshop-facts span:nth-child(1) {
+    --step-width: 100%;
     font-size: 1rem;
   }
 
   .workshop-facts span:nth-child(2) {
-    --fact-indent: 14px;
+    --step-width: 94%;
+    font-size: 0.94rem;
   }
 
   .workshop-facts span:nth-child(3) {
-    --fact-indent: 28px;
+    --step-width: 88%;
+    font-size: 0.88rem;
   }
 
   .gallery-grid {
