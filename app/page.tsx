@@ -391,13 +391,13 @@ export default function Home() {
         </div>
         <div className="workshop-media reveal">
           <ResponsiveImage
-            name="werkstatt-service-new"
-            widths={[640, 960, 1200]}
+            name="werkstatt-komprimiert"
+            widths={[640, 960, 1024]}
             sizes="(max-width: 680px) calc(100vw - 36px), 47vw"
-            fallbackSrc="/werkstatt-service-new.jpg"
-            alt="Werkstattbereich von Autodienst Schwanheim"
-            width="1206"
-            height="879"
+            fallbackSrc="/werkstatt-komprimiert.webp"
+            alt="Servicefahrzeug von Autodienst Schwanheim vor der Werkstatt"
+            width="1024"
+            height="768"
             loading="lazy"
           />
         </div>

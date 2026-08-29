@@ -35,6 +35,13 @@ const assets = [
     webpQuality: 76,
   },
   {
+    input: "werkstatt-komprimiert.webp",
+    name: "werkstatt-komprimiert",
+    widths: [640, 960, 1024],
+    avifQuality: 58,
+    webpQuality: 78,
+  },
+  {
     input: "autodienst-logo.png",
     name: "autodienst-logo",
     widths: [160, 240, 320],
