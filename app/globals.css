@@ -1025,7 +1025,7 @@ picture {
 
 .intro-overlay {
   align-items: center;
-  animation: introExit 5.8s cubic-bezier(0.77, 0, 0.18, 1) forwards;
+  animation: introExit 5.3s cubic-bezier(0.77, 0, 0.18, 1) forwards;
   background: #020305;
   display: grid;
   inset: 0;
