@@ -1,4 +1,3 @@
-/* eslint-disable @next/next/no-img-element */
 import type { ImgHTMLAttributes, ReactNode } from "react";
 import { IntroOverlay } from "./IntroOverlay";
 
@@ -241,6 +240,7 @@ function srcSet(name: string, widths: number[], extension: "avif" | "webp") {
 }
 
 function ResponsiveImage({
+  alt,
   fallbackSrc,
   name,
   pictureClassName,
@@ -252,7 +252,52 @@ function ResponsiveImage({
     <picture className={pictureClassName}>
       <source type="image/avif" srcSet={srcSet(name, widths, "avif")} sizes={sizes} />
       <source type="image/webp" srcSet={srcSet(name, widths, "webp")} sizes={sizes} />
-      <img {...imageProps} src={fallbackSrc} />
+      <img {...imageProps} alt={alt ?? ""} src={fallbackSrc} />
+    </picture>
+  );
+}
+
+function HeroImage() {
+  return (
+    <picture className="hero-picture">
+      <source
+        media="(max-width: 680px)"
+        type="image/avif"
+        srcSet={srcSet("hero-mobile", [480, 720, 941], "avif")}
+        sizes="100vw"
+      />
+      <source
+        media="(max-width: 680px)"
+        type="image/webp"
+        srcSet={srcSet("hero-mobile", [480, 720, 941], "webp")}
+        sizes="100vw"
+      />
+      <source
+        media="(max-width: 680px)"
+        srcSet="/hero-mobile.png"
+        type="image/png"
+      />
+      <source
+        media="(min-width: 681px)"
+        type="image/avif"
+        srcSet={srcSet("hero-desktop", [960, 1200, 1448], "avif")}
+        sizes="100vw"
+      />
+      <source
+        media="(min-width: 681px)"
+        type="image/webp"
+        srcSet={srcSet("hero-desktop", [960, 1200, 1448], "webp")}
+        sizes="100vw"
+      />
+      <img
+        className="hero-image"
+        src="/hero-desktop.jpg"
+        alt="Außenansicht von Autodienst Schwanheim mit Fahrzeugen vor der Werkstatt"
+        width="1448"
+        height="1086"
+        fetchPriority="high"
+        decoding="async"
+      />
     </picture>
   );
 }
@@ -287,29 +332,19 @@ export default function Home() {
       </header>
 
       <section id="start" className="hero" aria-labelledby="hero-title">
-        <ResponsiveImage
-          pictureClassName="hero-picture"
-          name="werkstatt-aussen"
-          widths={[768, 960, 1536]}
-          sizes="100vw"
-          fallbackSrc="/werkstatt-aussen.png"
-          className="hero-image"
-          alt="Außenansicht von Autodienst Schwanheim"
-          width="1536"
-          height="1024"
-          fetchPriority="high"
-        />
+        <HeroImage />
         <div className="hero-orbit" aria-hidden="true" />
         <div className="hero-content">
           <p className="kicker">Autowerkstatt in Frankfurt-Schwanheim</p>
           <h1 id="hero-title">
-            Autodienst
-            <span>Schwanheim</span>
+            <span className="hero-title-main">Autodienst Schwanheim</span>
+            <span>in Frankfurt</span>
           </h1>
           <p className="hero-subtitle">Ihr moderner Kfz-Service in Frankfurt-Schwanheim</p>
           <div className="hero-actions" aria-label="Kontaktaktionen">
             <a className="button button-primary" href={contact.landlineHref}>
-              Jetzt anrufen
+              <Icon name="phone" />
+              <span>Jetzt anrufen</span>
             </a>
             <a
               className="button button-secondary"
@@ -317,7 +352,9 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              Route starten
+              <Icon name="map" />
+              <span>Zur Werkstatt</span>
+              <Icon name="arrow" />
             </a>
           </div>
           <div className="proof-line" aria-label="Kurzvorteile">
