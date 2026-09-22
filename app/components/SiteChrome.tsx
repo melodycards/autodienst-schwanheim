@@ -52,6 +52,15 @@ export function SiteFooter() {
       <nav aria-label="Rechtliches">
         <Link href="/impressum">Impressum</Link><Link href="/datenschutz">Datenschutz</Link><a href={contact.emailHref}>{contact.email}</a>
       </nav>
+      <div className="footer-credit">
+        <a className="footer-credit-link" href="https://tmr-webdesign.de" target="_blank" rel="noopener noreferrer" aria-label="Webdesign TIMUR, tmr-webdesign.de (öffnet in neuem Tab)">
+          <span className="footer-credit-brand">
+            <span className="footer-credit-mark" aria-hidden="true">T</span>
+            <span>Webdesign <strong>TIMUR<span className="footer-credit-dot">.</span></strong></span>
+          </span>
+          <span className="footer-credit-domain">tmr-webdesign.de <Icon name="arrow" /></span>
+        </a>
+      </div>
     </footer>
   );
 }
