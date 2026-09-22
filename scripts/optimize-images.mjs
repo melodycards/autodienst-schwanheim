@@ -7,6 +7,20 @@ const outputDir = path.join(publicDir, "assets", "optimized");
 
 const assets = [
   {
+    input: "intro-mobile.png",
+    name: "intro-mobile",
+    widths: [480, 720, 941],
+    avifQuality: 60,
+    webpQuality: 82,
+  },
+  {
+    input: "intro-desktop.png",
+    name: "intro-desktop",
+    widths: [960, 1280, 1672],
+    avifQuality: 60,
+    webpQuality: 82,
+  },
+  {
     input: "hero-desktop.jpg",
     name: "hero-desktop",
     widths: [960, 1200, 1448],

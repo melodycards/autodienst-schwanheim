@@ -122,7 +122,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .workshop-facts .icon { color: var(--brand); }
 .process-line { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: 30px; }
 .process-step { background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--brand); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); min-width: 0; }
-.process-step h3 { color: var(--text); font-size: 1.15rem; font-weight: 800; margin: 0 0 12px; }
+.process-step h3 { color: var(--text); font-size: 1.15rem; font-weight: 800; margin: 0 0 12px; position: relative; }
+.process-step h3::after { content: ""; position: absolute; left: 0; bottom: -8px; width: 48px; height: 2px; background: var(--brand); box-shadow: 0 0 6px rgb(20 102 174 / 40%); }
 
 .contact-stage, .contact-layout { max-width: 1240px; margin-inline: auto; }
 .contact-stage { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: end; gap: 28px; }

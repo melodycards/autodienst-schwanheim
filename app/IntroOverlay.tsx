@@ -21,27 +21,40 @@ export function IntroOverlay() {
 
   return (
     <div className="intro-overlay" aria-label="Website-Intro">
+      <picture className="intro-picture">
+        <source
+          media="(max-width: 680px)"
+          type="image/avif"
+          srcSet="/assets/optimized/intro-mobile-480.avif 480w, /assets/optimized/intro-mobile-720.avif 720w, /assets/optimized/intro-mobile-941.avif 941w"
+          sizes="100vw"
+        />
+        <source
+          media="(max-width: 680px)"
+          type="image/webp"
+          srcSet="/assets/optimized/intro-mobile-480.webp 480w, /assets/optimized/intro-mobile-720.webp 720w, /assets/optimized/intro-mobile-941.webp 941w"
+          sizes="100vw"
+        />
+        <source media="(max-width: 680px)" srcSet="/intro-mobile.png" />
+        <source
+          type="image/avif"
+          srcSet="/assets/optimized/intro-desktop-960.avif 960w, /assets/optimized/intro-desktop-1280.avif 1280w, /assets/optimized/intro-desktop-1672.avif 1672w"
+          sizes="100vw"
+        />
+        <source
+          type="image/webp"
+          srcSet="/assets/optimized/intro-desktop-960.webp 960w, /assets/optimized/intro-desktop-1280.webp 1280w, /assets/optimized/intro-desktop-1672.webp 1672w"
+          sizes="100vw"
+        />
+        <img
+          className="intro-photo"
+          src="/intro-desktop.png"
+          alt=""
+          width="1672"
+          height="941"
+          fetchPriority="high"
+        />
+      </picture>
       <div className="intro-composition">
-        <picture className="intro-picture">
-          <source
-            type="image/avif"
-            srcSet="/assets/optimized/werkstatt-aussen-768.avif 768w, /assets/optimized/werkstatt-aussen-960.avif 960w, /assets/optimized/werkstatt-aussen-1536.avif 1536w"
-            sizes="100vw"
-          />
-          <source
-            type="image/webp"
-            srcSet="/assets/optimized/werkstatt-aussen-768.webp 768w, /assets/optimized/werkstatt-aussen-960.webp 960w, /assets/optimized/werkstatt-aussen-1536.webp 1536w"
-            sizes="100vw"
-          />
-          <img
-            className="intro-photo"
-            src="/werkstatt-aussen.png"
-            alt=""
-            width="1536"
-            height="1024"
-            fetchPriority="high"
-          />
-        </picture>
         <div className="intro-light" />
         <div className="intro-stage">
           <div className="intro-brand-mark">
