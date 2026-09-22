@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { headers } from "next/headers";
 import "./globals.css";
+import { SiteHeader, SiteFooter } from "./components/SiteChrome";
 
 const siteTitle = "Autodienst Schwanheim | Autowerkstatt in Frankfurt am Main";
 const siteDescription =
@@ -61,7 +62,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body>{children}</body>
+      <body><SiteHeader />{children}<SiteFooter /></body>
     </html>
   );
 }
