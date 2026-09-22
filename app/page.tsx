@@ -1,4 +1,5 @@
 import type { ImgHTMLAttributes, ReactNode } from "react";
+import Image from "next/image";
 import { IntroOverlay } from "./IntroOverlay";
 
 const contact = {
@@ -78,29 +79,24 @@ const serviceGroups = [
   },
 ];
 
-const gallery = [
-  {
-    src: "/werkstatt-detail-1.jpg",
-    optimizedName: "werkstatt-detail-1",
-    alt: "Außenbereich von Autodienst Schwanheim mit Fahrzeugen vor dem Betrieb",
-    width: 2200,
-    height: 1650,
-  },
-  {
-    src: "/werkstatt-service-new.jpg",
-    optimizedName: "werkstatt-service-new",
-    alt: "Werkstattbereich von Autodienst Schwanheim mit geöffneten Toren",
-    width: 1206,
-    height: 879,
-  },
-  {
-    src: "/werkstatt-detail-2.jpg",
-    optimizedName: "werkstatt-detail-2",
-    alt: "Werkstattalltag bei Autodienst Schwanheim mit Fahrzeugen auf dem Hof",
-    width: 2200,
-    height: 1650,
-  },
-];
+const workshopPhotos = {
+  "radmontage": { alt: "Mitarbeiter bei der Radmontage in der Werkstatt", width: 1672, height: 941, position: "65% 50%" },
+  "standort-ueberblick": { alt: "Überblick über den Werkstatthof und das Gebäude von Autodienst Schwanheim", width: 1672, height: 941, position: "50% 55%" },
+  "werkstatt-eingang": { alt: "Eingang und Beschilderung von Autodienst Schwanheim mit Fahrzeugen vor den Werkstatttoren", width: 1672, height: 941, position: "50% 45%" },
+  "hebebuehne": { alt: "Fahrzeug auf der Hebebühne mit sichtbarem Unterboden und Werkstattausstattung", width: 1672, height: 941, position: "50% 40%" },
+  "werkstatt-team": { alt: "Zwei Mitarbeiter bei Arbeiten am Unterboden eines angehobenen Fahrzeugs", width: 1672, height: 941, position: "50% 55%" },
+  "bremsanlage": { alt: "Bremsscheibe und roter Bremssattel am angehobenen Fahrzeug", width: 1448, height: 1086, position: "42% 40%" },
+  "werkstatthallen": { alt: "Geöffnete blaue Werkstatttore mit Blick auf Arbeitsplätze und Ausstattung", width: 1672, height: 941, position: "50% 50%" },
+  "werkstattalltag": { alt: "Mitarbeiter und Fahrzeuge bei Arbeiten vor den geöffneten Werkstatttoren", width: 1672, height: 941, position: "65% 55%" },
+};
+
+type WorkshopPhotoName = keyof typeof workshopPhotos;
+const gallery: WorkshopPhotoName[] = ["standort-ueberblick", "werkstatthallen", "werkstattalltag"];
+const servicePhotos: Partial<Record<string, WorkshopPhotoName>> = {
+  "Wartung und Inspektion": "hebebuehne",
+  "Reifen und Fahrwerk": "radmontage",
+  "Bremsen und Abgasanlage": "bremsanlage",
+};
 
 const processSteps = [
   ["Kontakt", "Anrufen, schreiben oder direkt die Route starten."],
@@ -237,6 +233,27 @@ function srcSet(name: string, widths: number[], extension: "avif" | "webp") {
   return widths
     .map((width) => `/assets/optimized/${name}-${width}.${extension} ${width}w`)
     .join(", ");
+}
+
+function WorkshopPhoto({ name, sizes }: { name: WorkshopPhotoName; sizes: string }) {
+  const photo = workshopPhotos[name];
+  const asset = `foto-${name}`;
+  return (
+    <picture className="workshop-photo">
+      <source type="image/avif" srcSet={srcSet(asset, [480, 768, 1200, 1440], "avif")} sizes={sizes} />
+      <source type="image/webp" srcSet={srcSet(asset, [480, 768, 1200, 1440], "webp")} sizes={sizes} />
+      <Image
+        src={`/assets/optimized/${asset}-1200.webp`}
+        alt={photo.alt}
+        width={photo.width}
+        height={photo.height}
+        style={{ objectPosition: photo.position }}
+        loading="lazy"
+        decoding="async"
+        unoptimized
+      />
+    </picture>
+  );
 }
 
 function ResponsiveImage({
@@ -419,6 +436,11 @@ export default function Home() {
                     </li>
                   ))}
                 </ul>
+                {servicePhotos[group.title] && (
+                  <div className="service-photo">
+                    <WorkshopPhoto name={servicePhotos[group.title]!} sizes="(max-width: 680px) calc(100vw - 76px), (max-width: 1240px) 85vw, 1024px" />
+                  </div>
+                )}
               </div>
             </details>
           ))}
@@ -451,16 +473,7 @@ export default function Home() {
           </div>
         </div>
         <div className="workshop-media reveal">
-          <ResponsiveImage
-            name="werkstatt-komprimiert"
-            widths={[640, 960, 1024]}
-            sizes="(max-width: 680px) calc(100vw - 36px), 47vw"
-            fallbackSrc="/werkstatt-komprimiert.webp"
-            alt="Servicefahrzeug von Autodienst Schwanheim vor der Werkstatt"
-            width="1024"
-            height="768"
-            loading="lazy"
-          />
+          <WorkshopPhoto name="werkstatt-team" sizes="(max-width: 680px) calc(100vw - 36px), (max-width: 980px) 90vw, 540px" />
         </div>
       </section>
 
@@ -470,18 +483,9 @@ export default function Home() {
           <h2 id="gallery-title">Echte Einblicke in den Standort.</h2>
         </div>
         <div className="gallery-grid">
-          {gallery.map((image, index) => (
-            <figure className={index === 0 ? "gallery-large reveal" : "reveal"} key={image.src}>
-              <ResponsiveImage
-                name={image.optimizedName}
-                widths={[640, 960, 1200]}
-                sizes="(max-width: 680px) calc(100vw - 36px), 96vw"
-                fallbackSrc={image.src}
-                alt={image.alt}
-                width={image.width}
-                height={image.height}
-                loading="lazy"
-              />
+          {gallery.map((name, index) => (
+            <figure className={index === 0 ? "gallery-large reveal" : "reveal"} key={name}>
+              <WorkshopPhoto name={name} sizes="(max-width: 680px) calc(100vw - 40px), (max-width: 1240px) 86vw, 1080px" />
             </figure>
           ))}
         </div>
@@ -527,6 +531,10 @@ export default function Home() {
               <span>E-Mail senden</span>
             </a>
           </div>
+        </div>
+
+        <div className="contact-location">
+          <WorkshopPhoto name="werkstatt-eingang" sizes="(max-width: 680px) calc(100vw - 36px), (max-width: 1400px) 90vw, 1240px" />
         </div>
 
         <div className="contact-layout">

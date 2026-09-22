@@ -644,7 +644,6 @@ picture {
 }
 
 .workshop-media::after,
-.gallery-grid figure::after,
 .contact-video::after {
   background:
     linear-gradient(0deg, rgba(3, 5, 7, 0.44), transparent 45%),
@@ -656,13 +655,13 @@ picture {
 }
 
 .workshop-media {
-  aspect-ratio: 16 / 11;
+  align-self: center;
   border-radius: 18px;
 }
 
 .workshop-media img,
 .gallery-grid img {
-  filter: saturate(0.82) contrast(1.1) brightness(0.9);
+  filter: none;
   height: 100%;
   object-fit: cover;
   transition: transform 900ms ease;
@@ -752,14 +751,29 @@ picture {
 }
 
 .gallery-grid figure::after {
-  background:
-    linear-gradient(115deg, rgba(255, 255, 255, 0.1), transparent 26%),
-    linear-gradient(0deg, rgba(3, 5, 7, 0.34), transparent 38%),
-    linear-gradient(120deg, rgba(30, 167, 255, 0.11), transparent 44%);
-  content: "";
-  inset: 2px;
-  pointer-events: none;
-  position: absolute;
+  content: none;
+}
+
+/* Keep the complete supplied subjects visible, with space reserved before loading. */
+.workshop-photo img {
+  display: block;
+  height: auto;
+  object-fit: contain;
+  width: 100%;
+}
+
+.service-photo {
+  border-radius: 8px;
+  grid-column: 1 / -1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.contact-location {
+  border-radius: 18px;
+  margin: 28px auto 0;
+  max-width: 1240px;
+  overflow: hidden;
 }
 
 .gallery-large {
@@ -2195,7 +2209,11 @@ body {
 }
 
 .workshop-media img {
-  filter: saturate(1.02) contrast(1.03) brightness(1);
+  filter: none;
+}
+
+.workshop-media::after {
+  content: none;
 }
 
 .gallery-section .section-head h2,
