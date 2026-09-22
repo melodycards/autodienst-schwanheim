@@ -402,8 +402,10 @@
   letter-spacing: 0;
   line-height: 1;
   text-shadow:
-    0 18px 44px rgba(0, 0, 0, 0.7),
-    0 0 28px rgba(160, 215, 255, 0.14);
+    0 2px 4px rgba(0, 0, 0, 0.95),
+    0 4px 12px rgba(0, 0, 0, 0.9),
+    0 10px 28px rgba(0, 0, 0, 0.85),
+    0 18px 44px rgba(0, 0, 0, 0.8);
 }
 
 .intro-brand-mark span {
@@ -785,10 +787,10 @@
   .intro-brand-mark { position: absolute; top: 6%; left: 6%; right: 6%; }
   .intro-brand-mark strong { font-size: clamp(1.125rem, 8cqi, 2rem); line-height: 1.08; text-shadow: 0 2px 6px rgb(10 30 50 / 40%); }
   .intro-brand-mark span { font-size: clamp(.5625rem, 3cqi, .8125rem); margin-top: 10px; }
-  .intro-statements { position: absolute; top: 66%; left: 8%; width: 84%; gap: 4cqi; }
-  .intro-statement { gap: 3cqi; }
-  .intro-statement strong { font-size: clamp(1rem, 6.65cqi, 1.75rem); line-height: 1.15; text-shadow: 0 2px 6px rgb(10 30 50 / 40%); }
-  .intro-check { width: clamp(18px, 6cqi, 25px); height: clamp(18px, 6cqi, 25px); }
+  .intro-statements { position: absolute; top: 34%; left: 4%; width: 92%; gap: 4cqi; }
+  .intro-statement { gap: 2.5cqi; }
+  .intro-statement strong { flex: 1; min-width: 0; font-size: clamp(1.75rem, 12.5cqi, 3.5rem); line-height: 1.15; text-shadow: 0 2px 6px rgb(10 30 50 / 40%); }
+  .intro-check { width: clamp(30px, 11.25cqi, 50px); height: clamp(30px, 11.25cqi, 50px); }
   .intro-skip { bottom: 3%; right: 7%; font-size: .625rem; min-height: 44px; }
 }
 
