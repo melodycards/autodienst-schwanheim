@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { flushSync } from "react-dom";
-import Link from "next/link";
+import { SectionLink } from "./SectionLink";
 
 export function MobileMenu() {
   const [open, setOpen] = useState(false);
@@ -61,8 +61,8 @@ export function MobileMenu() {
       </button>
       {open && <button className="menu-backdrop" aria-label="Menü schließen" tabIndex={-1} onClick={() => setOpen(false)} />}
       <nav ref={navigation} id="mobile-navigation" className="mobile-navigation" aria-label="Mobile Seitenbereiche" hidden={!open}>
-        {[["leistungen", "Leistungen"], ["werkstatt", "Werkstatt"], ["galerie", "Galerie"], ["kontakt", "Kontakt"]].map(([id, title]) => (
-          <Link key={id} href={`/#${id}`}>{title}<span aria-hidden="true">→</span></Link>
+        {([["leistungen", "Leistungen"], ["werkstatt", "Werkstatt"], ["galerie", "Galerie"], ["kontakt", "Kontakt"]] as const).map(([id, title]) => (
+          <SectionLink key={id} section={id}>{title}<span aria-hidden="true">→</span></SectionLink>
         ))}
       </nav>
     </div>

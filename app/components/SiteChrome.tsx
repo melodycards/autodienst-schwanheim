@@ -3,9 +3,10 @@ import Link from "next/link";
 import { contact } from "../data/contact";
 import { Icon } from "./Icon";
 import { MobileMenu } from "./MobileMenu";
+import { SectionLink, SectionNavigation } from "./SectionLink";
 
 function Logo({ footer = false }: { footer?: boolean }) {
-  const sizes = footer ? "81px" : "(max-width: 380px) 52px, (max-width: 680px) 64px, 99px";
+  const sizes = footer ? "81px" : "(max-width: 680px) 84px, 99px";
   return (
     <picture>
       <source type="image/avif" srcSet="/assets/optimized/autodienst-logo-160.avif 160w, /assets/optimized/autodienst-logo-240.avif 240w, /assets/optimized/autodienst-logo-320.avif 320w" sizes={sizes} />
@@ -18,12 +19,13 @@ function Logo({ footer = false }: { footer?: boolean }) {
 export function SiteHeader() {
   return (
     <header className="topbar" aria-label="Hauptnavigation">
-      <Link className="brand" href="/#start" aria-label="Autodienst Schwanheim">
+      <SectionNavigation />
+      <SectionLink className="brand" section="start" aria-label="Autodienst Schwanheim">
         <Logo />
-        <span><strong>Autodienst Schwanheim</strong><small>Frankfurt-Schwanheim</small></span>
-      </Link>
+        <span><strong>Autodienst<span className="brand-place"> Schwanheim</span></strong><small>Frankfurt-Schwanheim</small></span>
+      </SectionLink>
       <nav className="nav-links" aria-label="Seitenbereiche">
-        <Link href="/#leistungen">Leistungen</Link><Link href="/#werkstatt">Werkstatt</Link><Link href="/#galerie">Galerie</Link><Link href="/#kontakt">Kontakt</Link>
+        <SectionLink section="leistungen">Leistungen</SectionLink><SectionLink section="werkstatt">Werkstatt</SectionLink><SectionLink section="galerie">Galerie</SectionLink><SectionLink section="kontakt">Kontakt</SectionLink>
       </nav>
       <MobileMenu />
     </header>
@@ -43,10 +45,10 @@ export function ContactActions({ email = true }: { email?: boolean }) {
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <Link className="footer-brand" href="/#start" aria-label="Autodienst Schwanheim">
+      <SectionLink className="footer-brand" section="start" aria-label="Autodienst Schwanheim">
         <Logo footer />
         <span><strong>Autodienst Schwanheim</strong><small>{contact.street} · {contact.city}</small></span>
-      </Link>
+      </SectionLink>
       <nav aria-label="Rechtliches">
         <Link href="/impressum">Impressum</Link><Link href="/datenschutz">Datenschutz</Link><a href={contact.emailHref}>{contact.email}</a>
       </nav>

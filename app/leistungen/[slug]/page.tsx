@@ -5,6 +5,7 @@ import { services, servicesBySlug, serviceGroups } from "../../data/services";
 import { contact } from "../../data/contact";
 import { ContactActions } from "../../components/SiteChrome";
 import { Icon } from "../../components/Icon";
+import { SectionLink } from "../../components/SectionLink";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return services.map(({ slug }) => ({ slug })); }
@@ -25,7 +26,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
   return (
     <main className="service-page">
       <div className="service-page-head">
-        <Link className="back-link" href="/#leistungen">← Zur Leistungsübersicht</Link>
+        <SectionLink className="back-link" section="leistungen">← Zur Leistungsübersicht</SectionLink>
         <p className="kicker">{group?.title}</p>
         <h1>{service.title}</h1>
         <p className="service-intro">{service.intro}</p>
@@ -41,7 +42,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
         <aside className="related-services" aria-labelledby="related-title">
           <h2 id="related-title">Verwandte Leistungen</h2>
           {service.related.map(slug => <Link key={slug} href={`/leistungen/${slug}`}><span>{servicesBySlug[slug].title}</span><Icon name="arrow" /></Link>)}
-          <Link className="back-link" href="/#leistungen">Alle Leistungen ansehen</Link>
+          <SectionLink className="back-link" section="leistungen">Alle Leistungen ansehen</SectionLink>
         </aside>
       </div>
       <section className="service-contact" aria-labelledby="service-contact-title">

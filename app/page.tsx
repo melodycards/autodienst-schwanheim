@@ -3,7 +3,6 @@ import { Icon, type IconName } from "./components/Icon";
 import { contact } from "./data/contact";
 import { serviceGroups, servicesByTitle } from "./data/services";
 import Image from "next/image";
-import { IntroOverlay } from "./IntroOverlay";
 
 
 const people = [
@@ -156,7 +155,6 @@ function WorkshopWatermark({ skyline = false }: { skyline?: boolean }) {
 export default function Home() {
   return (
     <main className="site-shell">
-      <IntroOverlay />
 
 
       <section id="start" className="hero" aria-labelledby="hero-title">
