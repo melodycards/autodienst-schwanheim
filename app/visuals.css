@@ -454,20 +454,23 @@
   font-weight: 840;
   letter-spacing: 0;
   line-height: 1.02;
-  text-shadow: 0 18px 44px rgba(0, 0, 0, 0.66);
+  text-shadow:
+    0 1px 3px rgba(0, 0, 0, 1),
+    0 3px 8px rgba(0, 0, 0, 0.95),
+    0 8px 20px rgba(0, 0, 0, 0.85);
 }
 
 .intro-check {
   animation: introCheckPop 0.34s ease-out both;
-  color: #39d881;
-  filter: drop-shadow(0 0 13px rgba(57, 216, 129, 0.34));
+  color: #35ed83;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 1)) drop-shadow(0 3px 5px rgba(0, 0, 0, 0.85));
   flex: 0 0 auto;
-  height: clamp(24px, 4.2vw, 38px);
+  height: clamp(28.32px, 4.956vw, 44.84px);
   stroke: currentColor;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 2.3;
-  width: clamp(24px, 4.2vw, 38px);
+  stroke-width: 2.6;
+  width: clamp(28.32px, 4.956vw, 44.84px);
 }
 
 .intro-statement:nth-child(1) .intro-check {
@@ -787,10 +790,10 @@
   .intro-brand-mark { position: absolute; top: 6%; left: 6%; right: 6%; }
   .intro-brand-mark strong { font-size: clamp(1.125rem, 8cqi, 2rem); line-height: 1.08; text-shadow: 0 2px 6px rgb(10 30 50 / 40%); }
   .intro-brand-mark span { font-size: clamp(.5625rem, 3cqi, .8125rem); margin-top: 10px; }
-  .intro-statements { position: absolute; top: 34%; left: 4%; width: 92%; gap: 4cqi; }
-  .intro-statement { gap: 2.5cqi; }
-  .intro-statement strong { flex: 1; min-width: 0; font-size: clamp(1.75rem, 12.5cqi, 3.5rem); line-height: 1.15; text-shadow: 0 2px 6px rgb(10 30 50 / 40%); }
-  .intro-check { width: clamp(30px, 11.25cqi, 50px); height: clamp(30px, 11.25cqi, 50px); }
+  .intro-statements { position: absolute; top: 56%; left: 4%; width: 92%; gap: 4cqi; }
+  .intro-statement { gap: 2cqi; }
+  .intro-statement strong { flex: 0 0 auto; font-size: clamp(1rem, 8.645cqi, 2.275rem); line-height: 1.15; white-space: nowrap; }
+  .intro-check { width: clamp(20px, 7.8cqi, 32.5px); height: clamp(20px, 7.8cqi, 32.5px); }
   .intro-skip { bottom: 3%; right: 7%; font-size: .625rem; min-height: 44px; }
 }
 
