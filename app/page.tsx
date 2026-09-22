@@ -302,6 +302,24 @@ function HeroImage() {
   );
 }
 
+function WorkshopWatermark({ skyline = false }: { skyline?: boolean }) {
+  return (
+    <div className={`workshop-watermark${skyline ? " workshop-watermark-skyline" : ""}`} aria-hidden="true">
+      {skyline ? (
+        <svg viewBox="0 0 640 320" fill="none">
+          <path d="M20 260h38V150h32v110h28V108h38v152h32V74l16-30 16 30v186h34V130h42v130h28V62h8V24h8v38h22v198h32V110h40v150h24V166h46v94h28V140h36v120h54" />
+          <path d="M188 74h32M204 44V12M254 154h42M254 180h42M324 94h38M324 126h38M394 138h40M394 166h40M118 132h38M118 160h38M0 284c170-20 342-20 640 6M0 305c170-20 342-20 640 6" />
+        </svg>
+      ) : (
+        <>
+          <Icon name="wrench" />
+          <Icon name="wheel" />
+        </>
+      )}
+    </div>
+  );
+}
+
 export default function Home() {
   return (
     <main className="site-shell">
@@ -335,40 +353,45 @@ export default function Home() {
         <HeroImage />
         <div className="hero-orbit" aria-hidden="true" />
         <div className="hero-content">
-          <p className="kicker">Autowerkstatt in Frankfurt-Schwanheim</p>
-          <h1 id="hero-title">
-            <span className="hero-title-main">Autodienst Schwanheim</span>
-            <span>in Frankfurt</span>
-          </h1>
-          <p className="hero-subtitle">Ihr moderner Kfz-Service in Frankfurt-Schwanheim</p>
-          <div className="hero-actions" aria-label="Kontaktaktionen">
-            <a className="button button-primary" href={contact.landlineHref}>
-              <Icon name="phone" />
-              <span>Jetzt anrufen</span>
-            </a>
-            <a
-              className="button button-secondary"
-              href={contact.mapsHref}
-              target="_blank"
-              rel="noreferrer"
-            >
-              <Icon name="map" />
-              <span>Zur Werkstatt</span>
-              <Icon name="arrow" />
-            </a>
+          <div className="hero-copy">
+            <p className="kicker">Autowerkstatt in Frankfurt-Schwanheim</p>
+            <h1 id="hero-title">
+              <span className="hero-title-main">Autodienst Schwanheim</span>
+              <span>in Frankfurt</span>
+            </h1>
+            <p className="hero-subtitle">Ihr moderner Kfz-Service in Frankfurt-Schwanheim</p>
           </div>
-          <div className="proof-line" aria-label="Kurzvorteile">
-            {benefits.map((benefit) => (
-              <span key={benefit.label}>
-                <Icon name={benefit.icon as IconName} />
-                {benefit.label}
-              </span>
-            ))}
+          <div className="hero-footer">
+            <div className="hero-actions" aria-label="Kontaktaktionen">
+              <a className="button button-primary" href={contact.landlineHref}>
+                <Icon name="phone" />
+                <span>Jetzt anrufen</span>
+              </a>
+              <a
+                className="button button-secondary"
+                href={contact.mapsHref}
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Icon name="map" />
+                <span>Zur Werkstatt</span>
+                <Icon name="arrow" />
+              </a>
+            </div>
+            <div className="proof-line" aria-label="Kurzvorteile">
+              {benefits.map((benefit) => (
+                <span key={benefit.label}>
+                  <Icon name={benefit.icon as IconName} />
+                  {benefit.label}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </section>
 
       <section id="leistungen" className="service-section" aria-labelledby="service-title">
+        <WorkshopWatermark />
         <div className="section-head">
           <p className="kicker">Service / Leistungen</p>
           <h2 id="service-title">Kfz-Service</h2>
@@ -403,6 +426,7 @@ export default function Home() {
       </section>
 
       <section id="werkstatt" className="workshop-section" aria-labelledby="workshop-title">
+        <WorkshopWatermark skyline />
         <div className="workshop-copy reveal">
           <p className="kicker">Ihre Werkstatt in Schwanheim</p>
           <h2 id="workshop-title">Technischer Service mit direkter persönlicher Abstimmung.</h2>
@@ -486,7 +510,8 @@ export default function Home() {
           </div>
           <div className="contact-actions">
             <a className="button button-primary" href={contact.landlineHref}>
-              Jetzt anrufen
+              <Icon name="phone" />
+              <span>Jetzt anrufen</span>
             </a>
             <a
               className="button button-secondary"
@@ -494,10 +519,12 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              Route starten
+              <Icon name="map" />
+              <span>Zur Werkstatt</span>
             </a>
             <a className="button button-glass" href={contact.emailHref}>
-              E-Mail senden
+              <Icon name="mail" />
+              <span>E-Mail senden</span>
             </a>
           </div>
         </div>
