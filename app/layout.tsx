@@ -3,16 +3,11 @@ import { headers } from "next/headers";
 import "./globals.css";
 import { SiteHeader, SiteFooter } from "./components/SiteChrome";
 import { IntroOverlay } from "./IntroOverlay";
-
-const siteTitle = "Autodienst Schwanheim | Autowerkstatt in Frankfurt am Main";
-const siteDescription =
-  "Autodienst Schwanheim ist eine Kfz-Werkstatt in Frankfurt-Schwanheim für TÜV & AU-Service, Inspektion, Ölwechsel, Reifenservice, Fahrzeugdiagnose, Klima-Check, Bremsenservice und weitere Kfz-Leistungen.";
+import { isProductionHost, siteUrl, siteTitle, siteDescription } from "./seo";
 
 export async function generateMetadata(): Promise<Metadata> {
   const requestHeaders = await headers();
-  const host = requestHeaders.get("x-forwarded-host") ?? requestHeaders.get("host");
-  const protocol = requestHeaders.get("x-forwarded-proto") ?? "https";
-  const origin = host ? `${protocol}://${host}` : "http://localhost:3000";
+  const indexable = isProductionHost(requestHeaders.get("host"));
 
   return {
     title: siteTitle,
@@ -28,7 +23,8 @@ export async function generateMetadata(): Promise<Metadata> {
       "Fahrzeugdiagnose",
       "Bremsenservice",
     ],
-    metadataBase: new URL(origin),
+    metadataBase: new URL(siteUrl),
+    robots: indexable ? undefined : { index: false, follow: false },
     openGraph: {
       title: siteTitle,
       description: siteDescription,
@@ -36,7 +32,7 @@ export async function generateMetadata(): Promise<Metadata> {
       locale: "de_DE",
       images: [
         {
-          url: `${origin}/og.png`,
+          url: `${siteUrl}/og.png`,
           width: 1200,
           height: 630,
           alt: "Außenansicht von Autodienst Schwanheim in Frankfurt-Schwanheim",
@@ -47,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: "summary_large_image",
       title: siteTitle,
       description: siteDescription,
-      images: [`${origin}/og.png`],
+      images: [`${siteUrl}/og.png`],
     },
     icons: {
       icon: "/assets/optimized/autodienst-logo-160.png",

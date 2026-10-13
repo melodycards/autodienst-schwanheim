@@ -8,5 +8,3 @@ export const contact = {
   mapsHref:
     "https://www.google.com/maps/search/?api=1&query=Rheinlandstra%C3%9Fe%203%2C%2060529%20Frankfurt%20am%20Main",
 };
-
-export const siteUrl = "https://autodienst-schwanheim.vercel.app";

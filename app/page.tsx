@@ -3,7 +3,9 @@ import { Icon, type IconName } from "./components/Icon";
 import { contact } from "./data/contact";
 import { serviceGroups, servicesByTitle } from "./data/services";
 import Image from "next/image";
+import { pageSeo } from "./seo";
 
+export const metadata = pageSeo("");
 
 const people = [
   {

@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageSeo } from "../seo";
 
-export const metadata: Metadata = {
-  title: "Impressum | Autodienst Schwanheim",
-  description:
-    "Impressum und Anbieterkennzeichnung von Autodienst Schwanheim in Frankfurt am Main.",
-};
+export const metadata: Metadata = pageSeo(
+  "/impressum",
+  "Impressum | Autodienst Schwanheim",
+  "Impressum und Anbieterkennzeichnung von Autodienst Schwanheim in Frankfurt am Main.",
+);
 
 export default function ImpressumPage() {
   return (

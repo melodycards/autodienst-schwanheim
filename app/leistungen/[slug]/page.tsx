@@ -6,6 +6,7 @@ import { contact } from "../../data/contact";
 import { ContactActions } from "../../components/SiteChrome";
 import { Icon } from "../../components/Icon";
 import { SectionLink } from "../../components/SectionLink";
+import { pageSeo } from "../../seo";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return services.map(({ slug }) => ({ slug })); }
@@ -15,7 +16,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const service = servicesBySlug[slug];
   if (!service) notFound();
   const title = `${service.title} in Frankfurt | Autodienst Schwanheim`;
-  return { title, description: service.description, openGraph: { title, description: service.description }, twitter: { title, description: service.description } };
+  return pageSeo(`/leistungen/${slug}`, title, service.description);
 }
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {

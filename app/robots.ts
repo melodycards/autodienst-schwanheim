@@ -1,6 +1,13 @@
 import type { MetadataRoute } from "next";
-import { siteUrl } from "./data/contact";
+import { headers } from "next/headers";
+import { isProductionHost, siteUrl } from "./seo";
 
-export default function robots(): MetadataRoute.Robots {
-  return { rules: { userAgent: "*", allow: "/" }, sitemap: `${siteUrl}/sitemap.xml` };
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const requestHeaders = await headers();
+  return {
+    rules: isProductionHost(requestHeaders.get("host"))
+      ? { userAgent: "*", allow: "/" }
+      : { userAgent: "*", disallow: "/" },
+    sitemap: `${siteUrl}/sitemap.xml`,
+  };
 }

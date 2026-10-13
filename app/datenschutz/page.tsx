@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { pageSeo } from "../seo";
 
-export const metadata: Metadata = {
-  title: "Datenschutz | Autodienst Schwanheim",
-  description:
-    "Datenschutzerklärung von Autodienst Schwanheim in Frankfurt am Main.",
-};
+export const metadata: Metadata = pageSeo(
+  "/datenschutz",
+  "Datenschutz | Autodienst Schwanheim",
+  "Datenschutzerklärung von Autodienst Schwanheim in Frankfurt am Main.",
+);
 
 export default function DatenschutzPage() {
   return (
