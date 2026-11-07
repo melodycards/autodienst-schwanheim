@@ -4,12 +4,17 @@ import unittest
 from html.parser import HTMLParser
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import Request, urlopen
+from urllib.request import HTTPRedirectHandler, Request, build_opener
 from xml.etree import ElementTree
 
 ORIGIN = os.environ.get("SEO_TEST_ORIGIN", "http://localhost:3001")
 PRODUCTION = "https://www.autodienst-schwanheim.de"
 HOST = urlsplit(PRODUCTION).netloc
+
+
+class NoRedirect(HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
 
 
 class MetadataParser(HTMLParser):
@@ -31,7 +36,7 @@ class MetadataParser(HTMLParser):
 def request(path, host=HOST, origin=ORIGIN):
     req = Request(origin + path, headers={"Host": host})
     try:
-        response = urlopen(req, timeout=30)
+        response = build_opener(NoRedirect).open(req, timeout=30)
     except HTTPError as error:
         response = error
     with response:
@@ -71,14 +76,30 @@ class SeoResponses(unittest.TestCase):
         self.assertNotIn("noindex", headers.get("X-Robots-Tag", ""))
 
     def test_nonproduction_hosts(self):
-        for host in ["localhost:3001", "autodienst-schwanheim.vercel.app", "test.vercel.app"]:
+        for host in ["localhost:3001", "test.vercel.app", "autodienst-schwanheim-git-test-tmr-webdesign.vercel.app", "autodienst-schwanheim.vercel.app.example.com", "autodienst-schwanheimXvercelXapp"]:
             for path in ["/", "/leistungen/inspektion", "/impressum", "/datenschutz"]:
                 with self.subTest(host=host, path=path):
                     status, headers, html, _ = request(path, host)
                     self.assertEqual(status, 200)
+                    self.assertIsNone(headers.get("Location"))
                     self.assertEqual(headers.get("X-Robots-Tag"), "noindex, nofollow")
                     self.assertIn("noindex, nofollow", MetadataParser(html).meta["robots"])
             self.assertIn("Disallow: /", request("/robots.txt", host)[2])
+
+    def test_fixed_vercel_alias_redirects_with_path_and_query(self):
+        for path in ["/", "/leistungen/inspektion", "/leistungen/inspektion?utm_source=vercel&tag=a&tag=b&next=%2Fkontakt", "/?q=Reifen+%26+Bremsen", "/impressum", "/datenschutz", "/sitemap.xml", "/robots.txt", "/contact-video-web.mp4", "/_next/static/test.js", "/_next/image?url=%2Fhero-desktop.jpg&w=640&q=75", "/leistungen/nicht-vorhanden"]:
+            with self.subTest(path=path):
+                status, headers, _, _ = request(path, "autodienst-schwanheim.vercel.app")
+                self.assertEqual(status, 308)
+                self.assertEqual(headers.get("Location"), PRODUCTION + path)
+
+    def test_preferred_host_does_not_redirect(self):
+        for path in ["/", "/leistungen/inspektion?utm_source=vercel&tag=a&tag=b"]:
+            status, headers, html, _ = request(path)
+            self.assertEqual(status, 200)
+            self.assertIsNone(headers.get("Location"))
+            self.assertNotIn("noindex", headers.get("X-Robots-Tag", ""))
+            self.assertEqual(MetadataParser(html).canonicals, [PRODUCTION + path.split("?")[0].rstrip("/")])
 
     def test_missing_pages_remain_excluded(self):
         for path in ["/nicht-vorhanden", "/leistungen/nicht-vorhanden", "/leistungen/constructor", "/leistungen/__proto__", "/leistungen/toString"]:
@@ -94,11 +115,13 @@ class SeoResponses(unittest.TestCase):
     @unittest.skipUnless(os.environ.get("SEO_TEST_PREVIEW_ORIGIN"), "preview server not supplied")
     def test_preview_environment_even_with_production_host(self):
         origin = os.environ["SEO_TEST_PREVIEW_ORIGIN"]
-        for path in ["/", "/leistungen/inspektion"]:
-            status, headers, html, _ = request(path, HOST, origin)
-            self.assertEqual(status, 200)
-            self.assertEqual(headers.get("X-Robots-Tag"), "noindex, nofollow")
-            self.assertIn("noindex, nofollow", MetadataParser(html).meta["robots"])
+        for host in [HOST, "autodienst-schwanheim-git-test-tmr-webdesign.vercel.app"]:
+            for path in ["/", "/leistungen/inspektion"]:
+                status, headers, html, _ = request(path, host, origin)
+                self.assertEqual(status, 200)
+                self.assertIsNone(headers.get("Location"))
+                self.assertEqual(headers.get("X-Robots-Tag"), "noindex, nofollow")
+                self.assertIn("noindex, nofollow", MetadataParser(html).meta["robots"])
         self.assertIn("Disallow: /", request("/robots.txt", HOST, origin)[2])
 
 
