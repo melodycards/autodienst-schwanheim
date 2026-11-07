@@ -59,7 +59,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="de">
-      <body><IntroOverlay /><SiteHeader />{children}<SiteFooter /></body>
+      <body><IntroOverlay /><a className="skip-link" href="#main-content">Zum Inhalt</a><SiteHeader />{children}<SiteFooter /></body>
     </html>
   );
 }

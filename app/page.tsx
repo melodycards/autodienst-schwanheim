@@ -4,6 +4,9 @@ import { contact } from "./data/contact";
 import { serviceGroups, servicesByTitle } from "./data/services";
 import Image from "next/image";
 import { pageSeo } from "./seo";
+import { StructuredData } from "./components/StructuredData";
+import { businessStructuredData } from "./structuredData";
+import { ContactVideo } from "./components/ContactVideo";
 
 export const metadata = pageSeo("");
 
@@ -156,7 +159,8 @@ function WorkshopWatermark({ skyline = false }: { skyline?: boolean }) {
 
 export default function Home() {
   return (
-    <main className="site-shell">
+    <main id="main-content" tabIndex={-1} className="site-shell">
+      <StructuredData data={businessStructuredData} />
 
 
       <section id="start" className="hero" aria-labelledby="hero-title">
@@ -335,9 +339,7 @@ export default function Home() {
 
         <div className="contact-layout">
           <div className="contact-video" aria-hidden="true">
-            <video autoPlay muted loop playsInline preload="metadata">
-              <source src="/contact-video.mov" type="video/quicktime" />
-            </video>
+            <ContactVideo />
           </div>
           <div className="contact-data">
             <a href={contact.landlineHref}>

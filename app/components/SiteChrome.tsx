@@ -45,7 +45,7 @@ export function ContactActions({ email = true }: { email?: boolean }) {
 export function SiteFooter() {
   return (
     <footer className="site-footer">
-      <SectionLink className="footer-brand" section="start" aria-label="Autodienst Schwanheim">
+      <SectionLink className="footer-brand" section="start">
         <Logo footer />
         <span><strong>Autodienst Schwanheim</strong><small>{contact.street} · {contact.city}</small></span>
       </SectionLink>
@@ -53,7 +53,7 @@ export function SiteFooter() {
         <Link href="/impressum">Impressum</Link><Link href="/datenschutz">Datenschutz</Link><a href={contact.emailHref}>{contact.email}</a>
       </nav>
       <div className="footer-credit">
-        <a className="footer-credit-link" href="https://tmr-webdesign.de" target="_blank" rel="noopener noreferrer" aria-label="Webdesign TIMUR, tmr-webdesign.de (öffnet in neuem Tab)">
+        <a className="footer-credit-link" href="https://tmr-webdesign.de" target="_blank" rel="noopener noreferrer">
           <span className="footer-credit-brand">
             <span className="footer-credit-mark" aria-hidden="true">T</span>
             <span>Webdesign <strong>TIMUR<span className="footer-credit-dot">.</span></strong></span>

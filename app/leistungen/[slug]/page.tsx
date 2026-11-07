@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { services, servicesBySlug, serviceGroups } from "../../data/services";
+import { services, servicesBySlug, serviceGroups, findService } from "../../data/services";
 import { contact } from "../../data/contact";
 import { ContactActions } from "../../components/SiteChrome";
 import { Icon } from "../../components/Icon";
 import { SectionLink } from "../../components/SectionLink";
 import { pageSeo } from "../../seo";
+import { StructuredData } from "../../components/StructuredData";
+import { serviceStructuredData } from "../../structuredData";
 
 export const dynamicParams = false;
 export function generateStaticParams() { return services.map(({ slug }) => ({ slug })); }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const service = servicesBySlug[slug];
+  const service = findService(slug);
   if (!service) notFound();
   const title = `${service.title} in Frankfurt | Autodienst Schwanheim`;
   return pageSeo(`/leistungen/${slug}`, title, service.description);
@@ -21,11 +23,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
 export default async function ServicePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const service = servicesBySlug[slug];
+  const service = findService(slug);
   if (!service) notFound();
   const group = serviceGroups.find(item => item.services.includes(service.title));
   return (
-    <main className="service-page">
+    <main id="main-content" tabIndex={-1} className="service-page">
+      <StructuredData data={serviceStructuredData(service)} />
       <div className="service-page-head">
         <SectionLink className="back-link" section="leistungen">← Zur Leistungsübersicht</SectionLink>
         <p className="kicker">{group?.title}</p>
@@ -39,6 +42,7 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
           <section className="service-signs"><h2>Wann ist eine Prüfung sinnvoll?</h2><ul>{service.signs.map(sign => <li key={sign}><Icon name="check" /><span>{sign}</span></li>)}</ul></section>
           <section><h2>Was wird grundsätzlich geprüft oder gemacht?</h2><p>{service.checks}</p></section>
           <section><h2>Ihr nächster Schritt</h2><p>{service.next}</p></section>
+          <section><h2>Kontakt und Kosten vorbereiten</h2><p>Halten Sie für die Abstimmung nach Möglichkeit Fahrzeugmodell, Baujahr und Kilometerstand bereit. Beschreiben Sie vorhandene Warnmeldungen oder Auffälligkeiten und nennen Sie bereits durchgeführte Arbeiten. Der Aufwand hängt vom Fahrzeug und vom erforderlichen Prüf- oder Reparaturumfang ab. Fragen Sie vor einer Beauftragung nach den voraussichtlichen Kosten und danach, welche Arbeiten darin enthalten sind.</p></section>
         </article>
         <aside className="related-services" aria-labelledby="related-title">
           <h2 id="related-title">Verwandte Leistungen</h2>

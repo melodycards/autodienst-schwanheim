@@ -81,12 +81,15 @@ class SeoResponses(unittest.TestCase):
             self.assertIn("Disallow: /", request("/robots.txt", host)[2])
 
     def test_missing_pages_remain_excluded(self):
-        for path in ["/nicht-vorhanden", "/leistungen/nicht-vorhanden"]:
+        for path in ["/nicht-vorhanden", "/leistungen/nicht-vorhanden", "/leistungen/constructor", "/leistungen/__proto__", "/leistungen/toString"]:
             status, _, html, _ = request(path)
             self.assertEqual(status, 404)
             metadata = MetadataParser(html)
             self.assertEqual(metadata.canonicals, [])
             self.assertTrue(any("noindex" in value for value in metadata.meta["robots"]))
+
+    def test_unused_dynamic_image_optimizer_is_disabled(self):
+        self.assertEqual(request("/_next/image?url=%2Fhero-desktop.jpg&w=640&q=75")[0], 404)
 
     @unittest.skipUnless(os.environ.get("SEO_TEST_PREVIEW_ORIGIN"), "preview server not supplied")
     def test_preview_environment_even_with_production_host(self):

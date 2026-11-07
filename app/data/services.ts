@@ -174,6 +174,10 @@ export const services: Service[] = [
 export const servicesByTitle = Object.fromEntries(services.map(service => [service.title, service]));
 export const servicesBySlug = Object.fromEntries(services.map(service => [service.slug, service]));
 
+export function findService(slug: string) {
+  return Object.hasOwn(servicesBySlug, slug) ? servicesBySlug[slug] : undefined;
+}
+
 export const serviceGroups: { title: string; icon: IconName; description: string; services: string[] }[] = [
   {
     title: "Wartung und Inspektion",

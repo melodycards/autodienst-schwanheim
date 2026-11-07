@@ -10,7 +10,7 @@ export const metadata: Metadata = pageSeo(
 
 export default function DatenschutzPage() {
   return (
-    <main className="legal-page">
+    <main id="main-content" tabIndex={-1} className="legal-page">
       <Link href="/" className="legal-back">Zur Startseite</Link>
       <p className="legal-kicker">Datenschutzerklärung</p>
       <h1>Datenschutz</h1>

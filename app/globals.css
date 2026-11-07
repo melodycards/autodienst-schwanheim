@@ -51,6 +51,8 @@ button:disabled { cursor: default; }
 img, video { display: block; max-width: 100%; }
 picture { display: block; }
 a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px solid var(--brand-highlight); outline-offset: 4px; }
+.skip-link { position: fixed; top: 12px; left: 12px; z-index: 200; padding: 12px 18px; background: var(--surface); color: var(--text); transform: translateY(-200%); }
+.skip-link:focus { transform: translateY(0); }
 .site-shell { min-height: 100vh; overflow-x: clip; position: relative; }
 .icon { flex: 0 0 auto; height: 1.1em; width: 1.1em; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
 
